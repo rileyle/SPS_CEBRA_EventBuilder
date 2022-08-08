@@ -37,7 +37,8 @@ namespace EventBuilder {
 		void SetBoardShiftFile(const std::string& name);
 		void SetSlowCoincidenceWindow(double window);
 		void SetFastWindowIonChamber(double window);
-		void SetFastWindowSABRE(double window);
+		void SetFastWindowCEBRA(double window);
+	//	void SetFastWindowSABRE(double window);
 		void SetCutList(const std::string& name);
 		void SetScalerFile(const std::string& fullpath);
 		bool SetKinematicParameters(int zt, int at, int zp, int ap, int ze, int ae, double b, double theta, double bke);
@@ -58,7 +59,8 @@ namespace EventBuilder {
 		inline double GetTheta() const { return m_Theta; }
 		inline double GetSlowCoincidenceWindow() const { return m_SlowWindow; }
 		inline double GetFastWindowIonChamber() const { return m_FastWindowIonCh; }
-		inline double GetFastWindowSABRE() const { return m_FastWindowSABRE; }
+		inline double GetFastWindowCEBRA() const { return m_FastWindowCEBRA; }
+	//	inline double GetFastWindowSABRE() const { return m_FastWindowSABRE; }
 		inline std::string GetChannelMap() const { return m_mapfile; }
 		inline std::string GetBoardShiftFile() const { return m_shiftfile; }
 		inline std::string GetCutList() const { return m_cutList; }
@@ -93,7 +95,8 @@ namespace EventBuilder {
 	
 		double m_SlowWindow;
 		double m_FastWindowIonCh;
-		double m_FastWindowSABRE;
+		double m_FastWindowCEBRA;
+	//	double m_FastWindowSABRE;
 	
 		RunCollector grabber;
 

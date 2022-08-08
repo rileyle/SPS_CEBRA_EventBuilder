@@ -13,7 +13,8 @@ namespace EventBuilder {
 	//Detector part/type identifiers for use in the code
 	enum DetType
 	{
-		Sabre,
+		CEBRA,
+		//Sabre,
 		FocalPlane,
 		NoneType
 	};
@@ -30,6 +31,12 @@ namespace EventBuilder {
 		DelayBL,
 		Cathode,
 		Monitor,
+		CEBRA0,
+		CEBRA1,
+		CEBRA2,
+		CEBRA3,
+		CEBRA4,
+		/*
 		SabreRing0,
 		SabreRing1,
 		SabreRing2,
@@ -40,6 +47,7 @@ namespace EventBuilder {
 		SabreWedge2,
 		SabreWedge3,
 		SabreWedge4,
+		*/
 		NoneAttr
 	};
 	

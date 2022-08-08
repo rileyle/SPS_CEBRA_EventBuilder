@@ -3,8 +3,10 @@
 
 namespace EventBuilder {
 	//windows given in picoseconds, converted to nanoseconds
-	FastSort::FastSort(float si_windowSize, float ion_windowSize) :
-		si_coincWindow(si_windowSize/1.0e3), ion_coincWindow(ion_windowSize/1.0e3), event_address(nullptr)
+	//FastSort::FastSort(float si_windowSize, float ion_windowSize) :
+	//	si_coincWindow(si_windowSize/1.0e3), ion_coincWindow(ion_windowSize/1.0e3), event_address(nullptr)
+	FastSort::FastSort(float cebr_windowSize, float ion_windowSize) :
+		cebr_coincWindow(cebr_windowSize/1.0e3), ion_coincWindow(ion_windowSize/1.0e3), event_address(nullptr)
 	{
 	}
 	
@@ -13,12 +15,18 @@ namespace EventBuilder {
 		delete event_address;
 	}
 	
-	void FastSort::ResetSABRE() 
+	void FastSort::ResetCEBRA() 
+	{
+		for(int i=0; i<4; i++)
+			fastEvent.cebraArray[i] = cebrblank;
+	}
+
+/*	void FastSort::ResetSABRE() 
 	{
 		for(int i=0; i<5; i++)
 			fastEvent.sabreArray[i] = sblank;
 	}
-	
+*/	
 	void FastSort::ResetFocalPlane() 
 	{
 		fastEvent.focalPlane = fpblank;
@@ -64,6 +72,7 @@ namespace EventBuilder {
 	}
 	
 	/*Assign a set of SABRE data that falls within the coincidence window*/
+	/*
 	void FastSort::ProcessSABRE(unsigned int scint_index) 
 	{
 		for(int i=0; i<5; i++) 
@@ -74,7 +83,7 @@ namespace EventBuilder {
 			if(slowEvent.sabreArray[i].rings.size() == 0 || slowEvent.sabreArray[i].wedges.size() == 0) 
 				continue; //save some time on empties
 	
-			/*Dump sabre data that doesnt fall within the fast coincidence window with the scint*/
+			//Dump sabre data that doesnt fall within the fast coincidence window with the scint
 			for(unsigned int j=0; j<slowEvent.sabreArray[i].rings.size(); j++) 
 			{
 				float sabreRelTime = fabs(slowEvent.sabreArray[i].rings[j].Time - slowEvent.focalPlane.scintL[scint_index].Time);
@@ -92,7 +101,25 @@ namespace EventBuilder {
 			fastEvent.sabreArray[i].wedges = wedges;
 		}
 	}
-	
+	*/
+
+	/*Assign a set of CEBRA data that falls within the coincidence window*/
+	void FastSort::ProcessCEBRA(unsigned int scint_index) {
+	for(int i=0; i<4; i++) { //loop over CEBRA detectors
+		std::vector<DetectorHit> cebr;
+
+		if(slowEvent.cebraArray[i].cebr.size() == 0) continue; //save some time on empties
+
+		/*Dump cebra data that doesnt fall within the fast coincidence window with the scint*/
+		for(unsigned int j=0; j<slowEvent.cebraArray[i].cebr.size(); j++) {
+		float cebraRelTime = fabs(slowEvent.cebraArray[i].cebr[j].Time - slowEvent.focalPlane.scintL[scint_index].Time);
+		if(cebraRelTime < cebr_coincWindow) {
+			cebr.push_back(slowEvent.cebraArray[i].cebr[j]);
+		}
+		}
+		fastEvent.cebraArray[i].cebr = cebr;
+	}
+	}
 	std::vector<CoincEvent> FastSort::GetFastEvents(CoincEvent& event) 
 	{
 		slowEvent = event;
@@ -110,8 +137,10 @@ namespace EventBuilder {
 		//loop over scints
 		for(unsigned int i=0; i<slowEvent.focalPlane.scintL.size(); i++) 
 		{
-			ResetSABRE();
-			ProcessSABRE(i);
+		//	ResetSABRE();
+		//	ProcessSABRE(i);
+			ResetCEBRA();
+			ProcessCEBRA(i);
 			//loop over ion chamber
 			//NOTE: as written, this dumps data that does not have an ion chamber hit!
 			//If you want scint/SABRE singles, move the fill outside of this loop

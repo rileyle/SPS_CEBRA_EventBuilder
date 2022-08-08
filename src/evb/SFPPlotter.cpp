@@ -106,7 +106,22 @@ namespace EventBuilder {
 			MyFill(table,"anodeRelFrontTime_NoCuts",1000,-3000,3500, anodeRelFT);
 			MyFill(table,"delayRelFrontTime_NoCuts",1000,-3000,-3500,delayRelFT);
 			MyFill(table,"delayRelBackTime_NoCuts",1000,-3000,-3500,delayRelBT);
-			for(int i=0; i<5; i++) 
+			
+			for(int i=0; i<4; i++) {
+       			if(ev.cebraE[i] != -1 && ev.x1 != -1e6 && ev.x2 != -1e6){
+					Double_t cebraRelT = ev.cebraTime[i] - ev.anodeBackTime;
+					Double_t cebraRelT_toScint = ev.cebraTime[i] - ev.scintLeftTime;
+					MyFill(table,"xavg_cebrafcoinc_NoCuts",600,-300,300, ev.xavg);
+					MyFill(table,"cebraRelTime_NoCuts",3000,-15000,15000, cebraRelT); // was 1000, -3000, 3500
+					MyFill(table,"cebraRelTime_toScint",3000,-15000,15000,cebraRelT_toScint);
+					MyFill(table,"cebraRelRTScint_cebraRelRTAnode",3000,-15000,15000,cebraRelT_toScint,3000,-15000,15000,cebraRelT);
+					MyFill(table,"cebraRelRTScint_cebraChannel",3000,-15000,15000,cebraRelT_toScint,144,0,144,ev.cebraChannel[i]);
+					MyFill(table,"cebraRelRTAnode_cebraChannel",3000,-15000,15000,cebraRelT,144,0,144,ev.cebraChannel[i]);
+					MyFill(table,"cebraRelRTScint_anodeRelT",3000,-15000,15000,cebraRelT_toScint,3000,-15000,15000,anodeRelBT);
+				}
+			}
+			
+			/*for(int i=0; i<5; i++) 
 			{
 				if(ev.sabreRingE[i] != -1)
 				{
@@ -127,14 +142,14 @@ namespace EventBuilder {
 					MyFill(table,"sabreRelRT_sabreRelWT_scint",500,-3000,3500,sabreRelRT_toScint,500,-3000,3500,sabreRelWT_toScint);
 					MyFill(table,"sabreRelRTScint_anodeRelT",500,-3000,3500,sabreRelRT_toScint,500,-3000,3500,anodeRelBT);
 				}
-			}
+			}*/
 			MyFill(table,"anodeBackRelTime_toScint",1000,-3000,3500,anodeRelBT);
 			MyFill(table,"delayRelBackTime_toScint",1000,-3000,3500,delayRelBT_toScint);
 			MyFill(table,"delayRelFrontTime_toScint",1000,-3000,3500,delayRelFT_toScint);
 		} 
 		else
 			MyFill(table,"noscinttime_counter_NoCuts",2,0,1,1);
-		
+		/*
 		for(int i=0; i<5; i++) 
 		{ 
 			if(ev.sabreRingE[i] != -1)  //Again, at this point front&back are required
@@ -145,6 +160,11 @@ namespace EventBuilder {
 				MyFill(table,"sabreWedgeChannel_sabreWedgeE_NoCuts",144,0,144,ev.sabreWedgeChannel[i],4096,0,16384,ev.sabreWedgeE[i]);
 			}
 		}
+		*/
+
+		Double_t cebraRelT_1_toScint = ev.cebraTime[0] - ev.scintLeftTime;
+     	Double_t cebraRelT_2_toScint = ev.cebraTime[1] - ev.scintLeftTime;
+    	Double_t cebraRelT_1_to_2 = cebraRelT_1_toScint - cebraRelT_2_toScint;
 		
 		if(ev.x1 != -1e6 && ev.x2 == -1e6)
 			MyFill(table,"x1NoCuts_only1plane",600,-300,300,ev.x1);

@@ -21,11 +21,17 @@ struct DetectorHit
   int Ch=-1;
 };
 
+struct CeBrADetector 
+{
+  std::vector<DetectorHit> cebr;
+};
+
 struct SabreDetector 
 {
   std::vector<DetectorHit> rings;
   std::vector<DetectorHit> wedges;
 };
+
 
 struct FPDetector 
 {
@@ -38,6 +44,7 @@ struct CoincEvent
 {
   FPDetector focalPlane;
   SabreDetector sabreArray[5]; //index = ChannelMap Id# -1
+  CeBrADetector cebraArray[5]; 
 };
 
 struct ProcessedEvent 
@@ -68,8 +75,13 @@ struct ProcessedEvent
   double monitorE = -1, monitorShort = -1;
   double monitorTime = -1;
 
+  double cebraE[5] = {-1,-1,-1,-1,-1};
+  double cebraChannel[5] = {-1,-1,-1,-1,-1};
+  double cebraTime[5] = {-1,-1,-1,-1,-1};
+
 
   SabreDetector sabreArray[5]; //index = ChannelMap Id# -1
+  CeBrADetector cebraArray[5];
 };
 
 /*

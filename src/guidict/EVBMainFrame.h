@@ -69,7 +69,8 @@ public:
 		AE,
 		SlowWind,
 		FastWind_IC,
-		FastWind_Sabre,
+		//FastWind_Sabre,
+		FastWind_CEBRA,
 		TypeBox,
 		RMin,
 		RMax,
@@ -89,7 +90,7 @@ private:
 
 	TGNumberEntryField *fZTField, *fATField, *fZPField, *fAPField, *fZEField, *fAEField;
 	TGNumberEntryField *fBField, *fBKEField, *fThetaField;
-	TGNumberEntryField *fSlowWindowField, *fFastICField, *fFastSABREField;
+	TGNumberEntryField *fSlowWindowField, *fFastICField, *fFastCEBRAField; /**fFastSABREField;*/
 	TGNumberEntryField *fRMinField, *fRMaxField;
 
 	TGHProgressBar* fProgressBar;

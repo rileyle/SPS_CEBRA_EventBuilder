@@ -45,6 +45,21 @@ namespace EventBuilder {
 			this_chan.local_channel = -1;
 			this_chan.attribute = DetAttribute::NoneAttr;
 			input>>id>>type>>partname;
+
+			if(type == "CEBRA")
+			{
+				this_chan.type = DetType::CEBRA;
+				switch(id)
+				{
+					case 0: this_chan.attribute = DetAttribute::CEBRA0; break;
+					case 1: this_chan.attribute = DetAttribute::CEBRA1; break;
+					case 2: this_chan.attribute = DetAttribute::CEBRA2; break;
+					case 3: this_chan.attribute = DetAttribute::CEBRA3; break;
+					case 4: this_chan.attribute = DetAttribute::CEBRA4; break;
+				}
+				this_chan.local_channel = std::stoi(partname);
+
+			/*
 			if(type == "SABRERING")
 			{
 				this_chan.type = DetType::Sabre;
@@ -70,6 +85,7 @@ namespace EventBuilder {
 					case 4: this_chan.attribute = DetAttribute::SabreWedge4; break;
 				}
 				this_chan.local_channel = std::stoi(partname);
+				*/
 			} 
 			else if (type == "FOCALPLANE") 
 			{

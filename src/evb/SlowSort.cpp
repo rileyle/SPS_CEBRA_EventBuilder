@@ -13,10 +13,13 @@
 namespace EventBuilder {
 
 	/*Sort the Sabre Data in order of descending energy*/
-	bool SabreSort(const DetectorHit& i, const DetectorHit& j) {
-	  return (i.Long>j.Long);
-	}
-	
+//	bool SabreSort(const DetectorHit& i, const DetectorHit& j) {
+//	  return (i.Long>j.Long);
+//	} 
+	bool CebraSort(DetectorHit i, DetectorHit j) {
+  		return (i.Long>j.Long);
+}
+
 	/*Constructor takes input of coincidence window size, and fills sabre channel map*/
 	SlowSort::SlowSort() :
 		m_coincWindow(-1.0), m_eventFlag(false)
@@ -39,7 +42,7 @@ namespace EventBuilder {
 	
 		/*For SABRE: Each SABRE det has ring&wedge, so add the detID to the
 		  SABRERING/WEDGE attribute to differentiate*/
-		varMap[DetAttribute::SabreRing0] = &m_event.sabreArray[0].rings;
+	/*	varMap[DetAttribute::SabreRing0] = &m_event.sabreArray[0].rings;
 		varMap[DetAttribute::SabreRing1] = &m_event.sabreArray[1].rings;
 		varMap[DetAttribute::SabreRing2] = &m_event.sabreArray[2].rings;
 		varMap[DetAttribute::SabreRing3] = &m_event.sabreArray[3].rings;
@@ -49,10 +52,18 @@ namespace EventBuilder {
 		varMap[DetAttribute::SabreWedge2] = &m_event.sabreArray[2].wedges;
 		varMap[DetAttribute::SabreWedge3] = &m_event.sabreArray[3].wedges;
 		varMap[DetAttribute::SabreWedge4] = &m_event.sabreArray[4].wedges;
-	
+	*/
 		/*For focal plane: Only one focal plane, so each variable is uniquely
 		  identified by its attribute
 		*/
+
+		varMap[DetAttribute::CEBRA0] = &m_event.cebraArray[0].cebr;
+		varMap[DetAttribute::CEBRA1] = &m_event.cebraArray[1].cebr;
+		varMap[DetAttribute::CEBRA2] = &m_event.cebraArray[2].cebr;
+		varMap[DetAttribute::CEBRA3] = &m_event.cebraArray[3].cebr;
+		varMap[DetAttribute::CEBRA4] = &m_event.cebraArray[4].cebr;
+
+
 		varMap[DetAttribute::ScintLeft] = &m_event.focalPlane.scintL;
 		varMap[DetAttribute::ScintRight] = &m_event.focalPlane.scintR;
 		varMap[DetAttribute::Cathode] = &m_event.focalPlane.cathode;
@@ -153,7 +164,16 @@ namespace EventBuilder {
 			  if(variable !=  varMap.end())
 			    variable->second->push_back(dhit);
 			} 
+			/*
 			else if(channel_info->second.type == DetType::Sabre)
+			{
+				auto variable = varMap.find(channel_info->second.attribute);
+				if(variable != varMap.end())
+					variable->second->push_back(dhit);
+			}
+			*/
+
+			else if(channel_info->second.type == DetType::CEBRA)
 			{
 				auto variable = varMap.find(channel_info->second.attribute);
 				if(variable != varMap.end())
@@ -166,11 +186,15 @@ namespace EventBuilder {
 			}
 		}
 		//Organize the SABRE data in descending energy order
-		for(int s=0; s<5; s++)
+	/*	for(int s=0; s<5; s++)
 		{
 			sort(m_event.sabreArray[s].rings.begin(), m_event.sabreArray[s].rings.end(), SabreSort);
 			sort(m_event.sabreArray[s].wedges.begin(), m_event.sabreArray[s].wedges.end(), SabreSort);
 		}
+		*/
+		for(int s=0; s<4; s++) {
+   			sort(m_event.cebraArray[s].cebr.begin(), m_event.cebraArray[s].cebr.end(), CebraSort);
+  		}
 	}
 
 }

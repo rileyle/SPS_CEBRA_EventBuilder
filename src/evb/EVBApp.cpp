@@ -21,7 +21,7 @@ namespace EventBuilder {
 	EVBApp::EVBApp() :
 		m_rmin(0), m_rmax(0), m_ZT(0), m_AT(0), m_ZP(0), m_AP(0), m_ZE(0), m_AE(0), m_ZR(0), m_AR(0),
 		m_B(0), m_Theta(0), m_BKE(0), m_progressFraction(0.1), m_workspace("none"), m_mapfile("none"), m_shiftfile("none"),
-		m_cutList("none"), m_scalerfile("none"), m_SlowWindow(0), m_FastWindowIonCh(0), m_FastWindowSABRE(0)
+		m_cutList("none"), m_scalerfile("none"), m_SlowWindow(0), m_FastWindowIonCh(0),m_FastWindowCEBRA(0) //, m_FastWindowSABRE(0)
 	{
 		SetProgressCallbackFunc(BIND_PROGRESS_CALLBACK_FUNCTION(EVBApp::DefaultProgressCallback));
 	}
@@ -67,7 +67,8 @@ namespace EventBuilder {
 		input>>junk>>m_shiftfile;
 		input>>junk>>m_SlowWindow;
 		input>>junk>>m_FastWindowIonCh;
-		input>>junk>>m_FastWindowSABRE;
+		input>>junk>>m_FastWindowCEBRA;
+	//	input>>junk>>m_FastWindowSABRE;
 		input>>junk;
 		std::getline(input, junk);
 		std::getline(input, junk);
@@ -113,7 +114,8 @@ namespace EventBuilder {
 		output<<"BoardOffsetFile: "<<m_shiftfile<<std::endl;
 		output<<"SlowCoincidenceWindow(ps): "<<m_SlowWindow<<std::endl;
 		output<<"FastCoincidenceWindow_IonCh(ps): "<<m_FastWindowIonCh<<std::endl;
-		output<<"FastCoincidenceWindow_SABRE(ps): "<<m_FastWindowSABRE<<std::endl;
+		output<<"FastCoincidenceWindow_CEBRA(ps): "<<m_FastWindowCEBRA<<std::endl;
+	//	output<<"FastCoincidenceWindow_SABRE(ps): "<<m_FastWindowSABRE<<std::endl;
 		output<<"-------------------------------"<<std::endl;
 		output<<"--------Run Information--------"<<std::endl;
 		output<<"MinRun: "<<m_rmin<<std::endl;
@@ -284,7 +286,7 @@ namespace EventBuilder {
 			wipe_command = "rm -r "+unpack_dir+"*.BIN";
 	
 			sys_return = system(unpack_command.c_str());
-			converter.Convert2FastSortedRoot(sortfile, m_mapfile, m_SlowWindow, m_FastWindowSABRE, m_FastWindowIonCh);
+			converter.Convert2FastSortedRoot(sortfile, m_mapfile, m_SlowWindow, m_FastWindowCEBRA /*, m_FastWindowSABRE*/, m_FastWindowIonCh);
 			sys_return = system(wipe_command.c_str());
 			count++;
 		}
@@ -371,7 +373,7 @@ namespace EventBuilder {
 			wipe_command = "rm -r "+unpack_dir+"*.BIN";
 	
 			sys_return = system(unpack_command.c_str());
-			converter.Convert2FastAnalyzedRoot(sortfile, m_mapfile, m_SlowWindow, m_FastWindowSABRE, m_FastWindowIonCh, m_ZT, m_AT, m_ZP, m_AP, m_ZE, m_AE, m_BKE, m_B, m_Theta);
+			converter.Convert2FastAnalyzedRoot(sortfile, m_mapfile, m_SlowWindow, m_FastWindowCEBRA,/* m_FastWindowSABRE,*/ m_FastWindowIonCh, m_ZT, m_AT, m_ZP, m_AP, m_ZE, m_AE, m_BKE, m_B, m_Theta);
 			sys_return = system(wipe_command.c_str());
 			count++;
 		}
@@ -407,7 +409,8 @@ namespace EventBuilder {
 	void EVBApp::SetBoardShiftFile(const std::string& name) { EVB_TRACE("Shift file set to {0}", name); m_shiftfile = name; }
 	void EVBApp::SetSlowCoincidenceWindow(double window) { EVB_TRACE("Slow Coincidence Window set to {0}",window); m_SlowWindow = window; }
 	void EVBApp::SetFastWindowIonChamber(double window) { EVB_TRACE("Fast Coinc. Window Ion Ch. set to {0}",window); m_FastWindowIonCh = window; }
-	void EVBApp::SetFastWindowSABRE(double window) { EVB_TRACE("Fast Coinc. Window SABRE set to {0}",window); m_FastWindowSABRE = window; }
+	void EVBApp::SetFastWindowCEBRA(double window) { EVB_TRACE("Fast Coinc. Window CEBRA set to {0}",window); m_FastWindowCEBRA = window; }
+	//void EVBApp::SetFastWindowSABRE(double window) { EVB_TRACE("Fast Coinc. Window SABRE set to {0}",window); m_FastWindowSABRE = window; }
 	void EVBApp::SetCutList(const std::string& name) { EVB_TRACE("Cut List set  to {0}", name); m_cutList = name; }
 	void EVBApp::SetScalerFile(const std::string& fullpath) { EVB_TRACE("Scaler file set to {0}", fullpath); m_scalerfile = fullpath; }
 

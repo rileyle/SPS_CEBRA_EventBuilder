@@ -177,11 +177,19 @@ EVBMainFrame::EVBMainFrame(const TGWindow* p, UInt_t w, UInt_t h) :
 	fastICFrame->AddFrame(fasticlabel, lhints);
 	fastICFrame->AddFrame(fFastICField, fhints);
 
+	/*
 	TGHorizontalFrame* fastSABREFrame = new TGHorizontalFrame(eventFrame, w*0.3, h*0.1);
 	TGLabel *fastsabrelabel = new TGLabel(fastSABREFrame, "Fast Coincidence Window SABRE (ps):");
 	fFastSABREField = new TGNumberEntryField(fastSABREFrame, FastWind_Sabre, 0, TGNumberEntry::kNESReal, TGNumberEntry::kNEANonNegative);
 	fastSABREFrame->AddFrame(fastsabrelabel, lhints);
 	fastSABREFrame->AddFrame(fFastSABREField, fhints);
+	*/
+
+	TGHorizontalFrame* fastCEBRAFrame = new TGHorizontalFrame(eventFrame, w*0.3, h*0.1);
+	TGLabel *fastcebralabel = new TGLabel(fastCEBRAFrame, "Fast Coincidence Window CEBRA (ps):");
+	fFastCEBRAField = new TGNumberEntryField(fastCEBRAFrame, FastWind_CEBRA, 0, TGNumberEntry::kNESReal, TGNumberEntry::kNEANonNegative);
+	fastCEBRAFrame->AddFrame(fastcebralabel, lhints);
+	fastCEBRAFrame->AddFrame(fFastCEBRAField, fhints);
 
 	TGHorizontalFrame *opFrame = new TGHorizontalFrame(eventFrame, w*0.3, h*0.1);
 	TGLabel *typelabel = new TGLabel(opFrame, "Operation Type:");
@@ -217,7 +225,8 @@ EVBMainFrame::EVBMainFrame(const TGWindow* p, UInt_t w, UInt_t h) :
 	
 	eventFrame->AddFrame(slowFrame, fhints);
 	eventFrame->AddFrame(fastICFrame, fhints);
-	eventFrame->AddFrame(fastSABREFrame, fhints);
+	eventFrame->AddFrame(fastCEBRAFrame, fhints);
+//	eventFrame->AddFrame(fastSABREFrame, fhints);
 	eventFrame->AddFrame(opFrame, fhints);
 	eventFrame->AddFrame(rminFrame, fhints);
 	eventFrame->AddFrame(rmaxFrame, fhints);
@@ -383,7 +392,8 @@ bool EVBMainFrame::SetParameters()
 	fBuilder.SetRunRange(fRMinField->GetIntNumber(), fRMaxField->GetIntNumber());
 	fBuilder.SetSlowCoincidenceWindow(fSlowWindowField->GetNumber());
 	fBuilder.SetFastWindowIonChamber(fFastICField->GetNumber());
-	fBuilder.SetFastWindowSABRE(fFastSABREField->GetNumber());
+//	fBuilder.SetFastWindowSABRE(fFastSABREField->GetNumber());
+	fBuilder.SetFastWindowCEBRA(fFastCEBRAField->GetNumber());
 	UpdateWorkdir();
 	UpdateSMap();
 	UpdateCMap();
@@ -455,7 +465,8 @@ void EVBMainFrame::LoadConfig(const char* file)
 	fThetaField->SetNumber(fBuilder.GetTheta());
 
 	fSlowWindowField->SetNumber(fBuilder.GetSlowCoincidenceWindow());
-	fFastSABREField->SetNumber(fBuilder.GetFastWindowSABRE());
+//	fFastSABREField->SetNumber(fBuilder.GetFastWindowSABRE());
+	fFastCEBRAField->SetNumber(fBuilder.GetFastWindowCEBRA());
 	fFastICField->SetNumber(fBuilder.GetFastWindowIonChamber());
 
 	fRMaxField->SetIntNumber(fBuilder.GetRunMax());
@@ -533,7 +544,8 @@ void EVBMainFrame::DisableAllInput()
 
 	fSlowWindowField->SetState(false);
 	fFastICField->SetState(false);
-	fFastSABREField->SetState(false);
+//	fFastSABREField->SetState(false);
+	fFastCEBRAField->SetState(false);
 }
 
 void EVBMainFrame::EnableAllInput() 
@@ -569,7 +581,8 @@ void EVBMainFrame::EnableAllInput()
 
 	fSlowWindowField->SetState(true);
 	fFastICField->SetState(true);
-	fFastSABREField->SetState(true);
+//	fFastSABREField->SetState(true);
+	fFastCEBRAField->SetState(true);
 
 }
 
