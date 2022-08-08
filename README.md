@@ -1,6 +1,7 @@
-# SPS-SABRE Data Analysis Package
+# SPS-CEBRA Data Analysis Package
+This is built off the SPS_SABRE_EventBuilder
 Version 4
-This is a software package designed to help experimenters analyze data from SPS-SABRE at FSU. 
+This is a software package designed to help experimenters analyze data from SPS-CEBRA at FSU. 
 It can convert CoMPASS data to ROOT, sort the data in time, build events, perform preliminary analysis and provide basic plots.
 
 ## Installation
@@ -12,7 +13,7 @@ cmake ..
 make
 ```
 
-To clone the repository use `git clone --recursive https://github.com/sesps/SPS_SABRE_EventBuilder.git`. The recursive flag is important; this tells github to pull all submodules associated with the repository. 
+To clone the repository use `git clone --recursive https://github.com/alconley/SPS_CEBRA_EventBuilder.git`. The recursive flag is important; this tells github to pull all submodules associated with the repository. 
 
 The binaries are installed to the `bin` directory of the event builder, and should be run from the event builder directory (i.e. `./bin/EventBuilderGui`).
 
