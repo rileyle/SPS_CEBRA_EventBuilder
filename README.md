@@ -1,6 +1,6 @@
 # SPS-CEBRA Data Analysis Package
-This is built off the SPS_SABRE_EventBuilder
-Version 4
+This is built off the SPS_SABRE_EventBuilder.
+Version 4.
 This is a software package designed to help experimenters analyze data from SPS-CEBRA at FSU. 
 It can convert CoMPASS data to ROOT, sort the data in time, build events, perform preliminary analysis and provide basic plots.
 
