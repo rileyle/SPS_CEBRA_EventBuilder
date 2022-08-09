@@ -192,7 +192,7 @@ namespace EventBuilder {
 			sort(m_event.sabreArray[s].wedges.begin(), m_event.sabreArray[s].wedges.end(), SabreSort);
 		}
 		*/
-		for(int s=0; s<4; s++) {
+		for(int s=0; s<5; s++) {
    			sort(m_event.cebraArray[s].cebr.begin(), m_event.cebraArray[s].cebr.end(), CebraSort);
   		}
 	}

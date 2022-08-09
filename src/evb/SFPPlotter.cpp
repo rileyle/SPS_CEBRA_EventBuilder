@@ -107,7 +107,7 @@ namespace EventBuilder {
 			MyFill(table,"delayRelFrontTime_NoCuts",1000,-3000,-3500,delayRelFT);
 			MyFill(table,"delayRelBackTime_NoCuts",1000,-3000,-3500,delayRelBT);
 			
-			for(int i=0; i<4; i++) {
+			for(int i=0; i<5; i++) {
        			if(ev.cebraE[i] != -1 && ev.x1 != -1e6 && ev.x2 != -1e6){
 					Double_t cebraRelT = ev.cebraTime[i] - ev.anodeBackTime;
 					Double_t cebraRelT_toScint = ev.cebraTime[i] - ev.scintLeftTime;
@@ -164,6 +164,9 @@ namespace EventBuilder {
 
 		Double_t cebraRelT_1_toScint = ev.cebraTime[0] - ev.scintLeftTime;
      	Double_t cebraRelT_2_toScint = ev.cebraTime[1] - ev.scintLeftTime;
+		Double_t cebraRelT_3_toScint = ev.cebraTime[2] - ev.scintLeftTime;
+		Double_t cebraRelT_4_toScint = ev.cebraTime[3] - ev.scintLeftTime;
+		Double_t cebraRelT_5_toScint = ev.cebraTime[4] - ev.scintLeftTime;
     	Double_t cebraRelT_1_to_2 = cebraRelT_1_toScint - cebraRelT_2_toScint;
 		
 		if(ev.x1 != -1e6 && ev.x2 == -1e6)
