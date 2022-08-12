@@ -179,15 +179,15 @@ namespace EventBuilder {
 			MyFill(table,"cebraTime0-cebraTime1_noCuts",3000,-15000,15000,ev.cebraTime[0]-ev.cebraTime[1]);}
 
 		if(ev.cebraE[0]!=-1 && ev.cebraE[2]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE1_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[2]);
+			MyFill(table,"cebraE0_vs_cebraE2_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[2]);
 			MyFill(table,"cebraTime0-cebraTime2_noCuts",3000,-15000,15000,ev.cebraTime[0]-ev.cebraTime[2]);}
 
 		if(ev.cebraE[0]!=-1 && ev.cebraE[3]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE1_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[3]);
+			MyFill(table,"cebraE0_vs_cebraE3_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[3]);
 			MyFill(table,"cebraTime0-cebraTime3_noCuts",3000,-15000,15000,ev.cebraTime[0]-ev.cebraTime[3]);}
 
 		if(ev.cebraE[0]!=-1 && ev.cebraE[4]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE1_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[4]);
+			MyFill(table,"cebraE0_vs_cebraE4_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[4]);
 			MyFill(table,"cebraTime0-cebraTime4_noCuts",3000,-15000,15000,ev.cebraTime[0]-ev.cebraTime[4]);}
 
 
@@ -195,7 +195,7 @@ namespace EventBuilder {
 		for(int i=0; i<5; i++){
 			if(ev.cebraE[i] != -1) {
 				if(i==0){
-					MyFill(table,"cebraE.0_noCuts_noShift",4096,0,4096,ev.cebraE[1]);
+					MyFill(table,"cebraE.0_noCuts_noShift",4096,0,4096,ev.cebraE[0]);
 					// MyFill(table,"cebraE.0_noCuts",4096,0,4096,cebraE0_shifted);
 					// MyFill(table,"cebraE_sum_noCuts",4096,0,4096,cebraE0_shifted);
 				} else if(i==1) {
