@@ -89,7 +89,7 @@ namespace EventBuilder {
 			m_hitsize += 2;
 		if(IsWaves())
 		{
-			EVB_ERROR("Waveforms are not supported by the SPS_SABRE_EventBuilder. The wave data will be skipped.");
+			EVB_ERROR("Waveforms are not supported by the SPS_CEBRA_EventBuilder. The wave data will be skipped.");
 			m_hitsize += 5;
 			char* firstHit = new char[m_hitsize]; //A compass hit by default has 24 bytes (at least in our setup)
 			m_file->read(firstHit, m_hitsize);
@@ -186,7 +186,7 @@ namespace EventBuilder {
 			m_currentHit.Ns = *((uint32_t*)m_bufferIter);
 			m_bufferIter += 4;
 			m_bufferIter += 2*m_currentHit.Ns;
-			//Skip wavedata for SPS_SABRE_EventBuilder
+			//Skip wavedata for SPS_CEBRA_EventBuilder
 		}
 	
 		if(m_smap != nullptr) 
