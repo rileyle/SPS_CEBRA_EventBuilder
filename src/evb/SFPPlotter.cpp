@@ -1,5 +1,5 @@
 /*SFPPlotter.h
- *Class for generating histogram files for SPS-SABRE data
+ *Class for generating histogram files for SPS-CEBRA data
  *Intended use case is generating a TChain of multiple analyzed files and making
  *histograms of the larger data set.
  *
@@ -217,7 +217,8 @@ namespace EventBuilder {
 				} 
 
 			MyFill(table,"cebraE_NoCuts_noshifts",4096,0,4096,ev.cebraE[i]);
-			MyFill(table,"cebraChannel_cebraE_NoCuts_noShifts",10,130,140,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
+			//change the range to whatever the global id range is for the detectors on the channel map
+			MyFill(table,"cebraChannel_cebraE_NoCuts_noShifts",10,0,20,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
 
 	
 			} else {
