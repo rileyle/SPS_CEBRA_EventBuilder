@@ -147,8 +147,9 @@ namespace EventBuilder {
 			MyFill(table,"delayRelBackTime_toScint",1000,-3000,3500,delayRelBT_toScint);
 			MyFill(table,"delayRelFrontTime_toScint",1000,-3000,3500,delayRelFT_toScint);
 		} 
-		else
-			MyFill(table,"noscinttime_counter_NoCuts",2,0,1,1);
+		else {
+			MyFill(table,"noscinttime_counter_NoCuts",2,0,1,1); 
+			}
 		/*
 		for(int i=0; i<5; i++) 
 		{ 
@@ -167,8 +168,67 @@ namespace EventBuilder {
 		Double_t cebraRelT_3_toScint = ev.cebraTime[2] - ev.scintLeftTime;
 		Double_t cebraRelT_4_toScint = ev.cebraTime[3] - ev.scintLeftTime;
 		Double_t cebraRelT_5_toScint = ev.cebraTime[4] - ev.scintLeftTime;
-    	Double_t cebraRelT_1_to_2 = cebraRelT_1_toScint - cebraRelT_2_toScint;
+    	
+		Double_t cebraRelT_1_to_2 = cebraRelT_1_toScint - cebraRelT_2_toScint;
+		Double_t cebraRelT_1_to_3 = cebraRelT_1_toScint - cebraRelT_3_toScint;
+		Double_t cebraRelT_1_to_4 = cebraRelT_1_toScint - cebraRelT_4_toScint;
+		Double_t cebraRelT_1_to_5 = cebraRelT_1_toScint - cebraRelT_5_toScint;
+
+ 		if(ev.cebraE[0]!=-1 && ev.cebraE[1]!=-1){
+			MyFill(table,"cebraE0_vs_cebraE1_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[1]);
+			MyFill(table,"cebraTime0-cebraTime1_noCuts",3000,-15000,15000,ev.cebraTime[0]-ev.cebraTime[1]);}
+
+		if(ev.cebraE[0]!=-1 && ev.cebraE[2]!=-1){
+			MyFill(table,"cebraE0_vs_cebraE1_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[2]);
+			MyFill(table,"cebraTime0-cebraTime2_noCuts",3000,-15000,15000,ev.cebraTime[0]-ev.cebraTime[2]);}
+
+		if(ev.cebraE[0]!=-1 && ev.cebraE[3]!=-1){
+			MyFill(table,"cebraE0_vs_cebraE1_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[3]);
+			MyFill(table,"cebraTime0-cebraTime3_noCuts",3000,-15000,15000,ev.cebraTime[0]-ev.cebraTime[3]);}
+
+		if(ev.cebraE[0]!=-1 && ev.cebraE[4]!=-1){
+			MyFill(table,"cebraE0_vs_cebraE1_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[4]);
+			MyFill(table,"cebraTime0-cebraTime4_noCuts",3000,-15000,15000,ev.cebraTime[0]-ev.cebraTime[4]);}
+
+
+		int count = 0;
+		for(int i=0; i<5; i++){
+			if(ev.cebraE[i] != -1) {
+				if(i==0){
+					MyFill(table,"cebraE.0_noCuts_noShift",4096,0,4096,ev.cebraE[1]);
+					// MyFill(table,"cebraE.0_noCuts",4096,0,4096,cebraE0_shifted);
+					// MyFill(table,"cebraE_sum_noCuts",4096,0,4096,cebraE0_shifted);
+				} else if(i==1) {
+					MyFill(table,"cebraE.1_noCuts_noShift",4096,0,4096,ev.cebraE[1]);
+					// MyFill(table,"cebraE.1_noCuts",4096,0,4096,cebraE1_shifted);
+					// MyFill(table,"cebraE_sum_noCuts",4096,0,4096,cebraE1_shifted);
+				} else if(i==2) {
+					MyFill(table,"cebraE.2_noCuts_noShift",4096,0,4096,ev.cebraE[2]);
+					// MyFill(table,"cebraE.1_noCuts",4096,0,4096,cebraE1_shifted);
+					// MyFill(table,"cebraE_sum_noCuts",4096,0,4096,cebraE1_shifted);
+				} else if(i==3) {
+					MyFill(table,"cebraE.3_noCuts_noShift",4096,0,4096,ev.cebraE[3]);
+					// MyFill(table,"cebraE.3_noCuts",4096,0,4096,cebraE1_shifted);
+					// MyFill(table,"cebraE_sum_noCuts",4096,0,4096,cebraE1_shifted);
+				} else if(i==4) {
+					MyFill(table,"cebraE.4_noCuts_noShift",4096,0,4096,ev.cebraE[4]);
+					// MyFill(table"cebraE.4_noCuts",4096,0,4096,cebraE1_shifted);
+					// MyFill(table,"cebraE_sum_noCuts",4096,0,4096,cebraE1_shifted);
+				} 
+
+			MyFill(table,"cebraE_NoCuts_noshifts",4096,0,4096,ev.cebraE[i]);
+			MyFill(table,"cebraChannel_cebraE_NoCuts_noShifts",10,130,140,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
+
+	
+			} else {
+				count++;
+			}
+		}
+
+
+
 		
+
 		if(ev.x1 != -1e6 && ev.x2 == -1e6)
 			MyFill(table,"x1NoCuts_only1plane",600,-300,300,ev.x1);
 		else if(ev.x2 != -1e6 && ev.x1 == -1e6)
@@ -231,35 +291,49 @@ namespace EventBuilder {
 			MyFill(table,"anodeRelBackTime_Cut",1000,-3000,3500, anodeRelBT);
 			MyFill(table,"anodeRelFrontTime_Cut",1000,-3000,3500, anodeRelFT);
 			MyFill(table,"anodeRelTime_toScint_Cut",1000,-3000,3500,anodeRelFT_toScint);
-			for(int i=0; i<5; i++) 
-			{
-				if(ev.sabreRingE[i] != -1) 
-				{
-					Double_t sabreRelRT = ev.sabreRingTime[i] - ev.anodeBackTime;
-					Double_t sabreRelWT = ev.sabreWedgeTime[i] - ev.anodeBackTime;
-					MyFill(table,"sabreRelRingTime_Cut",1000,-3000,3500, sabreRelRT);
-					MyFill(table,"sabreRelWedgeTime_Cut",1000,-3000,3500, sabreRelWT);
-				} 
-			}
-		} 
-		else
-		{
-			MyFill(table,"noscinttime_counter_Cut",2,0,1,1);
-		}
+			// for(int i=0; i<5; i++) 
+			// {
+			// 	if(ev.sabreRingE[i] != -1) 
+			// 	{
+			// 		Double_t sabreRelRT = ev.sabreRingTime[i] - ev.anodeBackTime;
+			// 		Double_t sabreRelWT = ev.sabreWedgeTime[i] - ev.anodeBackTime;
+			// 		MyFill(table,"sabreRelRingTime_Cut",1000,-3000,3500, sabreRelRT);
+			// 		MyFill(table,"sabreRelWedgeTime_Cut",1000,-3000,3500, sabreRelWT);
+			// 	} 
+			// }
+		// } 
+		// else
+		// {
+		// 	MyFill(table,"noscinttime_counter_Cut",2,0,1,1);
+		// }
 		
-		for(int i=0; i<5; i++) 
-		{
-			if(ev.sabreRingE[i] != -1)
-			{
-				MyFill(table,"sabreRingE_Cut",2000,0,20,ev.sabreRingE[i]);
-				MyFill(table,"xavg_Cut_sabrefcoinc",600,-300,300,ev.xavg);
-				MyFill(table,"xavg_sabreRingE_Cut",600,-300,300,ev.xavg,200,0,20,ev.sabreRingE[i]);
-				MyFill(table,"sabreWedgeE_Cut",2000,0,20,ev.sabreWedgeE[i]);
-				MyFill(table,"xavg_sabreWedgeE_Cut",600,-300,300,ev.xavg,200,0,20,ev.sabreWedgeE[i]);
-			}
+		// for(int i=0; i<5; i++) 
+		// {
+		// 	if(ev.sabreRingE[i] != -1)
+		// 	{
+		// 		MyFill(table,"sabreRingE_Cut",2000,0,20,ev.sabreRingE[i]);
+		// 		MyFill(table,"xavg_Cut_sabrefcoinc",600,-300,300,ev.xavg);
+		// 		MyFill(table,"xavg_sabreRingE_Cut",600,-300,300,ev.xavg,200,0,20,ev.sabreRingE[i]);
+		// 		MyFill(table,"sabreWedgeE_Cut",2000,0,20,ev.sabreWedgeE[i]);
+		// 		MyFill(table,"xavg_sabreWedgeE_Cut",600,-300,300,ev.xavg,200,0,20,ev.sabreWedgeE[i]);
+		// 	}
+		// }
+
+		Double_t cebraRelT_1_toScint = ev.cebraTime[0] - ev.scintLeftTime;
+     	Double_t cebraRelT_2_toScint = ev.cebraTime[1] - ev.scintLeftTime;
+		Double_t cebraRelT_3_toScint = ev.cebraTime[2] - ev.scintLeftTime;
+		Double_t cebraRelT_4_toScint = ev.cebraTime[3] - ev.scintLeftTime;
+		Double_t cebraRelT_5_toScint = ev.cebraTime[4] - ev.scintLeftTime;
+    	
+		Double_t cebraRelT_1_to_2 = cebraRelT_1_toScint - cebraRelT_2_toScint;
+		Double_t cebraRelT_1_to_3 = cebraRelT_1_toScint - cebraRelT_3_toScint;
+		Double_t cebraRelT_1_to_4 = cebraRelT_1_toScint - cebraRelT_4_toScint;
+		Double_t cebraRelT_1_to_5 = cebraRelT_1_toScint - cebraRelT_5_toScint;
+
+
+
 		}
 	}
-	
 	/*Runs a list of files given from a RunCollector class*/
 	void SFPPlotter::Run(const std::vector<std::string>& files, const std::string& output)
 	{

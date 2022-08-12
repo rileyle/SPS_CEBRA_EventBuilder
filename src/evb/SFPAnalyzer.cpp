@@ -179,15 +179,22 @@ namespace EventBuilder {
 		}
 		*/
 	
-		for(int j=0; j<4; j++) {
-    		if(!event.cebraArray[j].cebr.empty()) {
-
-
+		for(int j=0; j<5; j++) {
+			
+    		if(!event.cebraArray[j].cebr.empty()) 
+			{
       			for(unsigned int l=0; l<=event.cebraArray[j].cebr.size(); l++){
     			   if(j==0){
          				MyFill("CeBrA.E.0_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
        				else if(j==1){
-			 MyFill("CeBrA.E.1_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}	
+			 			MyFill("CeBrA.E.1_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}	
+					else if(j==2){
+			 			MyFill("CeBrA.E.2_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+					else if(j==3){
+			 			MyFill("CeBrA.E.3_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+					else if(j==4){
+			 			MyFill("CeBrA.E.4_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+					
    				   }
       
 			pevent.cebraE[j] = event.cebraArray[j].cebr[0].Long;
@@ -196,9 +203,15 @@ namespace EventBuilder {
       
       MyFill("CeBrAE vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);
       if(j==0){
-	MyFill("CeBrA.E.0 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
-      else if(j==1){
-	MyFill("CeBrA.E.1 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
+			MyFill("CeBrA.E.0 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
+      		else if(j==1){
+			MyFill("CeBrA.E.1 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
+			else if(j==2){
+			MyFill("CeBrA.E.2 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
+			else if(j==3){
+			MyFill("CeBrA.E.3 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
+			else if(j==4){
+			MyFill("CeBrA.E.4 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
     }
     
     /*Aaaand passes on all of the rest. 4/24/20 GWM*/ // adjusted Mark
@@ -225,7 +238,7 @@ namespace EventBuilder {
 			MyFill("xavg vs theta",600,-300,300,pevent.xavg,314,0,3.14,pevent.theta);
 			MyFill("x1 vs x2",600,-300,300,pevent.x1,600,-300,300,pevent.x2);
 
-			for(int k=0; k<4; k++) {
+			for(int k=0; k<5; k++) {
 				// if(!event.cebraArray[k].cebr.empty()) {
 				for(unsigned int l=0; l<=event.cebraArray[k].cebr.size(); l++){
 			if(!event.cebraArray[k].cebr.empty() && pevent.x1 != -1e6 && pevent.x2 != -1e6) {
@@ -234,8 +247,17 @@ namespace EventBuilder {
 					MyFill("xavg vs CeBrA.E.0_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
 					MyFill("xavg vs CeBrA.E.0_array0",600,-300,300,pevent.xavg,4096,0,4096,pevent.cebraE[k]);}
 				else if(k==1){
-				MyFill("xavg vs CeBrA.E.1_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
+					MyFill("xavg vs CeBrA.E.1_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
 					MyFill("xavg vs CeBrA.E.1_array0",600,-300,300,pevent.xavg,4096,0,4096,pevent.cebraE[k]);}
+				else if(k==2){
+					MyFill("xavg vs CeBrA.E.2_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
+					MyFill("xavg vs CeBrA.E.2_array0",600,-300,300,pevent.xavg,4096,0,4096,pevent.cebraE[k]);}
+				else if(k==3){
+					MyFill("xavg vs CeBrA.E.3_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
+					MyFill("xavg vs CeBrA.E.3_array0",600,-300,300,pevent.xavg,4096,0,4096,pevent.cebraE[k]);}
+				else if(k==4){
+					MyFill("xavg vs CeBrA.E.4_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
+					MyFill("xavg vs CeBrA.E.4_array0",600,-300,300,pevent.xavg,4096,0,4096,pevent.cebraE[k]);}
 				}
 				}
 			}
