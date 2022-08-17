@@ -5,8 +5,6 @@
  *
  *Created Jan 2020 by GWM
  */
-//this is the develop branch
-//bryan tests
 
 #include "EventBuilder.h"
 #include "SFPPlotter.h"
@@ -176,7 +174,7 @@ namespace EventBuilder {
 		Double_t cebraRelT_1_to_4 = cebraRelT_1_toScint - cebraRelT_4_toScint;
 		Double_t cebraRelT_1_to_5 = cebraRelT_1_toScint - cebraRelT_5_toScint;
 
-double cebra_0_1_TimeShift = 3.0;
+		double cebra_0_1_TimeShift = 3.0;
 		double cebra_0_2_TimeShift = 3.0;
 		double cebra_0_3_TimeShift = 68.0;
 		double cebra_0_4_TimeShift = 80.0;
