@@ -214,7 +214,23 @@ namespace EventBuilder {
 			else if(j==4){
 			MyFill("CeBrA.E.4 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
     }
-    
+
+    if(pevent.cebraE[0]!=-1 && pevent.cebraE[1]!=-1){
+			MyFill("cebraE0_vs_cebraE1_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[1]);
+			MyFill("cebraTime0-cebraTime1_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[1]);
+			}
+	if(pevent.cebraE[0]!=-1 && pevent.cebraE[2]!=-1){
+			MyFill("cebraE0_vs_cebraE2_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[2]);
+			MyFill("cebraTime0-cebraTime2_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[2]);
+			}
+	if(pevent.cebraE[0]!=-1 && pevent.cebraE[3]!=-1){
+			MyFill("cebraE0_vs_cebraE3_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[3]);
+			MyFill("cebraTime0-cebraTime3_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[3]);
+			}
+	if(pevent.cebraE[0]!=-1 && pevent.cebraE[4]!=-1){
+			MyFill("cebraE0_vs_cebraE4_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[4]);
+			MyFill("cebraTime0-cebraTime4_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[4]);
+			}
     /*Aaaand passes on all of the rest. 4/24/20 GWM*/ // adjusted Mark
     pevent.cebraArray[j] = event.cebraArray[j];
   }
@@ -234,12 +250,7 @@ namespace EventBuilder {
 				pevent.theta = std::atan((pevent.x2-pevent.x1)/36.0);
 			else if((pevent.x2-pevent.x1) < 0)
 				pevent.theta = TMath::Pi() + std::atan((pevent.x2-pevent.x1)/36.0);
-			else 
-				pevent.theta = TMath::Pi()/2.0;
-			MyFill("xavg vs theta",600,-300,300,pevent.xavg,314,0,3.14,pevent.theta);
-			MyFill("x1 vs x2",600,-300,300,pevent.x1,600,-300,300,pevent.x2);
-
-			for(int k=0; k<5; k++) {
+			else 5
 				// if(!event.cebraArray[k].cebr.empty()) {
 				for(unsigned int l=0; l<=event.cebraArray[k].cebr.size(); l++){
 			if(!event.cebraArray[k].cebr.empty() && pevent.x1 != -1e6 && pevent.x2 != -1e6) {
