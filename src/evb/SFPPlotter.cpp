@@ -5,7 +5,6 @@
  *
  *Created Jan 2020 by GWM
  */
-//test
 
 #include "EventBuilder.h"
 #include "SFPPlotter.h"
