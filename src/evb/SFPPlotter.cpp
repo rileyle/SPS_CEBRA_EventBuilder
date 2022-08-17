@@ -175,25 +175,25 @@ namespace EventBuilder {
 		Double_t cebraRelT_1_to_5 = cebraRelT_1_toScint - cebraRelT_5_toScint;
 
  		if(ev.cebraE[0]!=-1 && ev.cebraE[1]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE1_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[1]);
+			MyFill(table,"cebraE0_vs_cebraE1_noCuts",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[1]);
 			MyFill(table,"cebraTime0-cebraTime1_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[1]);
 			MyFill(table,"cebraE1_vs_cebraTime0-cebraTime1_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[1],4096,0,4096,ev.cebraE[1]);
 			}
 
 		if(ev.cebraE[0]!=-1 && ev.cebraE[2]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE2_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[2]);
+			MyFill(table,"cebraE0_vs_cebraE2_noCuts",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[2]);
 			MyFill(table,"cebraTime0-cebraTime2_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[2]);
 			MyFill(table,"cebraE2_vs_cebraTime0-cebraTime2_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[2],4096,0,4096,ev.cebraE[2]);
 			}
 
 		if(ev.cebraE[0]!=-1 && ev.cebraE[3]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE3_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[3]);
+			MyFill(table,"cebraE0_vs_cebraE3_noCuts",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[3]);
 			MyFill(table,"cebraTime0-cebraTime3_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[3]);
 			MyFill(table,"cebraE3_vs_cebraTime0-cebraTime3_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[3],4096,0,4096,ev.cebraE[3]);
 			}
 
 		if(ev.cebraE[0]!=-1 && ev.cebraE[4]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE4_noCuts",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[4]);
+			MyFill(table,"cebraE0_vs_cebraE4_noCuts",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[4]);
 			MyFill(table,"cebraTime0-cebraTime4_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[4]);
 			MyFill(table,"cebraE4_vs_cebraTime0-cebraTime4_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[4],4096,0,4096,ev.cebraE[4]);
 			}
@@ -334,25 +334,25 @@ namespace EventBuilder {
 		Double_t cebraRelT_1_to_5 = cebraRelT_1_toScint - cebraRelT_5_toScint;
 
  		if(ev.cebraE[0]!=-1 && ev.cebraE[1]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE1_Cut",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[1]);
+			MyFill(table,"cebraE0_vs_cebraE1_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[1]);
 			MyFill(table,"cebraTime0-cebraTime1_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[1]);
 			MyFill(table,"cebraE1_vs_cebraTime0-cebraTime1_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[1],4096,0,4096,ev.cebraE[1]);
 			}
 
 		if(ev.cebraE[0]!=-1 && ev.cebraE[2]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE2_Cut",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[2]);
+			MyFill(table,"cebraE0_vs_cebraE2_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[2]);
 			MyFill(table,"cebraTime0-cebraTime2_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[2]);
 			MyFill(table,"cebraE2_vs_cebraTime0-cebraTime2_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[2],4096,0,4096,ev.cebraE[2]);
 			}
 
 		if(ev.cebraE[0]!=-1 && ev.cebraE[3]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE3_Cut",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[3]);
+			MyFill(table,"cebraE0_vs_cebraE3_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[3]);
 			MyFill(table,"cebraTime0-cebraTime3_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[3]);
 			MyFill(table,"cebraE3_vs_cebraTime0-cebraTime3_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[3],4096,0,4096,ev.cebraE[3]);
 			}
 
 		if(ev.cebraE[0]!=-1 && ev.cebraE[4]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE4_Cut",256,0,4096,ev.cebraE[0],256,0,4096,ev.cebraE[4]);
+			MyFill(table,"cebraE0_vs_cebraE4_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[4]);
 			MyFill(table,"cebraTime0-cebraTime4_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[4]);
 			MyFill(table,"cebraE4_vs_cebraTime0-cebraTime4_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[4],4096,0,4096,ev.cebraE[4]);
 			}
