@@ -248,9 +248,9 @@ namespace EventBuilder {
 					MyFill(table,"cebraE.4_noCuts_noShift",4096,0,4096,ev.cebraE[4]);
 				} 
 
-			MyFill(table,"cebraE_NoCuts_noshifts",4096,0,4096,ev.cebraE[i]);
+			MyFill(table,"cebraE_NoCuts",4096,0,4096,ev.cebraE[i]);
 			//change the range to whatever the global id range is for the detectors on the channel map
-			MyFill(table,"cebraChannel_cebraE_NoCuts_noShifts",20,0,20,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
+			MyFill(table,"cebraChannel_cebraE_NoCuts",20,0,20,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
 
 
 
