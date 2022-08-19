@@ -354,7 +354,7 @@ namespace EventBuilder {
 		// 	}
 		// }
 
-				Double_t cebraRelT_1_toScint = ev.cebraTime[0] - ev.scintLeftTime;
+		Double_t cebraRelT_1_toScint = ev.cebraTime[0] - ev.scintLeftTime;
      	Double_t cebraRelT_2_toScint = ev.cebraTime[1] - ev.scintLeftTime;
 		Double_t cebraRelT_3_toScint = ev.cebraTime[2] - ev.scintLeftTime;
 		Double_t cebraRelT_4_toScint = ev.cebraTime[3] - ev.scintLeftTime;
