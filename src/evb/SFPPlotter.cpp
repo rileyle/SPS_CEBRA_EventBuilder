@@ -279,106 +279,86 @@ namespace EventBuilder {
 			MyFill(table,"anodeRelTime_toScint_Cut",1000,-3000,3500,anodeRelFT_toScint);
 			
 
-		Double_t cebraRelT_1_toScint = ev.cebraTime[0] - ev.scintLeftTime;
-     	Double_t cebraRelT_2_toScint = ev.cebraTime[1] - ev.scintLeftTime;
-		Double_t cebraRelT_3_toScint = ev.cebraTime[2] - ev.scintLeftTime;
-		Double_t cebraRelT_4_toScint = ev.cebraTime[3] - ev.scintLeftTime;
-		Double_t cebraRelT_5_toScint = ev.cebraTime[4] - ev.scintLeftTime;
-    	
-		Double_t cebraRelT_1_to_2 = cebraRelT_1_toScint - cebraRelT_2_toScint;
-		Double_t cebraRelT_1_to_3 = cebraRelT_1_toScint - cebraRelT_3_toScint;
-		Double_t cebraRelT_1_to_4 = cebraRelT_1_toScint - cebraRelT_4_toScint;
-		Double_t cebraRelT_1_to_5 = cebraRelT_1_toScint - cebraRelT_5_toScint;
+		
+			//plots for CeBrA that are relative to Detector 0
+			for(int i=1; i<5; i++) {
 
-		double cebra_0_1_TimeShift = 3.0;
-		double cebra_0_2_TimeShift = 3.0;
-		double cebra_0_3_TimeShift = 68.0;
-		double cebra_0_4_TimeShift = 80.0;
+				// Fills plots with the full CeBrA Coinciedence window
 
-		int time_window = 20;
-		int full_time_window = time_window*2;
+				const char *cebra_TimeDif_0_i[] = {	"cebraTime0-cebraTime1_Cut",
+													"cebraTime0-cebraTime2_Cut",
+													"cebraTime0-cebraTime3_Cut",
+													"cebraTime0-cebraTime4_Cut"
+				};
 
-		if(ev.cebraTime[0]-ev.cebraTime[1]+cebra_0_1_TimeShift >-time_window && ev.cebraTime[0]-ev.cebraTime[1]+cebra_0_1_TimeShift <time_window){
-			if(ev.cebraE[0]!=-1 && ev.cebraE[1]!=-1){
-				MyFill(table,"cebraE0_vs_cebraE1_wTimeGate_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[1]);
-				MyFill(table,"cebraTime0-cebraTime1_wTimeGate_shifted_Cut",full_time_window,-time_window,time_window,ev.cebraTime[0]-ev.cebraTime[1]+cebra_0_1_TimeShift);
-				MyFill(table,"cebraE1_vs_cebraTime0-cebraTime1_wTimeGate_shifted_Cut",full_time_window,-time_window,time_window,ev.cebraTime[0]-ev.cebraTime[1]+cebra_0_1_TimeShift,4096,0,4096,ev.cebraE[1]);
-				}
-		}
-
-		if(ev.cebraTime[0]-ev.cebraTime[2]+cebra_0_2_TimeShift >-time_window && ev.cebraTime[0]-ev.cebraTime[2]+cebra_0_2_TimeShift <time_window){
-			if(ev.cebraE[0]!=-1 && ev.cebraE[2]!=-1){
-				MyFill(table,"cebraE0_vs_cebraE2_wTimeGate_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[2]);
-				MyFill(table,"cebraTime0-cebraTime2_wTimeGate_shifted_Cut",full_time_window,-time_window,time_window,ev.cebraTime[0]-ev.cebraTime[2]+cebra_0_2_TimeShift);
-				MyFill(table,"cebraE2_vs_cebraTime0-cebraTime2_wTimeGate_shifted_Cut",full_time_window,-time_window,time_window,ev.cebraTime[0]-ev.cebraTime[2]+cebra_0_2_TimeShift,4096,0,4096,ev.cebraE[2]);
-				}
-		}
-
-		if(ev.cebraTime[0]-ev.cebraTime[3]+cebra_0_3_TimeShift >-time_window && ev.cebraTime[0]-ev.cebraTime[3]+cebra_0_3_TimeShift <time_window){
-			if(ev.cebraE[0]!=-1 && ev.cebraE[3]!=-1){
-				MyFill(table,"cebraE0_vs_cebraE3_wTimeGate_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[3]);
-				MyFill(table,"cebraTime0-cebraTime3_wTimeGate_shifted_Cut",full_time_window,-time_window,time_window,ev.cebraTime[0]-ev.cebraTime[3]+cebra_0_3_TimeShift);
-				MyFill(table,"cebraE3_vs_cebraTime0-cebraTime3_wTimeGate_shifted_Cut",full_time_window,-time_window,time_window,ev.cebraTime[0]-ev.cebraTime[3]+cebra_0_3_TimeShift,4096,0,4096,ev.cebraE[3]);
-				}
-		}
-
-		if(ev.cebraTime[0]-ev.cebraTime[4]+cebra_0_4_TimeShift >-time_window && ev.cebraTime[0]-ev.cebraTime[4]+cebra_0_4_TimeShift <time_window){
-			if(ev.cebraE[0]!=-1 && ev.cebraE[4]!=-1){
-				MyFill(table,"cebraE0_vs_cebraE4_wTimeGate_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[4]);
-				MyFill(table,"cebraTime0-cebraTime4_wTimeGate_shifted_Cut",full_time_window,-time_window,time_window,ev.cebraTime[0]-ev.cebraTime[4]+cebra_0_4_TimeShift);
-				MyFill(table,"cebraE4_vs_cebraTime0-cebraTime4_wTimeGate_shifted_Cut",full_time_window,-time_window,time_window,ev.cebraTime[0]-ev.cebraTime[4]+cebra_0_4_TimeShift,4096,0,4096,ev.cebraE[4]);
-				}
-		}
-
-
-		// Fills plots with the full CeBrA Coinciedence window
-			if(ev.cebraE[0]!=-1 && ev.cebraE[1]!=-1){
-				MyFill(table,"cebraTime0-cebraTime1_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[1]);
+				if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
+					MyFill(table,cebra_TimeDif_0_i[i-1],3200,-1600,1600,ev.cebraTime[0]-ev.cebraTime[i]);
 				}
 
-			if(ev.cebraE[0]!=-1 && ev.cebraE[2]!=-1){
-				MyFill(table,"cebraTime0-cebraTime2_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[2]);
+				// Fills plots with some time gate and shift
+
+				const char *cebra_E0_Ei_cal_TGate_Cut[] = {	"cebra_E0_E1_cal_TGate_Cut",
+																"cebra_E0_E2_cal_TGate_Cut",
+																"cebra_E0_E3_cal_TGate_Cut",
+																"cebra_E0_E4_cal_TGate_Cut"
+				};
+
+				const char *cebra_T0_Ti_TGate_shifted_Cut[] = {	"cebra_Time0-Time1_TGate_shifted_Cut",
+																	"cebra_Time0-Time2_TGate_shifted_Cut",
+																	"cebra_Time0-Time3_TGate_shifted_Cut",
+																	"cebra_Time0-Time4_TGate_shifted_Cut"
+				};
+
+				const char *cebra_Ei_cebraT0_Ti_TGate_shifted_Cut[] = {	"cebra_E1_vs_T0-T1_TGate_shifted_Cut",
+																			"cebra_E2_vs_T0-T2_TGate_shifted_Cut",
+																			"cebra_E3_vs_T0-T3_TGate_shifted_Cut",
+																			"cebra_E4_vs_T0-T4_TGate_shifted_Cut"
+				};
+
+
+				int tWindow = 20;					//half of the time gate								
+				double cebra_tShift[4] = {	3.0, 	//detector 1 relative to detector 0
+											3.0, 	//detector 2 relative to detector 0
+											68.0, 	//detector 3 relative to detector 0
+											80.0	//detector 4 relative to detector 0			
+				};
+
+				Double_t cebra_TimeDif_0_i_shift = ev.cebraTime[0]-ev.cebraTime[i]+cebra_tShift[i-1];
+
+				if(cebra_TimeDif_0_i_shift > -tWindow && cebra_TimeDif_0_i_shift < tWindow){
+					if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
+
+						MyFill(table,cebra_E0_Ei_cal_TGate_Cut[i-1],4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[i]);
+						MyFill(table,cebra_T0_Ti_TGate_shifted_Cut[i-1],tWindow*2,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+						MyFill(table,cebra_Ei_cebraT0_Ti_TGate_shifted_Cut[i-1],tWindow*2,-tWindow,tWindow,cebra_TimeDif_0_i_shift,4096,0,4096,ev.cebraE[i]);
+					}
 				}
 
-			if(ev.cebraE[0]!=-1 && ev.cebraE[3]!=-1){
-				MyFill(table,"cebraTime0-cebraTime3_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[3]);
+			}
+			
+
+
+			for(int i=0; i<5; i++)
+			{
+				if(ev.cebraE[i] != -1) 
+				{
+					const char *cebraEi_Cut[] = {"cebraE0_Cut","cebraE1_Cut","cebraE2_Cut","cebraE3_Cut","cebraE4_Cut"};
+					
+					Double_t cebraRelT_i_toScint = ev.cebraTime[i] - ev.scintLeftTime;
+					Double_t cebraE_cal=ev.cebraE[i]*2.6113656+5.621562404;
+
+					MyFill(table,cebraEi_Cut[i],4096,0,4096,ev.cebraE[i]);
+					MyFill(table,"cebraE_Cut",4096,0,4096,ev.cebraE[i]);
+					MyFill(table,"cebraChannel_cebraE_Cut",20,0,20,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
+
 				}
-
-			if(ev.cebraE[0]!=-1 && ev.cebraE[4]!=-1){
-				MyFill(table,"cebraTime0-cebraTime4_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[4]);
-				}
-
-
-		int count = 0;
-		for(int i=0; i<5; i++){
-			if(ev.cebraE[i] != -1) {
-				if(i==0){
-					MyFill(table,"cebraE.0_Cut",4096,0,4096,ev.cebraE[0]);
-				} else if(i==1) {
-					MyFill(table,"cebraE.1_Cut",4096,0,4096,ev.cebraE[1]);
-				} else if(i==2) {
-					MyFill(table,"cebraE.2_Cut",4096,0,4096,ev.cebraE[2]);
-				} else if(i==3) {
-					MyFill(table,"cebraE.3_Cut",4096,0,4096,ev.cebraE[3]);
-				} else if(i==4) {
-					MyFill(table,"cebraE.4_Cut",4096,0,4096,ev.cebraE[4]);
-				} 
-
-			MyFill(table,"cebraE_Cut",4096,0,4096,ev.cebraE[i]);
-			//change the range to whatever the global id range is for the detectors on the channel map
-			MyFill(table,"cebraChannel_cebraE_Cut",20,0,20,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
-
-
+			}
 
 	
-			} else {
-				count++;
-			}
 		}
 
-
-		}
 	}
+	
 	/*Runs a list of files given from a RunCollector class*/
 	void SFPPlotter::Run(const std::vector<std::string>& files, const std::string& output)
 	{
