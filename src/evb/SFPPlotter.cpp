@@ -204,49 +204,74 @@ namespace EventBuilder {
 				}
 
 					//152Eu lifetime stuff
-
 					
-					// if(cebra_TimeDif_0_i_shift > -tWindow && cebra_TimeDif_0_i_shift < tWindow){
-					// 	if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
+					
+					if(cebra_TimeDif_0_i_shift > -tWindow && cebra_TimeDif_0_i_shift < tWindow){
+						if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
+							//152Sm branch
 
-					// 		//121.78kev-244.69kev
-					// 		if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 229.0 && cebraE_cal[i] < 259.0){
+							//121.78kev-244.69kev
+							if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 229.0 && cebraE_cal[i] < 259.0){
 
-					// 		const char *cebra_det0_121__deti_244_lifetime[] = {	"cebra_det0_121__det1_244_lifetime",
-					// 															"cebra_det0_121__det2_244_lifetime",
-					// 															"cebra_det0_121__det3_244_lifetime",
-					// 															"cebra_det0_121__det4_244_lifetime"};
+							const char *cebra_det0_121__deti_244_lifetime[] = {	"cebra_det0_121__det1_244_lifetime",
+																				"cebra_det0_121__det2_244_lifetime",
+																				"cebra_det0_121__det3_244_lifetime",
+																				"cebra_det0_121__det4_244_lifetime"};
 
-					// 		MyFill(table,cebra_det0_121__deti_244_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+							MyFill(table,cebra_det0_121__deti_244_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
 
-					// 		}
+							}
 
+							//121.78kev-964.1kev
+							if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 940.0 && cebraE_cal[i] < 1000.0){
 
-					// 		//121.78kev-964.1kev
-					// 		if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 949.0 && cebraE_cal[i] < 979.0){
+							const char *cebra_det0_121__deti_964_lifetime[] = {	"cebra_det0_121__det1_964_lifetime",
+																				"cebra_det0_121__det2_964_lifetime",
+																				"cebra_det0_121__det3_964_lifetime",
+																				"cebra_det0_121__det4_964_lifetime"};
 
-					// 		const char *cebra_det0_121__deti_964_lifetime[] = {	"cebra_det0_121__det1_964_lifetime",
-					// 															"cebra_det0_121__det2_964_lifetime",
-					// 															"cebra_det0_121__det3_964_lifetime",
-					// 															"cebra_det0_121__det4_964_lifetime"};
+							MyFill(table,cebra_det0_121__deti_964_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
 
-					// 		MyFill(table,cebra_det0_121__deti_964_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+							}
 
-					// 		}
+							//121.78kev-1408.0kev
+							if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 1370.0 && cebraE_cal[i] < 1460.0){
 
-					// 		//121.78kev-1408.0kev
-					// 		if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 1393.0 && cebraE_cal[i] < 1423.0){
+							const char *cebra_det0_121__deti_1408_lifetime[] = {"cebra_det0_121__det1_1408_lifetime",
+																				"cebra_det0_121__det2_1408_lifetime",
+																				"cebra_det0_121__det3_1408_lifetime",
+																				"cebra_det0_121__det4_1408_lifetime"};
 
-					// 		const char *cebra_det0_121__deti_1408_lifetime[] = {"cebra_det0_121__det1_1408_lifetime",
-					// 															"cebra_det0_121__det2_1408_lifetime",
-					// 															"cebra_det0_121__det3_1408_lifetime",
-					// 															"cebra_det0_121__det4_1408_lifetime"};
+							MyFill(table,cebra_det0_121__deti_1408_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
 
-					// 		MyFill(table,cebra_det0_121__deti_1408_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+								}
+							
+							//244keV-867keV
+							if(cebraE_cal[0] > 229.0 && cebraE_cal[0]< 259.0 && cebraE_cal[i] > 845.0 && cebraE_cal[i] < 900.0){
 
-					// 			}
-					// 	}
-					// }
+							const char *cebra_det0_121__deti_244_lifetime[] = {	"cebra_det0_121__det1_244_lifetime",
+																				"cebra_det0_121__det2_244_lifetime",
+																				"cebra_det0_121__det3_244_lifetime",
+																				"cebra_det0_121__det4_244_lifetime"};
+
+							MyFill(table,cebra_det0_121__deti_244_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+
+							}
+							//152Gd Branch
+							//344kev-779keV
+							if(cebraE_cal[0] > 320.0 && cebraE_cal[0]< 370.0 && cebraE_cal[i] > 750.0 && cebraE_cal[i] < 815.0){
+
+							const char *cebra_det0_121__deti_244_lifetime[] = {	"cebra_det0_121__det1_244_lifetime",
+																				"cebra_det0_121__det2_244_lifetime",
+																				"cebra_det0_121__det3_244_lifetime",
+																				"cebra_det0_121__det4_244_lifetime"};
+
+							MyFill(table,cebra_det0_121__deti_244_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+
+							}
+
+						}
+					}
 
 
 			}
@@ -261,9 +286,9 @@ namespace EventBuilder {
 					Double_t cebraRelT_i_toScint = ev.cebraTime[i] - ev.scintLeftTime;
 					//Double_t cebraE_cal=ev.cebraE[i]*2.6113656+5.621562404;
 
-					MyFill(table,cebraEi_noCuts[i],256,0,4096,cebraE_cal[i]);
-					MyFill(table,"cebraE_NoCuts",256,0,4096,cebraE_cal[i]);
-					MyFill(table,"cebraChannel_cebraE_NoCuts",20,0,20,ev.cebraChannel[i],256,0,4096,cebraE_cal[i]);
+					MyFill(table,cebraEi_noCuts[i],512,0,4096,cebraE_cal[i]);
+					MyFill(table,"cebraE_NoCuts",512,0,4096,cebraE_cal[i]);
+					MyFill(table,"cebraChannel_cebraE_NoCuts",20,0,20,ev.cebraChannel[i],512,0,4096,cebraE_cal[i]);
 
 				}
 			}
