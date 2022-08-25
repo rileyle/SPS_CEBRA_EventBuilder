@@ -138,6 +138,14 @@ namespace EventBuilder {
 			} else {
 			MyFill(table,"noscinttime_counter_NoCuts",2,0,1,1); 
 			}
+
+			double cebraE_cal[5] = {
+
+				2.60620611443008 *ev.cebraE[0] + 1.72868562114388,
+				2.63056745626693 *ev.cebraE[1] - 1.21602543765721,
+				2.61283391949880 *ev.cebraE[2] + 6.27604495667083,
+				2.60270866484430 *ev.cebraE[3] + 6.05560511964825,
+				2.64237004801967 *ev.cebraE[4] + 11.1639337002304};
 	
 		
 			//plots for CeBrA that are relative to Detector 0
@@ -191,8 +199,54 @@ namespace EventBuilder {
 						MyFill(table,cebra_E0_Ei_cal_TGate_noCuts[i-1],4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[i]);
 						MyFill(table,cebra_T0_Ti_TGate_shifted_noCuts[i-1],tWindow*2,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
 						MyFill(table,cebra_Ei_cebraT0_Ti_TGate_shifted_noCuts[i-1],tWindow*2,-tWindow,tWindow,cebra_TimeDif_0_i_shift,4096,0,4096,ev.cebraE[i]);
+						
 					}
 				}
+
+					//152Eu lifetime stuff
+
+					
+					// if(cebra_TimeDif_0_i_shift > -tWindow && cebra_TimeDif_0_i_shift < tWindow){
+					// 	if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
+
+					// 		//121.78kev-244.69kev
+					// 		if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 229.0 && cebraE_cal[i] < 259.0){
+
+					// 		const char *cebra_det0_121__deti_244_lifetime[] = {	"cebra_det0_121__det1_244_lifetime",
+					// 															"cebra_det0_121__det2_244_lifetime",
+					// 															"cebra_det0_121__det3_244_lifetime",
+					// 															"cebra_det0_121__det4_244_lifetime"};
+
+					// 		MyFill(table,cebra_det0_121__deti_244_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+
+					// 		}
+
+
+					// 		//121.78kev-964.1kev
+					// 		if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 949.0 && cebraE_cal[i] < 979.0){
+
+					// 		const char *cebra_det0_121__deti_964_lifetime[] = {	"cebra_det0_121__det1_964_lifetime",
+					// 															"cebra_det0_121__det2_964_lifetime",
+					// 															"cebra_det0_121__det3_964_lifetime",
+					// 															"cebra_det0_121__det4_964_lifetime"};
+
+					// 		MyFill(table,cebra_det0_121__deti_964_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+
+					// 		}
+
+					// 		//121.78kev-1408.0kev
+					// 		if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 1393.0 && cebraE_cal[i] < 1423.0){
+
+					// 		const char *cebra_det0_121__deti_1408_lifetime[] = {"cebra_det0_121__det1_1408_lifetime",
+					// 															"cebra_det0_121__det2_1408_lifetime",
+					// 															"cebra_det0_121__det3_1408_lifetime",
+					// 															"cebra_det0_121__det4_1408_lifetime"};
+
+					// 		MyFill(table,cebra_det0_121__deti_1408_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+
+					// 			}
+					// 	}
+					// }
 
 
 			}
@@ -205,11 +259,11 @@ namespace EventBuilder {
 					const char *cebraEi_noCuts[] = {"cebraE0_noCuts","cebraE1_noCuts","cebraE2_noCuts","cebraE3_noCuts","cebraE4_noCuts"};
 					
 					Double_t cebraRelT_i_toScint = ev.cebraTime[i] - ev.scintLeftTime;
-					Double_t cebraE_cal=ev.cebraE[i]*2.6113656+5.621562404;
+					//Double_t cebraE_cal=ev.cebraE[i]*2.6113656+5.621562404;
 
-					MyFill(table,cebraEi_noCuts[i],4096,0,4096,ev.cebraE[i]);
-					MyFill(table,"cebraE_NoCuts",4096,0,4096,ev.cebraE[i]);
-					MyFill(table,"cebraChannel_cebraE_NoCuts",20,0,20,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
+					MyFill(table,cebraEi_noCuts[i],256,0,4096,cebraE_cal[i]);
+					MyFill(table,"cebraE_NoCuts",256,0,4096,cebraE_cal[i]);
+					MyFill(table,"cebraChannel_cebraE_NoCuts",20,0,20,ev.cebraChannel[i],256,0,4096,cebraE_cal[i]);
 
 				}
 			}
