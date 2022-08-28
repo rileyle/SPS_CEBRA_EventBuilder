@@ -118,119 +118,181 @@ namespace EventBuilder {
 					MyFill(table,"cebraRelRTScint_cebraChannel",3000,-15000,15000,cebraRelT_toScint,144,0,144,ev.cebraChannel[i]);
 					MyFill(table,"cebraRelRTAnode_cebraChannel",3000,-15000,15000,cebraRelT,144,0,144,ev.cebraChannel[i]);
 					MyFill(table,"cebraRelRTScint_anodeRelT",3000,-15000,15000,cebraRelT_toScint,3000,-15000,15000,anodeRelBT);
+
+
+					const char *cebrai_RelTime_toScint[] = {"cebra0_RelTime_toScint_noCuts",
+															"cebra1_RelTime_toScint_noCuts",
+															"cebra2_RelTime_toScint_noCuts",
+															"cebra3_RelTime_toScint_noCuts",
+															"cebra4_RelTime_toScint_noCuts"
+					};
+					MyFill(table,cebrai_RelTime_toScint[i],3000,-15000,15000,cebraRelT_toScint);
+
+
 				}
 			}
-			
-			/*for(int i=0; i<5; i++) 
-			{
-				if(ev.sabreRingE[i] != -1)
-				{
-					Double_t sabreRelRT = ev.sabreRingTime[i] - ev.anodeBackTime;
-					Double_t sabreRelWT = ev.sabreWedgeTime[i] - ev.anodeBackTime;
-					Double_t sabreRelRT_toScint = ev.sabreRingTime[i] - ev.scintLeftTime;
-					Double_t sabreRelWT_toScint = ev.sabreWedgeTime[i] - ev.scintLeftTime;
-					MyFill(table,"xavg_sabrefcoinc_NoCuts",600,-300,300, ev.xavg);
-					MyFill(table,"sabreRelRingTime_NoCuts",1000,-3000,3500, sabreRelRT);
-					MyFill(table,"sabreRelWedgeTime_NoCuts",1000,-3000,3500, sabreRelWT);
-					MyFill(table,"sabreRelRingTime_toScint",1000,-3000,3500,sabreRelRT_toScint);
-					MyFill(table,"sabreRelWedgeTime_toScint",1000,-3000,3500,sabreRelWT_toScint);
-					MyFill(table,"sabreRelRTScint_sabreRelRTAnode",500,-3000,3500,sabreRelRT_toScint,500,-3000,3500,sabreRelRT);
-					MyFill(table,"sabreRelRTScint_sabreRingChannel",500,-3000,3500,sabreRelRT_toScint,144,0,144,ev.sabreRingChannel[i]);
-					MyFill(table,"sabreRelRTAnode_sabreRingChannel",500,-3000,3500,sabreRelRT,144,0,144,ev.sabreRingChannel[i]);
-					MyFill(table,"sabreRelWTScint_sabreWedgeChannel",500,-3000,3500,sabreRelWT_toScint,144,0,144,ev.sabreWedgeChannel[i]);
-					MyFill(table,"sabreRelRT_sabreRelWT",500,-3000,3500,sabreRelRT,500,-3000,3500,sabreRelWT);
-					MyFill(table,"sabreRelRT_sabreRelWT_scint",500,-3000,3500,sabreRelRT_toScint,500,-3000,3500,sabreRelWT_toScint);
-					MyFill(table,"sabreRelRTScint_anodeRelT",500,-3000,3500,sabreRelRT_toScint,500,-3000,3500,anodeRelBT);
-				}
-			}*/
+
 			MyFill(table,"anodeBackRelTime_toScint",1000,-3000,3500,anodeRelBT);
 			MyFill(table,"delayRelBackTime_toScint",1000,-3000,3500,delayRelBT_toScint);
 			MyFill(table,"delayRelFrontTime_toScint",1000,-3000,3500,delayRelFT_toScint);
-		} 
-		else {
+			} else {
 			MyFill(table,"noscinttime_counter_NoCuts",2,0,1,1); 
 			}
-		/*
-		for(int i=0; i<5; i++) 
-		{ 
-			if(ev.sabreRingE[i] != -1)  //Again, at this point front&back are required
-			{
-				MyFill(table,"sabreRingE_NoCuts",2000,0,20,ev.sabreRingE[i]);
-				MyFill(table,"sabreRingChannel_sabreRingE_NoCuts",144,0,144,ev.sabreRingChannel[i],4096,0,16384,ev.sabreRingE[i]);
-				MyFill(table,"sabreWedgeE_NoCuts",2000,0,20,ev.sabreWedgeE[i]);
-				MyFill(table,"sabreWedgeChannel_sabreWedgeE_NoCuts",144,0,144,ev.sabreWedgeChannel[i],4096,0,16384,ev.sabreWedgeE[i]);
-			}
-		}
-		*/
 
-		Double_t cebraRelT_1_toScint = ev.cebraTime[0] - ev.scintLeftTime;
-     	Double_t cebraRelT_2_toScint = ev.cebraTime[1] - ev.scintLeftTime;
-		Double_t cebraRelT_3_toScint = ev.cebraTime[2] - ev.scintLeftTime;
-		Double_t cebraRelT_4_toScint = ev.cebraTime[3] - ev.scintLeftTime;
-		Double_t cebraRelT_5_toScint = ev.cebraTime[4] - ev.scintLeftTime;
-    	
-		Double_t cebraRelT_1_to_2 = cebraRelT_1_toScint - cebraRelT_2_toScint;
-		Double_t cebraRelT_1_to_3 = cebraRelT_1_toScint - cebraRelT_3_toScint;
-		Double_t cebraRelT_1_to_4 = cebraRelT_1_toScint - cebraRelT_4_toScint;
-		Double_t cebraRelT_1_to_5 = cebraRelT_1_toScint - cebraRelT_5_toScint;
+			double cebraE_cal[5] = {
 
- 		if(ev.cebraE[0]!=-1 && ev.cebraE[1]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE1_noCuts",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[1]);
-			MyFill(table,"cebraTime0-cebraTime1_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[1]);
-			MyFill(table,"cebraE1_vs_cebraTime0-cebraTime1_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[1],4096,0,4096,ev.cebraE[1]);
-			}
-
-		if(ev.cebraE[0]!=-1 && ev.cebraE[2]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE2_noCuts",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[2]);
-			MyFill(table,"cebraTime0-cebraTime2_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[2]);
-			MyFill(table,"cebraE2_vs_cebraTime0-cebraTime2_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[2],4096,0,4096,ev.cebraE[2]);
-			}
-
-		if(ev.cebraE[0]!=-1 && ev.cebraE[3]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE3_noCuts",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[3]);
-			MyFill(table,"cebraTime0-cebraTime3_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[3]);
-			MyFill(table,"cebraE3_vs_cebraTime0-cebraTime3_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[3],4096,0,4096,ev.cebraE[3]);
-			}
-
-		if(ev.cebraE[0]!=-1 && ev.cebraE[4]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE4_noCuts",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[4]);
-			MyFill(table,"cebraTime0-cebraTime4_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[4]);
-			MyFill(table,"cebraE4_vs_cebraTime0-cebraTime4_noCuts",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[4],4096,0,4096,ev.cebraE[4]);
-			}
-
-
-
-
-		int count = 0;
-		for(int i=0; i<5; i++){
-			if(ev.cebraE[i] != -1) {
-				if(i==0){
-					MyFill(table,"cebraE.0_noCuts_noShift",4096,0,4096,ev.cebraE[0]);
-				} else if(i==1) {
-					MyFill(table,"cebraE.1_noCuts_noShift",4096,0,4096,ev.cebraE[1]);
-				} else if(i==2) {
-					MyFill(table,"cebraE.2_noCuts_noShift",4096,0,4096,ev.cebraE[2]);
-				} else if(i==3) {
-					MyFill(table,"cebraE.3_noCuts_noShift",4096,0,4096,ev.cebraE[3]);
-				} else if(i==4) {
-					MyFill(table,"cebraE.4_noCuts_noShift",4096,0,4096,ev.cebraE[4]);
-				} 
-
-			MyFill(table,"cebraE_NoCuts_noshifts",4096,0,4096,ev.cebraE[i]);
-			//change the range to whatever the global id range is for the detectors on the channel map
-			MyFill(table,"cebraChannel_cebraE_NoCuts_noShifts",20,0,20,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
-
-
-
+				2.60620611443008 *ev.cebraE[0] + 1.72868562114388,
+				2.63056745626693 *ev.cebraE[1] - 1.21602543765721,
+				2.61283391949880 *ev.cebraE[2] + 6.27604495667083,
+				2.60270866484430 *ev.cebraE[3] + 6.05560511964825,
+				2.64237004801967 *ev.cebraE[4] + 11.1639337002304};
 	
-			} else {
-				count++;
-			}
-		}
-
-
-
 		
+			//plots for CeBrA that are relative to Detector 0
+			for(int i=1; i<5; i++) {
+
+				// Fills plots with the full CeBrA Coinciedence window
+
+				const char *cebra_TimeDif_0_i[] = {	"cebraTime0-cebraTime1_noCuts",
+													"cebraTime0-cebraTime2_noCuts",
+													"cebraTime0-cebraTime3_noCuts",
+													"cebraTime0-cebraTime4_noCuts"
+				};
+
+				if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
+					MyFill(table,cebra_TimeDif_0_i[i-1],3200,-1600,1600,ev.cebraTime[0]-ev.cebraTime[i]);
+				}
+
+				// Fills plots with some time gate and shift
+
+				const char *cebra_E0_Ei_cal_TGate_noCuts[] = {	"cebra_E0_E1_cal_TGate_noCuts",
+																"cebra_E0_E2_cal_TGate_noCuts",
+																"cebra_E0_E3_cal_TGate_noCuts",
+																"cebra_E0_E4_cal_TGate_noCuts"
+				};
+
+				const char *cebra_T0_Ti_TGate_shifted_noCuts[] = {	"cebra_Time0-Time1_TGate_shifted_noCuts",
+																	"cebra_Time0-Time2_TGate_shifted_noCuts",
+																	"cebra_Time0-Time3_TGate_shifted_noCuts",
+																	"cebra_Time0-Time4_TGate_shifted_noCuts"
+				};
+
+				const char *cebra_Ei_cebraT0_Ti_TGate_shifted_noCuts[] = {	"cebra_E1_vs_T0-T1_TGate_shifted_noCuts",
+																			"cebra_E2_vs_T0-T2_TGate_shifted_noCuts",
+																			"cebra_E3_vs_T0-T3_TGate_shifted_noCuts",
+																			"cebra_E4_vs_T0-T4_TGate_shifted_noCuts"
+				};
+
+
+				int tWindow = 20;					//half of the time gate								
+				double cebra_tShift[4] = {	3.0, 	//detector 1 relative to detector 0
+											3.0, 	//detector 2 relative to detector 0
+											68.0, 	//detector 3 relative to detector 0
+											80.0	//detector 4 relative to detector 0			
+				};
+
+				Double_t cebra_TimeDif_0_i_shift = ev.cebraTime[0]-ev.cebraTime[i]+cebra_tShift[i-1];
+
+				if(cebra_TimeDif_0_i_shift > -tWindow && cebra_TimeDif_0_i_shift < tWindow){
+					if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
+
+						MyFill(table,cebra_E0_Ei_cal_TGate_noCuts[i-1],4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[i]);
+						MyFill(table,cebra_T0_Ti_TGate_shifted_noCuts[i-1],tWindow*2,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+						MyFill(table,cebra_Ei_cebraT0_Ti_TGate_shifted_noCuts[i-1],tWindow*2,-tWindow,tWindow,cebra_TimeDif_0_i_shift,4096,0,4096,ev.cebraE[i]);
+						
+					}
+				}
+
+					//152Eu lifetime stuff
+					
+					
+					if(cebra_TimeDif_0_i_shift > -tWindow && cebra_TimeDif_0_i_shift < tWindow){
+						if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
+							//152Sm branch
+
+							//121.78kev-244.69kev
+							if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 229.0 && cebraE_cal[i] < 259.0){
+
+							const char *cebra_det0_121__deti_244_lifetime[] = {	"cebra_det0_121__det1_244_lifetime",
+																				"cebra_det0_121__det2_244_lifetime",
+																				"cebra_det0_121__det3_244_lifetime",
+																				"cebra_det0_121__det4_244_lifetime"};
+
+							MyFill(table,cebra_det0_121__deti_244_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+
+							}
+
+							//121.78kev-964.1kev
+							if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 940.0 && cebraE_cal[i] < 1000.0){
+
+							const char *cebra_det0_121__deti_964_lifetime[] = {	"cebra_det0_121__det1_964_lifetime",
+																				"cebra_det0_121__det2_964_lifetime",
+																				"cebra_det0_121__det3_964_lifetime",
+																				"cebra_det0_121__det4_964_lifetime"};
+
+							MyFill(table,cebra_det0_121__deti_964_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+
+							}
+
+							//121.78kev-1408.0kev
+							if(cebraE_cal[0] > 106.0 && cebraE_cal[0]< 136.0 && cebraE_cal[i] > 1370.0 && cebraE_cal[i] < 1460.0){
+
+							const char *cebra_det0_121__deti_1408_lifetime[] = {"cebra_det0_121__det1_1408_lifetime",
+																				"cebra_det0_121__det2_1408_lifetime",
+																				"cebra_det0_121__det3_1408_lifetime",
+																				"cebra_det0_121__det4_1408_lifetime"};
+
+							MyFill(table,cebra_det0_121__deti_1408_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+
+								}
+							
+							//244keV-867keV
+							if(cebraE_cal[0] > 229.0 && cebraE_cal[0]< 259.0 && cebraE_cal[i] > 845.0 && cebraE_cal[i] < 900.0){
+
+							const char *cebra_det0_121__deti_244_lifetime[] = {	"cebra_det0_121__det1_244_lifetime",
+																				"cebra_det0_121__det2_244_lifetime",
+																				"cebra_det0_121__det3_244_lifetime",
+																				"cebra_det0_121__det4_244_lifetime"};
+
+							MyFill(table,cebra_det0_121__deti_244_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+
+							}
+							//152Gd Branch
+							//344kev-779keV
+							if(cebraE_cal[0] > 320.0 && cebraE_cal[0]< 370.0 && cebraE_cal[i] > 750.0 && cebraE_cal[i] < 815.0){
+
+							const char *cebra_det0_121__deti_244_lifetime[] = {	"cebra_det0_121__det1_244_lifetime",
+																				"cebra_det0_121__det2_244_lifetime",
+																				"cebra_det0_121__det3_244_lifetime",
+																				"cebra_det0_121__det4_244_lifetime"};
+
+							MyFill(table,cebra_det0_121__deti_244_lifetime[i-1],200,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+
+							}
+
+						}
+					}
+
+
+			}
+
+
+			for(int i=0; i<5; i++)
+			{
+				if(ev.cebraE[i] != -1) 
+				{
+					const char *cebraEi_noCuts[] = {"cebraE0_noCuts","cebraE1_noCuts","cebraE2_noCuts","cebraE3_noCuts","cebraE4_noCuts"};
+					
+					Double_t cebraRelT_i_toScint = ev.cebraTime[i] - ev.scintLeftTime;
+					//Double_t cebraE_cal=ev.cebraE[i]*2.6113656+5.621562404;
+
+					MyFill(table,cebraEi_noCuts[i],512,0,4096,cebraE_cal[i]);
+					MyFill(table,"cebraE_NoCuts",512,0,4096,cebraE_cal[i]);
+					MyFill(table,"cebraChannel_cebraE_NoCuts",20,0,20,ev.cebraChannel[i],512,0,4096,cebraE_cal[i]);
+
+				}
+			}
+
 
 		if(ev.x1 != -1e6 && ev.x2 == -1e6)
 			MyFill(table,"x1NoCuts_only1plane",600,-300,300,ev.x1);
@@ -294,100 +356,88 @@ namespace EventBuilder {
 			MyFill(table,"anodeRelBackTime_Cut",1000,-3000,3500, anodeRelBT);
 			MyFill(table,"anodeRelFrontTime_Cut",1000,-3000,3500, anodeRelFT);
 			MyFill(table,"anodeRelTime_toScint_Cut",1000,-3000,3500,anodeRelFT_toScint);
-			// for(int i=0; i<5; i++) 
-			// {
-			// 	if(ev.sabreRingE[i] != -1) 
-			// 	{
-			// 		Double_t sabreRelRT = ev.sabreRingTime[i] - ev.anodeBackTime;
-			// 		Double_t sabreRelWT = ev.sabreWedgeTime[i] - ev.anodeBackTime;
-			// 		MyFill(table,"sabreRelRingTime_Cut",1000,-3000,3500, sabreRelRT);
-			// 		MyFill(table,"sabreRelWedgeTime_Cut",1000,-3000,3500, sabreRelWT);
-			// 	} 
-			// }
-		// } 
-		// else
-		// {
-		// 	MyFill(table,"noscinttime_counter_Cut",2,0,1,1);
-		// }
+			
+
 		
-		// for(int i=0; i<5; i++) 
-		// {
-		// 	if(ev.sabreRingE[i] != -1)
-		// 	{
-		// 		MyFill(table,"sabreRingE_Cut",2000,0,20,ev.sabreRingE[i]);
-		// 		MyFill(table,"xavg_Cut_sabrefcoinc",600,-300,300,ev.xavg);
-		// 		MyFill(table,"xavg_sabreRingE_Cut",600,-300,300,ev.xavg,200,0,20,ev.sabreRingE[i]);
-		// 		MyFill(table,"sabreWedgeE_Cut",2000,0,20,ev.sabreWedgeE[i]);
-		// 		MyFill(table,"xavg_sabreWedgeE_Cut",600,-300,300,ev.xavg,200,0,20,ev.sabreWedgeE[i]);
-		// 	}
-		// }
+			//plots for CeBrA that are relative to Detector 0
+			for(int i=1; i<5; i++) {
 
-		Double_t cebraRelT_1_toScint = ev.cebraTime[0] - ev.scintLeftTime;
-     	Double_t cebraRelT_2_toScint = ev.cebraTime[1] - ev.scintLeftTime;
-		Double_t cebraRelT_3_toScint = ev.cebraTime[2] - ev.scintLeftTime;
-		Double_t cebraRelT_4_toScint = ev.cebraTime[3] - ev.scintLeftTime;
-		Double_t cebraRelT_5_toScint = ev.cebraTime[4] - ev.scintLeftTime;
-    	
-		Double_t cebraRelT_1_to_2 = cebraRelT_1_toScint - cebraRelT_2_toScint;
-		Double_t cebraRelT_1_to_3 = cebraRelT_1_toScint - cebraRelT_3_toScint;
-		Double_t cebraRelT_1_to_4 = cebraRelT_1_toScint - cebraRelT_4_toScint;
-		Double_t cebraRelT_1_to_5 = cebraRelT_1_toScint - cebraRelT_5_toScint;
+				// Fills plots with the full CeBrA Coinciedence window
 
- 		if(ev.cebraE[0]!=-1 && ev.cebraE[1]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE1_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[1]);
-			MyFill(table,"cebraTime0-cebraTime1_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[1]);
-			MyFill(table,"cebraE1_vs_cebraTime0-cebraTime1_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[1],4096,0,4096,ev.cebraE[1]);
+				const char *cebra_TimeDif_0_i[] = {	"cebraTime0-cebraTime1_Cut",
+													"cebraTime0-cebraTime2_Cut",
+													"cebraTime0-cebraTime3_Cut",
+													"cebraTime0-cebraTime4_Cut"
+				};
+
+				if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
+					MyFill(table,cebra_TimeDif_0_i[i-1],3200,-1600,1600,ev.cebraTime[0]-ev.cebraTime[i]);
+				}
+
+				// Fills plots with some time gate and shift
+
+				const char *cebra_E0_Ei_cal_TGate_Cut[] = {	"cebra_E0_E1_cal_TGate_Cut",
+																"cebra_E0_E2_cal_TGate_Cut",
+																"cebra_E0_E3_cal_TGate_Cut",
+																"cebra_E0_E4_cal_TGate_Cut"
+				};
+
+				const char *cebra_T0_Ti_TGate_shifted_Cut[] = {	"cebra_Time0-Time1_TGate_shifted_Cut",
+																	"cebra_Time0-Time2_TGate_shifted_Cut",
+																	"cebra_Time0-Time3_TGate_shifted_Cut",
+																	"cebra_Time0-Time4_TGate_shifted_Cut"
+				};
+
+				const char *cebra_Ei_cebraT0_Ti_TGate_shifted_Cut[] = {	"cebra_E1_vs_T0-T1_TGate_shifted_Cut",
+																			"cebra_E2_vs_T0-T2_TGate_shifted_Cut",
+																			"cebra_E3_vs_T0-T3_TGate_shifted_Cut",
+																			"cebra_E4_vs_T0-T4_TGate_shifted_Cut"
+				};
+
+
+				int tWindow = 20;					//half of the time gate								
+				double cebra_tShift[4] = {	3.0, 	//detector 1 relative to detector 0
+											3.0, 	//detector 2 relative to detector 0
+											68.0, 	//detector 3 relative to detector 0
+											80.0	//detector 4 relative to detector 0			
+				};
+
+				Double_t cebra_TimeDif_0_i_shift = ev.cebraTime[0]-ev.cebraTime[i]+cebra_tShift[i-1];
+
+				if(cebra_TimeDif_0_i_shift > -tWindow && cebra_TimeDif_0_i_shift < tWindow){
+					if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
+
+						MyFill(table,cebra_E0_Ei_cal_TGate_Cut[i-1],4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[i]);
+						MyFill(table,cebra_T0_Ti_TGate_shifted_Cut[i-1],tWindow*2,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
+						MyFill(table,cebra_Ei_cebraT0_Ti_TGate_shifted_Cut[i-1],tWindow*2,-tWindow,tWindow,cebra_TimeDif_0_i_shift,4096,0,4096,ev.cebraE[i]);
+					}
+				}
+
 			}
+			
 
-		if(ev.cebraE[0]!=-1 && ev.cebraE[2]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE2_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[2]);
-			MyFill(table,"cebraTime0-cebraTime2_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[2]);
-			MyFill(table,"cebraE2_vs_cebraTime0-cebraTime2_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[2],4096,0,4096,ev.cebraE[2]);
+
+			for(int i=0; i<5; i++)
+			{
+				if(ev.cebraE[i] != -1) 
+				{
+					const char *cebraEi_Cut[] = {"cebraE0_Cut","cebraE1_Cut","cebraE2_Cut","cebraE3_Cut","cebraE4_Cut"};
+					
+					Double_t cebraRelT_i_toScint = ev.cebraTime[i] - ev.scintLeftTime;
+					Double_t cebraE_cal=ev.cebraE[i]*2.6113656+5.621562404;
+
+					MyFill(table,cebraEi_Cut[i],4096,0,4096,ev.cebraE[i]);
+					MyFill(table,"cebraE_Cut",4096,0,4096,ev.cebraE[i]);
+					MyFill(table,"cebraChannel_cebraE_Cut",20,0,20,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
+
+				}
 			}
-
-		if(ev.cebraE[0]!=-1 && ev.cebraE[3]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE3_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[3]);
-			MyFill(table,"cebraTime0-cebraTime3_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[3]);
-			MyFill(table,"cebraE3_vs_cebraTime0-cebraTime3_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[3],4096,0,4096,ev.cebraE[3]);
-			}
-
-		if(ev.cebraE[0]!=-1 && ev.cebraE[4]!=-1){
-			MyFill(table,"cebraE0_vs_cebraE4_Cut",4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[4]);
-			MyFill(table,"cebraTime0-cebraTime4_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[4]);
-			MyFill(table,"cebraE4_vs_cebraTime0-cebraTime4_Cut",3000,-1500,1500,ev.cebraTime[0]-ev.cebraTime[4],4096,0,4096,ev.cebraE[4]);
-			}
-
-
-
-
-		int count = 0;
-		for(int i=0; i<5; i++){
-			if(ev.cebraE[i] != -1) {
-				if(i==0){
-					MyFill(table,"cebraE.0_Cut_noShift",4096,0,4096,ev.cebraE[0]);
-				} else if(i==1) {
-					MyFill(table,"cebraE.1_Cut_noShift",4096,0,4096,ev.cebraE[1]);
-				} else if(i==2) {
-					MyFill(table,"cebraE.2_Cut_noShift",4096,0,4096,ev.cebraE[2]);
-				} else if(i==3) {
-					MyFill(table,"cebraE.3_Cut_noShift",4096,0,4096,ev.cebraE[3]);
-				} else if(i==4) {
-					MyFill(table,"cebraE.4_Cut_noShift",4096,0,4096,ev.cebraE[4]);
-				} 
-
-			MyFill(table,"cebraE_Cut_noshifts",4096,0,4096,ev.cebraE[i]);
-			//change the range to whatever the global id range is for the detectors on the channel map
-			MyFill(table,"cebraChannel_cebraE_Cut_noShifts",20,0,20,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
 
 	
-			} else {
-				count++;
-			}
 		}
 
-
-		}
 	}
+	
 	/*Runs a list of files given from a RunCollector class*/
 	void SFPPlotter::Run(const std::vector<std::string>& files, const std::string& output)
 	{
