@@ -141,11 +141,17 @@ namespace EventBuilder {
 
 			double cebraE_cal[5] = {
 
-				2.60620611443008 *ev.cebraE[0] + 1.72868562114388,
-				2.63056745626693 *ev.cebraE[1] - 1.21602543765721,
-				2.61283391949880 *ev.cebraE[2] + 6.27604495667083,
-				2.60270866484430 *ev.cebraE[3] + 6.05560511964825,
-				2.64237004801967 *ev.cebraE[4] + 11.1639337002304};
+				// 2.60620611443008 *ev.cebraE[0] + 1.72868562114388,
+				// 2.63056745626693 *ev.cebraE[1] - 1.21602543765721,
+				// 2.61283391949880 *ev.cebraE[2] + 6.27604495667083,
+				// 2.60270866484430 *ev.cebraE[3] + 6.05560511964825,
+				// 2.64237004801967 *ev.cebraE[4] + 11.1639337002304};
+
+				1.0 *ev.cebraE[0] + 0.0,
+				1.0 *ev.cebraE[1] - 0.0,
+				1.0 *ev.cebraE[2] + 0.0,
+				1.0 *ev.cebraE[3] + 0.0,
+				1.0 *ev.cebraE[4] + 0.0};
 	
 		
 			//plots for CeBrA that are relative to Detector 0
@@ -186,10 +192,10 @@ namespace EventBuilder {
 
 
 				int tWindow = 20;					//half of the time gate								
-				double cebra_tShift[4] = {	2.549, 	//detector 1 relative to detector 0
+				double cebra_tShift[4] = {	3.0, 	//detector 1 relative to detector 0
 											2.0, 	//detector 2 relative to detector 0
-											68.0, 	//detector 3 relative to detector 0
-											80.5	//detector 4 relative to detector 0			
+											2.5, 	//detector 3 relative to detector 0
+											33.5	//detector 4 relative to detector 0			
 				};
 
 				Double_t cebra_TimeDif_0_i_shift = ev.cebraTime[0]-ev.cebraTime[i]+cebra_tShift[i-1];
@@ -214,9 +220,9 @@ namespace EventBuilder {
 				{
 					const char *cebraEi_noCuts[] = {"cebraE0_noCuts","cebraE1_noCuts","cebraE2_noCuts","cebraE3_noCuts","cebraE4_noCuts"};
 
-					MyFill(table,cebraEi_noCuts[i],512,0,4096,cebraE_cal[i]);
-					MyFill(table,"cebraE_NoCuts",512,0,4096,cebraE_cal[i]);
-					MyFill(table,"cebraChannel_cebraE_NoCuts",20,0,20,ev.cebraChannel[i],512,0,4096,cebraE_cal[i]);
+					MyFill(table,cebraEi_noCuts[i],4096,0,4096,cebraE_cal[i]);
+					MyFill(table,"cebraE_NoCuts",4096,0,4096,cebraE_cal[i]);
+					MyFill(table,"cebraChannel_cebraE_NoCuts",7,15,22,ev.cebraChannel[i],512,0,4096,cebraE_cal[i]);
 
 				}
 			}
