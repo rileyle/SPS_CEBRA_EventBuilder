@@ -153,11 +153,14 @@ namespace EventBuilder {
 
 				// Fills plots with the full CeBrA Coinciedence window
 
-				const char *cebra_TimeDif_0_i[] = {	"cebraTime0-cebraTime1_noCuts",
-													"cebraTime0-cebraTime2_noCuts",
-													"cebraTime0-cebraTime3_noCuts",
-													"cebraTime0-cebraTime4_noCuts"
+				const char *cebra_TimeDif_0_i[] = {	"cebraTime0_cebraTime1_noCuts",
+													"cebraTime0_cebraTime2_noCuts",
+													"cebraTime0_cebraTime3_noCuts",
+													"cebraTime0_cebraTime4_noCuts"
 				};
+
+￼
+￼
 
 				if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
 					MyFill(table,cebra_TimeDif_0_i[i-1],3200,-1600,1600,ev.cebraTime[0]-ev.cebraTime[i]);
@@ -322,10 +325,10 @@ namespace EventBuilder {
 
 				// Fills plots with the full CeBrA Coinciedence window
 
-				const char *cebra_TimeDif_0_i[] = {	"cebraTime0-cebraTime1_Cut",
-													"cebraTime0-cebraTime2_Cut",
-													"cebraTime0-cebraTime3_Cut",
-													"cebraTime0-cebraTime4_Cut"
+				const char *cebra_TimeDif_0_i[] = {	"cebraTime0_cebraTime1_Cut",
+													"cebraTime0_cebraTime2_Cut",
+													"cebraTime0_cebraTime3_Cut",
+													"cebraTime0_cebraTime4_Cut"
 				};
 
 				if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
