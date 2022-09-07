@@ -159,8 +159,6 @@ namespace EventBuilder {
 													"cebraTime0_cebraTime4_noCuts"
 				};
 
-￼
-￼
 
 				if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
 					MyFill(table,cebra_TimeDif_0_i[i-1],3200,-1600,1600,ev.cebraTime[0]-ev.cebraTime[i]);
@@ -180,10 +178,10 @@ namespace EventBuilder {
 																	"cebra_Time0-Time4_TGate_shifted_noCuts"
 				};
 
-				const char *cebra_Ei_cebraT0_Ti_TGate_shifted_noCuts[] = {	"cebra_E1_vs_T0-T1_TGate_shifted_noCuts",
-																			"cebra_E2_vs_T0-T2_TGate_shifted_noCuts",
-																			"cebra_E3_vs_T0-T3_TGate_shifted_noCuts",
-																			"cebra_E4_vs_T0-T4_TGate_shifted_noCuts"
+				const char *cebra_Ei_cebraT0_Ti_TGate_shifted_noCuts[] = {	"cebra_E1_vs_T0_T1_TGate_shifted_noCuts",
+																			"cebra_E2_vs_T0_T2_TGate_shifted_noCuts",
+																			"cebra_E3_vs_T0_T3_TGate_shifted_noCuts",
+																			"cebra_E4_vs_T0_T4_TGate_shifted_noCuts"
 				};
 
 
