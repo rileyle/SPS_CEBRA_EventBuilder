@@ -222,7 +222,7 @@ namespace EventBuilder {
 
 					MyFill(table,cebraEi_noCuts[i],4096,0,4096,cebraE_cal[i]);
 					MyFill(table,"cebraE_NoCuts",4096,0,4096,cebraE_cal[i]);
-					MyFill(table,"cebraChannel_cebraE_NoCuts",7,15,22,ev.cebraChannel[i],512,0,4096,cebraE_cal[i]);
+					MyFill(table,"cebraChannel_cebraE_NoCuts",7,15,22,ev.cebraChannel[i],4096,0,4096,cebraE_cal[i]);
 
 				}
 			}
@@ -318,11 +318,17 @@ namespace EventBuilder {
 
 			double cebraE_cal[5] = {
 
-				2.60620611443008 *ev.cebraE[0] + 1.72868562114388,
-				2.63056745626693 *ev.cebraE[1] - 1.21602543765721,
-				2.61283391949880 *ev.cebraE[2] + 6.27604495667083,
-				2.60270866484430 *ev.cebraE[3] + 6.05560511964825,
-				2.64237004801967 *ev.cebraE[4] + 11.1639337002304};
+				// 2.60620611443008 *ev.cebraE[0] + 1.72868562114388,
+				// 2.63056745626693 *ev.cebraE[1] - 1.21602543765721,
+				// 2.61283391949880 *ev.cebraE[2] + 6.27604495667083,
+				// 2.60270866484430 *ev.cebraE[3] + 6.05560511964825,
+				// 2.64237004801967 *ev.cebraE[4] + 11.1639337002304};
+
+				1.0 *ev.cebraE[0] + 0,
+				1.0 *ev.cebraE[1] - 0,
+				1.0 *ev.cebraE[2] + 0,
+				1.0 *ev.cebraE[3] + 0,
+				1.0 *ev.cebraE[4] + 0};
 		
 			//plots for CeBrA that are relative to Detector 0
 			for(int i=1; i<5; i++) {
