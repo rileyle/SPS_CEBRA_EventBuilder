@@ -325,7 +325,7 @@ namespace EventBuilder {
 											2.0, 	//detector 2 relative to detector 0
 											2.5, 	//detector 3 relative to detector 0
 											33.5	//detector 4 relative to detector 0		
-				}
+				};
 
 				// Fills plots with the full CeBrA Coinciedence window
 				const char *cebra_TimeDif_0_i[] = {	"cebraTime0_cebraTime1_Cut",
