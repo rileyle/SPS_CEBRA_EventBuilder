@@ -184,53 +184,53 @@ namespace EventBuilder {
            
             if(!event.cebraArray[j].cebr.empty())
             {
-                for(unsigned int l=0; l<=event.cebraArray[j].cebr.size(); l++){
-                   if(j==0){
-                        MyFill("CeBrA.E.0_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
-                    else if(j==1){
-                        MyFill("CeBrA.E.1_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}    
-                    else if(j==2){
-                        MyFill("CeBrA.E.2_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
-                    else if(j==3){
-                        MyFill("CeBrA.E.3_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
-                    else if(j==4){
-                        MyFill("CeBrA.E.4_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+                // for(unsigned int l=0; l<=event.cebraArray[j].cebr.size(); l++){
+                //    if(j==0){
+                //         MyFill("CeBrA.E.0_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+                //     else if(j==1){
+                //         MyFill("CeBrA.E.1_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}    
+                //     else if(j==2){
+                //         MyFill("CeBrA.E.2_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+                //     else if(j==3){
+                //         MyFill("CeBrA.E.3_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+                //     else if(j==4){
+                //         MyFill("CeBrA.E.4_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
                    
-                   }
+                //    }
      
             pevent.cebraE[j] = event.cebraArray[j].cebr[0].Long;
             pevent.cebraChannel[j] = event.cebraArray[j].cebr[0].Ch;
             pevent.cebraTime[j] = event.cebraArray[j].cebr[0].Time;
      
-      MyFill("CeBrAE vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);
-      if(j==0){
-            MyFill("CeBrA.E.0 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
-            else if(j==1){
-            MyFill("CeBrA.E.1 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
-            else if(j==2){
-            MyFill("CeBrA.E.2 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
-            else if(j==3){
-            MyFill("CeBrA.E.3 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
-            else if(j==4){
-            MyFill("CeBrA.E.4 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
+    //   MyFill("CeBrAE vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);
+    //   if(j==0){
+    //         MyFill("CeBrA.E.0 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
+    //         else if(j==1){
+    //         MyFill("CeBrA.E.1 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
+    //         else if(j==2){
+    //         MyFill("CeBrA.E.2 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
+    //         else if(j==3){
+    //         MyFill("CeBrA.E.3 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
+    //         else if(j==4){
+    //         MyFill("CeBrA.E.4 vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);}
     }
 
-    if(pevent.cebraE[0]!=-1 && pevent.cebraE[1]!=-1){
-            MyFill("cebraE0_vs_cebraE1_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[1]);
-            MyFill("cebraTime0-cebraTime1_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[1]);
-            }
-    if(pevent.cebraE[0]!=-1 && pevent.cebraE[2]!=-1){
-            MyFill("cebraE0_vs_cebraE2_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[2]);
-            MyFill("cebraTime0-cebraTime2_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[2]);
-            }
-    if(pevent.cebraE[0]!=-1 && pevent.cebraE[3]!=-1){
-            MyFill("cebraE0_vs_cebraE3_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[3]);
-            MyFill("cebraTime0-cebraTime3_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[3]);
-            }
-    if(pevent.cebraE[0]!=-1 && pevent.cebraE[4]!=-1){
-            MyFill("cebraE0_vs_cebraE4_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[4]);
-            MyFill("cebraTime0-cebraTime4_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[4]);
-            }
+    // if(pevent.cebraE[0]!=-1 && pevent.cebraE[1]!=-1){
+    //         MyFill("cebraE0_vs_cebraE1_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[1]);
+    //         MyFill("cebraTime0-cebraTime1_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[1]);
+    //         }
+    // if(pevent.cebraE[0]!=-1 && pevent.cebraE[2]!=-1){
+    //         MyFill("cebraE0_vs_cebraE2_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[2]);
+    //         MyFill("cebraTime0-cebraTime2_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[2]);
+    //         }
+    // if(pevent.cebraE[0]!=-1 && pevent.cebraE[3]!=-1){
+    //         MyFill("cebraE0_vs_cebraE3_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[3]);
+    //         MyFill("cebraTime0-cebraTime3_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[3]);
+    //         }
+    // if(pevent.cebraE[0]!=-1 && pevent.cebraE[4]!=-1){
+    //         MyFill("cebraE0_vs_cebraE4_noCuts",4096,0,4096,pevent.cebraE[0],4096,0,4096,pevent.cebraE[4]);
+    //         MyFill("cebraTime0-cebraTime4_noCuts",3000,-1500,1500,pevent.cebraTime[0]-pevent.cebraTime[4]);
+    //         }
     /*Aaaand passes on all of the rest. 4/24/20 GWM*/ // adjusted Mark
     pevent.cebraArray[j] = event.cebraArray[j];
   }
