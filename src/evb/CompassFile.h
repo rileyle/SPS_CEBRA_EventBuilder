@@ -62,7 +62,7 @@ namespace EventBuilder {
 		ShiftMap* m_smap; //NOT owned by CompassFile. DO NOT delete
 	
 		bool m_hitUsedFlag;
-		int m_bufsize = 20000000; //size of the buffer in hits
+		int m_bufsize = 5000000; //size of the buffer in hits
 		int m_hitsize; //size of a CompassHit in bytes (without alignment padding)
 		uint16_t m_header;
 		int m_buffersize;

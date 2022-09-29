@@ -56,6 +56,8 @@ namespace EventBuilder {
 					case 2: this_chan.attribute = DetAttribute::CEBRA2; break;
 					case 3: this_chan.attribute = DetAttribute::CEBRA3; break;
 					case 4: this_chan.attribute = DetAttribute::CEBRA4; break;
+					// case 5: this_chan.attribute = DetAttribute::CEBRA5; break;
+
 				}
 				this_chan.local_channel = std::stoi(partname);
 
@@ -101,6 +103,8 @@ namespace EventBuilder {
 				else if(partname == "ANODEFRONT") this_chan.attribute = DetAttribute::AnodeFront;
 				else if(partname == "ANODEBACK") this_chan.attribute = DetAttribute::AnodeBack;
 				else if(partname == "MONITOR") this_chan.attribute = DetAttribute::Monitor;
+
+				else if(partname == "SCINTLEFTCOPY") this_chan.attribute = DetAttribute::ScintLeftCopy;
 			}
 	
 			m_cmap[gchan] = this_chan;

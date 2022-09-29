@@ -139,13 +139,6 @@ namespace EventBuilder {
 			MyFill(table,"noscinttime_counter_NoCuts",2,0,1,1); 
 			}
 
-			// double cebraE_cal[5] = {
-
-			// 	1.0 *ev.cebraE[0] + 0.0,
-			// 	1.0 *ev.cebraE[1] + 0.0,
-			// 	1.0 *ev.cebraE[2] + 0.0,
-			// 	1.0 *ev.cebraE[3] + 0.0,
-			// 	1.0 *ev.cebraE[4] + 0.0};
 	
 		/*
 			//plots for CeBrA that are relative to Detector 0
@@ -171,7 +164,7 @@ namespace EventBuilder {
 
 				if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
 
-					MyFill(table,cebra_TimeDif_0_i[i-1],3200,-1600,1600,ev.cebraTime[0]-ev.cebraTime[i]);
+					MyFill(table,cebra_TimeDif_0_i[i-1],3000,-3000,3000,ev.cebraTime[0]-ev.cebraTime[i]);
 					MyFill(table,cebra_E0_Ei_noCuts[i-1],1024,0,4096,ev.cebraE[0],1024,0,4096,ev.cebraE[i]);
 
 				}
@@ -208,46 +201,44 @@ namespace EventBuilder {
 				// }
 
 
-			}
-		*/
+			} */
+		
 
-			// for(int i=0; i<5; i++){
-			// 	if(ev.cebraE[i] != -1) {
+			for(int i=0; i<5; i++){
+				if(ev.cebraE[i] != -1) {
 
-			// 		const char *cebraEi_noCuts[] = {"cebraE0_noCuts","cebraE1_noCuts","cebraE2_noCuts","cebraE3_noCuts","cebraE4_noCuts"};
+					double cebraE_ADC_Shift[5] = {	1.15672328675213*ev.cebraE[0]	-16.6919499054403,
+											1.3021940822188	*ev.cebraE[1]	-17.935158566721,
+											1.14400591545883*ev.cebraE[2]	-2.44528388259982,
+											1.13872748785169*ev.cebraE[3]	-5.59919193459234,
+											1.0				*ev.cebraE[4]	-0};
 
-			// 		MyFill(table,cebraEi_noCuts[i],4096,0,4096,ev.cebraE[i]);
-			// 		MyFill(table,"cebraE_NoCuts",4096,0,4096,ev.cebraE[i]);
-			// 		MyFill(table,"cebraChannel_cebraE_NoCuts",7,15,22,ev.cebraChannel[i],4096,0,4096,ev.cebraE[i]);
-
-			// 	}
-			// }
-
-			// for(int i=0; i<5; i++){
-			// 	if(ev.cebraE[i] != -1) {
-
-			// 		const char *cebraEi_noCuts[] = {"cebraE0_noCuts","cebraE1_noCuts","cebraE2_noCuts","cebraE3_noCuts","cebraE4_noCuts"};
+					const char *cebraEi_noCuts[] = {"cebraE0_noCuts","cebraE1_noCuts","cebraE2_noCuts","cebraE3_noCuts","cebraE4_noCuts"};
 					
-			// 		Double_t cebraRelT_i_toScint = ev.cebraTime[i] - ev.scintLeftTime;
+					MyFill(table,cebraEi_noCuts[i],1024,0,4096,ev.cebraE[i]);
 
-			// 		MyFill(table,cebraEi_noCuts[i],1024,0,4096,ev.cebraE[i]);
-			// 		MyFill(table,"cebraE_noCuts",1024,0,4096,ev.cebraE[i]);
-			// 		MyFill(table,"cebraChannel_cebraE_noCuts",20,0,20,ev.cebraChannel[i],1024,0,4096,ev.cebraE[i]);
+					const char *cebraEi_Shifted_noCuts[] = {"cebraE0_Shifted_noCuts","cebraE1_Shifted_noCuts","cebraE2_Shifted_noCuts","cebraE3_Shifted_noCuts","cebraE4_Shifted_noCuts"};
+					
+					MyFill(table,cebraEi_Shifted_noCuts[i],1024,0,4096,cebraE_ADC_Shift[i]);
 
-			// 		if(ev.x1 != -1e6 && ev.x2 == -1e6 && ev.cebraE[i] !=-1){
 
-			// 			const char *x1_cebraEi_noCuts[] = {	"x1_cebraE0_noCuts",
-			// 												"x1_cebraE1_noCuts",
-			// 												"x1_cebraE2_noCuts",
-			// 												"x1_cebraE3_noCuts",
-			// 												"x1_cebraE4_noCuts"};
+					// MyFill(table,"cebraE_noCuts",1024,0,4096,ev.cebraE[i]);
+					// MyFill(table,"cebraChannel_cebraE_noCuts",20,0,20,ev.cebraChannel[i],1024,0,4096,ev.cebraE[i]);
 
-			// 			MyFill(table,x1_cebraEi_noCuts[i],600,-300,300,ev.x1,1024,0,1024,ev.cebraE[i]);
-			// 			MyFill(table,"x1_cebraE_noCuts",600,-300,300,ev.x1,1024,0,1024,ev.cebraE[i]);
-			// 		}
+					// if(ev.x1 != -1e6 && ev.x2 == -1e6 && ev.cebraE[i] !=-1){
 
-			// 	}
-			// }
+					// 	const char *x1_cebraEi_noCuts[] = {	"x1_cebraE0_noCuts",
+					// 										"x1_cebraE1_noCuts",
+					// 										"x1_cebraE2_noCuts",
+					// 										"x1_cebraE3_noCuts",
+					// 										"x1_cebraE4_noCuts"};
+
+					// 	MyFill(table,x1_cebraEi_noCuts[i],600,-300,300,ev.x1,1024,0,1024,ev.cebraE[i]);
+					// 	MyFill(table,"x1_cebraE_noCuts",600,-300,300,ev.x1,1024,0,1024,ev.cebraE[i]);
+					//}
+
+				}
+			}
 
 
 		if(ev.x1 != -1e6 && ev.x2 == -1e6)
@@ -313,6 +304,13 @@ namespace EventBuilder {
 			MyFill(table,"anodeRelFrontTime_Cut",1000,-3000,3500, anodeRelFT);
 			MyFill(table,"anodeRelTime_toScint_Cut",1000,-3000,3500,anodeRelFT_toScint);
 			
+			//aligned all the the peaks in det 4 no cuts
+			double cebraE_ADC_Shift[5] = {	1.15672328675213*ev.cebraE[0]	-16.6919499054403,
+											1.3021940822188	*ev.cebraE[1]	-17.935158566721,
+											1.14400591545883*ev.cebraE[2]	-2.44528388259982,
+											1.13872748785169*ev.cebraE[3]	-5.59919193459234,
+											1.0				*ev.cebraE[4]	-0};
+
 			
 			for(int i=0; i<5; i++) {
        			if(ev.cebraE[i] != -1 && ev.x1 != -1e6 && ev.x2 != -1e6){
@@ -323,8 +321,8 @@ namespace EventBuilder {
 					MyFill(table,"cebraRelTime_Cut",3000,-15000,15000, cebraRelT); // was 1000, -3000, 3500
 					MyFill(table,"cebraRelTime_toScint_Cut",3000,-15000,15000,cebraRelT_toScint);
 					MyFill(table,"cebraRelRTScint_cebraRelRTAnode_Cut",3000,-15000,15000,cebraRelT_toScint,3000,-15000,15000,cebraRelT);
-					MyFill(table,"cebraRelRTScint_cebraChannel_Cut",3000,-15000,15000,cebraRelT_toScint,144,0,144,ev.cebraChannel[i]);
-					MyFill(table,"cebraRelRTAnode_cebraChannel_Cut",3000,-15000,15000,cebraRelT,144,0,144,ev.cebraChannel[i]);
+					// MyFill(table,"cebraRelRTScint_cebraChannel_Cut",3000,-15000,15000,cebraRelT_toScint,144,0,144,ev.cebraChannel[i]);
+					// MyFill(table,"cebraRelRTAnode_cebraChannel_Cut",3000,-15000,15000,cebraRelT,144,0,144,ev.cebraChannel[i]);
 					MyFill(table,"cebraRelRTScint_anodeRelT_Cut",3000,-15000,15000,cebraRelT_toScint,3000,-15000,15000,anodeRelBT);
 
 					const char *cebraEi_Cut[] = {"cebraE0_Cut","cebraE1_Cut","cebraE2_Cut","cebraE3_Cut","cebraE4_Cut"};
@@ -333,6 +331,15 @@ namespace EventBuilder {
 
 					MyFill(table,cebraEi_Cut[i],1024,0,4096,ev.cebraE[i]);
 					MyFill(table,"cebraE_Cut",1024,0,4096,ev.cebraE[i]);
+
+					const char *cebraEi_ADC_Shift_Cut[] = {	"cebraE0_ADC_Shift_Cut",
+															"cebraE1_ADC_Shift_Cut",
+															"cebraE2_ADC_Shift_Cut",
+															"cebraE3_ADC_Shift_Cut",
+															"cebraE4_ADC_Shift_Cut"};
+
+					MyFill(table,cebraEi_ADC_Shift_Cut[i],1024,0,4096,cebraE_ADC_Shift[i]);
+					MyFill(table,"cebraE_ADC_Shift_Cut",1024,0,4096,cebraE_ADC_Shift[i]);
 
 					if(ev.x1 != -1e6 && ev.x2 == -1e6 && ev.cebraE[i] !=-1){
 
@@ -346,17 +353,17 @@ namespace EventBuilder {
 						MyFill(table,"xavg_cebraE_Cut",600,-300,300,ev.xavg,1024,0,4096,ev.cebraE[i]);
 					}
 
-					if(ev.x1 != -1e6 && ev.cebraE[i] !=-1){
+					// if(ev.x1 != -1e6 && ev.cebraE[i] !=-1){
 
-						const char *x1_cebraEi_Cut[] = {	"x1_cebraE0_Cut",
-															"x1_cebraE1_Cut",
-															"x1_cebraE2_Cut",
-															"x1_cebraE3_Cut",
-															"x1_cebraE4_Cut"};
+					// 	const char *x1_cebraEi_Cut[] = {	"x1_cebraE0_Cut",
+					// 										"x1_cebraE1_Cut",
+					// 										"x1_cebraE2_Cut",
+					// 										"x1_cebraE3_Cut",
+					// 										"x1_cebraE4_Cut"};
 
-						MyFill(table,x1_cebraEi_Cut[i],600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
-						MyFill(table,"x1_cebraE_Cut",600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
-					}
+					// 	MyFill(table,x1_cebraEi_Cut[i],600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
+					// 	MyFill(table,"x1_cebraE_Cut",600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
+					// }
 
 
 					const char *cebrai_RelTime_toScint[] = {"cebra0_RelTime_toScint_Cut",
@@ -368,48 +375,123 @@ namespace EventBuilder {
 
 					MyFill(table,cebrai_RelTime_toScint[i],8000,-4000,4000,cebraRelT_toScint);
 
-					if(cebraRelT_toScint > -830 && cebraRelT_toScint < -770){
+					//Not Shifted Time Cut Code
+					// if(cebraRelT_toScint > -750 && cebraRelT_toScint < -600){
 
-						const char *cebraE_i_TimeCut_ProtonCut[] = {	"cebraE_0_TimeCut_ProtonCut",
-																		"cebraE_1_TimeCut_ProtonCut",
-																		"cebraE_2_TimeCut_ProtonCut",
-																		"cebraE_3_TimeCut_ProtonCut",
-																		"cebraE_4_TimeCut_ProtonCut"};
+					// 	const char *cebraE_i_TimeCut_ProtonCut[] = {	"cebraE_0_TimeCut_ProtonCut",
+					// 													"cebraE_1_TimeCut_ProtonCut",
+					// 													"cebraE_2_TimeCut_ProtonCut",
+					// 													"cebraE_3_TimeCut_ProtonCut",
+					// 													"cebraE_4_TimeCut_ProtonCut"};
 
-						const char *xavg_cebraEi_TimeCut_ProtonCut[] = {"xavg_cebraE0_TimeCut_ProtonCut",
-																		"xavg_cebraE1_TimeCut_ProtonCut",
-																		"xavg_cebraE2_TimeCut_ProtonCut",
-																		"xavg_cebraE3_TimeCut_ProtonCut",
-																		"xavg_cebraE4_TimeCut_ProtonCut"};
+					// 	const char *xavg_cebraEi_TimeCut_ProtonCut[] = {"xavg_cebraE0_TimeCut_ProtonCut",
+					// 													"xavg_cebraE1_TimeCut_ProtonCut",
+					// 													"xavg_cebraE2_TimeCut_ProtonCut",
+					// 													"xavg_cebraE3_TimeCut_ProtonCut",
+					// 													"xavg_cebraE4_TimeCut_ProtonCut"};
 
-						const char *x1_cebraEi_TimeCut_ProtonCut[] = {	"x1_cebraE0_TimeCut_ProtonCut",
-																		"x1_cebraE1_TimeCut_ProtonCut",
-																		"x1_cebraE2_TimeCut_ProtonCut",
-																		"x1_cebraE3_TimeCut_ProtonCut",
-																		"x1_cebraE4_TimeCut_ProtonCut"};
+					// 	const char *x1_cebraEi_TimeCut_ProtonCut[] = {	"x1_cebraE0_TimeCut_ProtonCut",
+					// 													"x1_cebraE1_TimeCut_ProtonCut",
+					// 													"x1_cebraE2_TimeCut_ProtonCut",
+					// 													"x1_cebraE3_TimeCut_ProtonCut",
+					// 													"x1_cebraE4_TimeCut_ProtonCut"};
 
-						const char *cebrai_RelTime_toScint_TimeCut_ProtonCut[] = {	"cebra0_RelTime_toScint_TimeCut_ProtonCut",
-																					"cebra1_RelTime_toScint_TimeCut_ProtonCut",
-																					"cebra2_RelTime_toScint_TimeCut_ProtonCut",
-																					"cebra3_RelTime_toScint_TimeCut_ProtonCut",
-																					"cebra4_RelTime_toScint_TimeCut_ProtonCut"};
+					// 	const char *cebrai_RelTime_toScint_TimeCut_ProtonCut[] = {	"cebra0_RelTime_toScint_TimeCut_ProtonCut",
+					// 																"cebra1_RelTime_toScint_TimeCut_ProtonCut",
+					// 																"cebra2_RelTime_toScint_TimeCut_ProtonCut",
+					// 																"cebra3_RelTime_toScint_TimeCut_ProtonCut",
+					// 																"cebra4_RelTime_toScint_TimeCut_ProtonCut"};
+
+					// 	MyFill(table,"xavg_TimeCut_ProtonCut",600,-300,300,ev.xavg);
+					// 	MyFill(table,cebraE_i_TimeCut_ProtonCut[i],1024,0,4096,ev.cebraE[i]);
+					// 	MyFill(table,xavg_cebraEi_TimeCut_ProtonCut[i],600,-300,300,ev.xavg,1024,0,4096,ev.cebraE[i]);
+					// 	MyFill(table,x1_cebraEi_TimeCut_ProtonCut[i],600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
+					// 	MyFill(table,cebrai_RelTime_toScint_TimeCut_ProtonCut[i],8000,-4000,4000,cebraRelT_toScint);
+
+					// } 
+
+
+
+
+					//RelTime to Scint Shifts
+					double cebra_RelTime_Shift[5] = {687.0,
+													685.0,
+													685.0,
+													685.0,
+													655.0};
+
+					double cebra_RelTime_Width = 5.0;
+					double cebraRelT_toScint_Shifted = cebraRelT_toScint + cebra_RelTime_Shift[i];
+
+
+					if(cebraRelT_toScint_Shifted > -cebra_RelTime_Width && cebraRelT_toScint_Shifted < cebra_RelTime_Width){
+
+						const char *cebraE_i_TimeCut_Shifted_ProtonCut[] = {"cebraE_0_TimeCut_Shifted_ProtonCut",
+																			"cebraE_1_TimeCut_Shifted_ProtonCut",
+																			"cebraE_2_TimeCut_Shifted_ProtonCut",
+																			"cebraE_3_TimeCut_Shifted_ProtonCut",
+																			"cebraE_4_TimeCut_Shifted_ProtonCut"};
+
+						const char *xavg_cebraEi_TimeCut_Shifted_ProtonCut[] = {"xavg_cebraE0_TimeCut_Shifted_ProtonCut",
+																				"xavg_cebraE1_TimeCut_Shifted_ProtonCut",
+																				"xavg_cebraE2_TimeCut_Shifted_ProtonCut",
+																				"xavg_cebraE3_TimeCut_Shifted_ProtonCut",
+																				"xavg_cebraE4_TimeCut_Shifted_ProtonCut"};
+
+						const char *x1_cebraEi_TimeCut_Shifted_ProtonCut[] = {	"x1_cebraE0_TimeCut_Shifted_ProtonCut",
+																				"x1_cebraE1_TimeCut_Shifted_ProtonCut",
+																				"x1_cebraE2_TimeCut_Shifted_ProtonCut",
+																				"x1_cebraE3_TimeCut_Shifted_ProtonCut",
+																				"x1_cebraE4_TimeCut_Shifted_ProtonCut"};
+
+						const char *cebrai_RelTime_toScint_TimeCut_Shifted_ProtonCut[] = {	"cebra0_RelTime_toScint_TimeCut_Shifted_ProtonCut",
+																							"cebra1_RelTime_toScint_TimeCut_Shifted_ProtonCut",
+																							"cebra2_RelTime_toScint_TimeCut_Shifted_ProtonCut",
+																							"cebra3_RelTime_toScint_TimeCut_Shifted_ProtonCut",
+																							"cebra4_RelTime_toScint_TimeCut_Shifted_ProtonCut"};
 
 						MyFill(table,"xavg_TimeCut_ProtonCut",600,-300,300,ev.xavg);
-						MyFill(table,cebraE_i_TimeCut_ProtonCut[i],1024,0,4096,ev.cebraE[i]);
-						MyFill(table,xavg_cebraEi_TimeCut_ProtonCut[i],600,-300,300,ev.xavg,1024,0,4096,ev.cebraE[i]);
-						MyFill(table,x1_cebraEi_TimeCut_ProtonCut[i],600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
-						MyFill(table,cebrai_RelTime_toScint_TimeCut_ProtonCut[i],8000,-4000,4000,cebraRelT_toScint);
+						MyFill(table,cebraE_i_TimeCut_Shifted_ProtonCut[i],1024,0,4096,ev.cebraE[i]);
+						MyFill(table,xavg_cebraEi_TimeCut_Shifted_ProtonCut[i],600,-300,300,ev.xavg,1024,0,4096,ev.cebraE[i]);
+						MyFill(table,x1_cebraEi_TimeCut_Shifted_ProtonCut[i],600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
+						MyFill(table,cebrai_RelTime_toScint_TimeCut_Shifted_ProtonCut[i],400,-100,100,cebraRelT_toScint_Shifted);
 
-					}
+						//Energy calibrated on the ground state band
+						MyFill(table,"AA_xavg_cebraE_TimeCut_ProtonCut",600,-300,300,ev.xavg,512,0,4096,cebraE_ADC_Shift[i]);
+						MyFill(table,"AA_x1_cebraE_TimeCut_ProtonCut",600,-300,300,ev.x1,512,0,4096,cebraE_ADC_Shift[i]);
+
+						MyFill(table,"AA_xavg_cebraE_TimeCut_Cal_ProtonCut",600,-300,300,ev.xavg,2000,0,10000,2.230153412*cebraE_ADC_Shift[i]+25.09473527);
+						MyFill(table,"AA_x1_cebraE_TimeCut_Cal_ProtonCut",600,-300,300,ev.x1,2000,0,10000,2.230153412*cebraE_ADC_Shift[i]+25.09473527);
+
+						if(i==0){
+							for(int j=0; j<4; j++) {
+								MyFill(table,"cebraE_zony_cebraE4_TimeCut_Cal_ProtonCut",2000,0,10000,2.230153412*cebraE_ADC_Shift[j]+25.09473527,2000,0,10000,2.230153412*cebraE_ADC_Shift[4]+25.09473527);
+
+								MyFill(table,"AA_xavg_cebraE_zony_TimeCut_ProtonCut",600,-300,300,ev.xavg,512,0,4096,cebraE_ADC_Shift[j]);
+								MyFill(table,"AA_x1_cebraE_zony_TimeCut_ProtonCut",600,-300,300,ev.x1,512,0,4096,cebraE_ADC_Shift[j]);
+							}
+						}
+
+					} 
+
+					MyFill(table,"AA_xavg_cebraE_ProtonCut",600,-300,300,ev.xavg,512,0,4096,cebraE_ADC_Shift[i]);
+
 				}
+
+
+
+				
 			}
 
-			double cebraE_cal[5] = {1.0 *ev.cebraE[0] + 0,
-									1.0 *ev.cebraE[1] + 0,
-									1.0 *ev.cebraE[2] + 0,
-									1.0 *ev.cebraE[3] + 0,
-									1.0 *ev.cebraE[4] + 0};	
-		
+
+			for(int j=0; j<4; j++) {
+				MyFill(table,"cebraE_zony_cebraE4_Cal_ProtonCut",2000,0,10000,2.230153412*cebraE_ADC_Shift[j]+25.09473527,2000,0,10000,2.230153412*cebraE_ADC_Shift[4]+25.09473527);
+
+				}
+
+			
+
+	
 			//plots for CeBrA that are relative to Detector 0
 			for(int i=1; i<5; i++) {
 
@@ -437,78 +519,47 @@ namespace EventBuilder {
 
 				}
 
-				// Fills plots with some time gate and shift
-
-				// const char *cebra_E0_Ei_cal_TGate_Cut[] = {	"cebra_E0_E1_cal_TGate_Cut",
-				// 											"cebra_E0_E2_cal_TGate_Cut",
-				// 											"cebra_E0_E3_cal_TGate_Cut",
-				// 											"cebra_E0_E4_cal_TGate_Cut"};
-
-				// const char *cebra_T0_Ti_TGate_shifted_Cut[] = {	"cebra_Time0-Time1_TGate_shifted_Cut",
-				// 												"cebra_Time0-Time2_TGate_shifted_Cut",
-				// 												"cebra_Time0-Time3_TGate_shifted_Cut",
-				// 												"cebra_Time0-Time4_TGate_shifted_Cut"};
-
-				// const char *cebra_Ei_cebraT0_Ti_TGate_shifted_Cut[] = {	"cebra_E1_vs_T0-T1_TGate_shifted_Cut",
-				// 														"cebra_E2_vs_T0-T2_TGate_shifted_Cut",
-				// 														"cebra_E3_vs_T0-T3_TGate_shifted_Cut",
-				// 														"cebra_E4_vs_T0-T4_TGate_shifted_Cut"};
-
-
-				// int tWindow = 20;					//half of the time gate								
-
-				// Double_t cebra_TimeDif_0_i_shift = ev.cebraTime[0]-ev.cebraTime[i]+cebra_tShift[i-1];
-
-				// if(cebra_TimeDif_0_i_shift > -tWindow && cebra_TimeDif_0_i_shift < tWindow){
-				// 	if(ev.cebraE[0]!=-1 && ev.cebraE[i]!=-1){
-
-				// 		MyFill(table,cebra_E0_Ei_cal_TGate_Cut[i-1],4096,0,4096,ev.cebraE[0],4096,0,4096,ev.cebraE[i]);
-				// 		MyFill(table,cebra_T0_Ti_TGate_shifted_Cut[i-1],tWindow*2,-tWindow,tWindow,cebra_TimeDif_0_i_shift);
-				// 		MyFill(table,cebra_Ei_cebraT0_Ti_TGate_shifted_Cut[i-1],tWindow*2,-tWindow,tWindow,cebra_TimeDif_0_i_shift,4096,0,4096,ev.cebraE[i]);
-				// 	}
-				// }
-
 			}
 			
 
 
-			// for(int i=0; i<5; i++){
-			// 	if(ev.cebraE[i] != -1) {
+			for(int i=0; i<5; i++){
+				if(ev.cebraE[i] != -1) {
 
-			// 		const char *cebraEi_Cut[] = {"cebraE0_Cut","cebraE1_Cut","cebraE2_Cut","cebraE3_Cut","cebraE4_Cut"};
+					const char *cebraEi_Cut[] = {"cebraE0_Cut","cebraE1_Cut","cebraE2_Cut","cebraE3_Cut","cebraE4_Cut"};
 					
-			// 		Double_t cebraRelT_i_toScint = ev.cebraTime[i] - ev.scintLeftTime;
+					// Double_t cebraRelT_i_toScint = ev.cebraTime[i] - ev.scintLeftTime;
 
-			// 		MyFill(table,cebraEi_Cut[i],1024,0,4096,ev.cebraE[i]);
-			// 		MyFill(table,"cebraE_Cut",1024,0,4096,ev.cebraE[i]);
-			// 		MyFill(table,"cebraChannel_cebraE_Cut",20,0,20,ev.cebraChannel[i],1024,0,4096,ev.cebraE[i]);
+					// MyFill(table,cebraEi_Cut[i],1024,0,4096,ev.cebraE[i]);
+					// MyFill(table,"cebraE_Cut",1024,0,4096,ev.cebraE[i]);
+					// MyFill(table,"cebraChannel_cebraE_Cut",20,0,20,ev.cebraChannel[i],1024,0,4096,ev.cebraE[i]);
 
-			// 		if(ev.x1 != -1e6 && ev.x2 == -1e6 && ev.cebraE[i] !=-1){
+					if(ev.x1 != -1e6 && ev.x2 == -1e6 && ev.cebraE[i] !=-1){
 
-			// 			const char *xavg_cebraEi_Cut[] = {	"xavg_cebraE0_Cut",
-			// 												"xavg_cebraE1_Cut",
-			// 												"xavg_cebraE2_Cut",
-			// 												"xavg_cebraE3_Cut",
-			// 												"xavg_cebraE4_Cut"};
+						const char *xavg_cebraEi_Cut[] = {	"xavg_cebraE0_Cut",
+															"xavg_cebraE1_Cut",
+															"xavg_cebraE2_Cut",
+															"xavg_cebraE3_Cut",
+															"xavg_cebraE4_Cut"};
 
-			// 			MyFill(table,xavg_cebraEi_Cut[i],600,-300,300,ev.xavg,1024,0,4096,ev.cebraE[i]);
-			// 			MyFill(table,"xavg_cebraE_Cut",600,-300,300,ev.xavg,1024,0,4096,ev.cebraE[i]);
-			// 		}
+						MyFill(table,xavg_cebraEi_Cut[i],600,-300,300,ev.xavg,1024,0,4096,ev.cebraE[i]);
+						MyFill(table,"xavg_cebraE_Cut",600,-300,300,ev.xavg,1024,0,4096,ev.cebraE[i]);
+					}
 
-			// 		if(ev.x1 != -1e6 && ev.cebraE[i] !=-1){
+					if(ev.x1 != -1e6 && ev.cebraE[i] !=-1){
 
-			// 			const char *x1_cebraEi_Cut[] = {	"x1_cebraE0_Cut",
-			// 												"x1_cebraE1_Cut",
-			// 												"x1_cebraE2_Cut",
-			// 												"x1_cebraE3_Cut",
-			// 												"x1_cebraE4_Cut"};
+						const char *x1_cebraEi_Cut[] = {	"x1_cebraE0_Cut",
+															"x1_cebraE1_Cut",
+															"x1_cebraE2_Cut",
+															"x1_cebraE3_Cut",
+															"x1_cebraE4_Cut"};
 
-			// 			MyFill(table,x1_cebraEi_Cut[i],600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
-			// 			MyFill(table,"x1_cebraE_Cut",600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
-			// 		}
+						MyFill(table,x1_cebraEi_Cut[i],600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
+						MyFill(table,"x1_cebraE_Cut",600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
+					}
 
-			// 	}
-			// }
+				}
+			}
 
 	
 
