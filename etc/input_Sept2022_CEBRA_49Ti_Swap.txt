@@ -4,7 +4,7 @@ WorkspaceDirectory: /home/spieker-group/Experiments/SPS_CEBRA_Sept_2022/WorkingD
 ------Experimental Inputs------
 ChannelMapFile: /home/spieker-group/Programs/SPS_CEBRA_EventBuilder/etc/ChannelMap_Sept2022_CEBRA_Board_Swap.txt
 ScalerFile: /home/spieker-group/Programs/SPS_CEBRA_EventBuilder/etc/ScalerFile_Sept2022_CEBRA_Board_Swap.txt
-CutListFile: /home/spieker-group/Programs/SPS_CEBRA_EventBuilder/etc/CutList_Sept2022_CEBRA.txt
+CutListFile: /home/spieker-group/Programs/SPS_CEBRA_EventBuilder/etc/CutList_Sept2022_CEBRA_49Ti.txt
 ZT: 22
 AT: 49
 ZP: 1

@@ -206,12 +206,29 @@ namespace EventBuilder {
 
 			for(int i=0; i<5; i++){
 				if(ev.cebraE[i] != -1) {
+					
+					//run 82 to 123 --> 12C shifts
+					// double cebraE_ADC_Shift[5] = {	1.15672328675213*ev.cebraE[0]	-16.6919499054403,
+					// 									1.3021940822188	*ev.cebraE[1]	-17.935158566721,
+					// 									1.14400591545883*ev.cebraE[2]	-2.44528388259982,
+					// 									1.13872748785169*ev.cebraE[3]	-5.59919193459234,
+					// 									1.0				*ev.cebraE[4]	-0};
 
-					double cebraE_ADC_Shift[5] = {	1.15672328675213*ev.cebraE[0]	-16.6919499054403,
-											1.3021940822188	*ev.cebraE[1]	-17.935158566721,
-											1.14400591545883*ev.cebraE[2]	-2.44528388259982,
-											1.13872748785169*ev.cebraE[3]	-5.59919193459234,
-											1.0				*ev.cebraE[4]	-0};
+
+					// double cebraE_ADC_Shift[5] = {	1*ev.cebraE[0]+0,
+					// 								1*ev.cebraE[1]+0,
+					// 								1*ev.cebraE[2]+0,
+					// 								1*ev.cebraE[3]+0,
+					// 								1*ev.cebraE[4]+0};
+
+
+					//run 162-183
+					double cebraE_ADC_Shift[5] = {1.14759314191149	*ev.cebraE[0]-33.6481331086578,
+											1.13138046963966	*ev.cebraE[1]-38.3795474557953,
+											1.10901267613132	*ev.cebraE[2]-4.52471201077913,
+											1.10283776422464	*ev.cebraE[3]-14.7328089971076,
+											1	*ev.cebraE[4]+0};
+
 
 					const char *cebraEi_noCuts[] = {"cebraE0_noCuts","cebraE1_noCuts","cebraE2_noCuts","cebraE3_noCuts","cebraE4_noCuts"};
 					
@@ -305,11 +322,30 @@ namespace EventBuilder {
 			MyFill(table,"anodeRelTime_toScint_Cut",1000,-3000,3500,anodeRelFT_toScint);
 			
 			//aligned all the the peaks in det 4 no cuts
-			double cebraE_ADC_Shift[5] = {	1.15672328675213*ev.cebraE[0]	-16.6919499054403,
-											1.3021940822188	*ev.cebraE[1]	-17.935158566721,
-											1.14400591545883*ev.cebraE[2]	-2.44528388259982,
-											1.13872748785169*ev.cebraE[3]	-5.59919193459234,
-											1.0				*ev.cebraE[4]	-0};
+
+			//run 82 to 123 --> 12C shifts
+			// double cebraE_ADC_Shift[5] = {	1.15672328675213*ev.cebraE[0]	-16.6919499054403,
+			// 								1.3021940822188	*ev.cebraE[1]	-17.935158566721,
+			// 								1.14400591545883*ev.cebraE[2]	-2.44528388259982,
+			// 								1.13872748785169*ev.cebraE[3]	-5.59919193459234,
+			// 								1.0				*ev.cebraE[4]	-0};
+
+			//run 140 - 
+			// double cebraE_ADC_Shift[5] = {	1			*ev.cebraE[0]+0,
+			// 								0.948342641	*ev.cebraE[1]-0.696411121,
+			// 								0.95950388	*ev.cebraE[2]+2.965761686,
+			// 								0.958168245	*ev.cebraE[3]+2.109440511,
+			// 								0.914171408	*ev.cebraE[4]-5.19425177};
+
+			//run162-183
+				double cebraE_ADC_Shift[5] = {1.14759314191149	*ev.cebraE[0]-33.6481331086578,
+											1.13138046963966	*ev.cebraE[1]-38.3795474557953,
+											1.10901267613132	*ev.cebraE[2]-4.52471201077913,
+											1.10283776422464	*ev.cebraE[3]-14.7328089971076,
+											1	*ev.cebraE[4]+0};
+
+
+
 
 			
 			for(int i=0; i<5; i++) {
@@ -373,7 +409,16 @@ namespace EventBuilder {
 															"cebra4_RelTime_toScint_Cut"
 					};
 
+					const char *cebrai_RelTime_toScint_theta[] = { "cebra0_RelTime_toScint_theta_Cut",
+																   "cebra1_RelTime_toScint_theta_Cut",
+																   "cebra2_RelTime_toScint_theta_Cut",
+																   "cebra3_RelTime_toScint_theta_Cut",
+																   "cebra4_RelTime_toScint_theta_Cut"
+					};
+
 					MyFill(table,cebrai_RelTime_toScint[i],8000,-4000,4000,cebraRelT_toScint);
+
+					MyFill(table,cebrai_RelTime_toScint_theta[i],8000,-4000,4000,cebraRelT_toScint,100,0,TMath::Pi()/2.,ev.theta);
 
 					//Not Shifted Time Cut Code
 					// if(cebraRelT_toScint > -750 && cebraRelT_toScint < -600){
@@ -414,13 +459,19 @@ namespace EventBuilder {
 
 
 					//RelTime to Scint Shifts
-					double cebra_RelTime_Shift[5] = {687.0,
+					double cebra_RelTime_Shift[5] = {687.0,    //12C shifts
 													685.0,
 													685.0,
 													685.0,
 													655.0};
 
-					double cebra_RelTime_Width = 5.0;
+					// double cebra_RelTime_Shift[5] = {672.0,    //49Ti
+					// 								 670.0,
+					// 								 670.0,
+					// 								 670.0,
+					// 								 640.0};
+
+					double cebra_RelTime_Width = 20.0;
 					double cebraRelT_toScint_Shifted = cebraRelT_toScint + cebra_RelTime_Shift[i];
 
 
@@ -444,6 +495,12 @@ namespace EventBuilder {
 																				"x1_cebraE3_TimeCut_Shifted_ProtonCut",
 																				"x1_cebraE4_TimeCut_Shifted_ProtonCut"};
 
+						// const char *x1_cebraEi_TimeCut_ProtonCut[] = {	"x1_cebraE0_TimeCut_ProtonCut",
+						// 														"x1_cebraE1_TimeCut_ProtonCut",
+						// 														"x1_cebraE2_TimeCut_ProtonCut",
+						// 														"x1_cebraE3_TimeCut_ProtonCut",
+						// 														"x1_cebraE4_TimeCut_ProtonCut"};
+
 						const char *cebrai_RelTime_toScint_TimeCut_Shifted_ProtonCut[] = {	"cebra0_RelTime_toScint_TimeCut_Shifted_ProtonCut",
 																							"cebra1_RelTime_toScint_TimeCut_Shifted_ProtonCut",
 																							"cebra2_RelTime_toScint_TimeCut_Shifted_ProtonCut",
@@ -456,12 +513,15 @@ namespace EventBuilder {
 						MyFill(table,x1_cebraEi_TimeCut_Shifted_ProtonCut[i],600,-300,300,ev.x1,1024,0,4096,ev.cebraE[i]);
 						MyFill(table,cebrai_RelTime_toScint_TimeCut_Shifted_ProtonCut[i],400,-100,100,cebraRelT_toScint_Shifted);
 
+
 						//Energy calibrated on the ground state band
 						MyFill(table,"AA_xavg_cebraE_TimeCut_ProtonCut",600,-300,300,ev.xavg,512,0,4096,cebraE_ADC_Shift[i]);
 						MyFill(table,"AA_x1_cebraE_TimeCut_ProtonCut",600,-300,300,ev.x1,512,0,4096,cebraE_ADC_Shift[i]);
 
 						MyFill(table,"AA_xavg_cebraE_TimeCut_Cal_ProtonCut",600,-300,300,ev.xavg,2000,0,10000,2.230153412*cebraE_ADC_Shift[i]+25.09473527);
 						MyFill(table,"AA_x1_cebraE_TimeCut_Cal_ProtonCut",600,-300,300,ev.x1,2000,0,10000,2.230153412*cebraE_ADC_Shift[i]+25.09473527);
+
+
 
 						if(i==0){
 							for(int j=0; j<4; j++) {
