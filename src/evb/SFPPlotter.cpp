@@ -130,11 +130,17 @@ namespace EventBuilder {
 
 					//Cebra ADC Channel shift (to make all the detectors line up with each other) with the corresponding plots
 					//good for run 82 - 123
-					double cebra_E_ADCShift[5] = {	1.15672328675213*ev.cebraE[0]	-16.6919499054403,
-													1.3021940822188	*ev.cebraE[1]	-17.935158566721,
-													1.14400591545883*ev.cebraE[2]	-2.44528388259982,
-													1.13872748785169*ev.cebraE[3]	-5.59919193459234,
-													1.0				*ev.cebraE[4]	-0};
+					// double cebra_E_ADCShift[5] = {	1.15672328675213*ev.cebraE[0]	-16.6919499054403,
+					// 								1.3021940822188	*ev.cebraE[1]	-17.935158566721,
+					// 								1.14400591545883*ev.cebraE[2]	-2.44528388259982,
+					// 								1.13872748785169*ev.cebraE[3]	-5.59919193459234,
+					// 								1.0				*ev.cebraE[4]	-0};
+
+					double cebra_E_ADCShift[5] = {1.14759314191149	*ev.cebraE[0]-33.6481331086578,
+											1.13138046963966	*ev.cebraE[1]-38.3795474557953,
+											1.10901267613132	*ev.cebraE[2]-4.52471201077913,
+											1.10283776422464	*ev.cebraE[3]-14.7328089971076,
+											1	*ev.cebraE[4]+0};
 
 					std::string cebra_E_i_ADCShift = "cebra_E_"+ I + "_ADCShift_noCuts"; 
 					const char *cebra_E_I_ADCShift_noCuts = cebra_E_i_ADCShift.c_str();	
@@ -224,11 +230,18 @@ namespace EventBuilder {
 			
 			//aligned all the the peaks in det 4 no cuts
 			//good for run 82 - 123
-			double cebra_E_ADCShift[5] = {	1.15672328675213*ev.cebraE[0]	-16.6919499054403,
-											1.3021940822188	*ev.cebraE[1]	-17.935158566721,
-											1.14400591545883*ev.cebraE[2]	-2.44528388259982,
-											1.13872748785169*ev.cebraE[3]	-5.59919193459234,
-											1.0				*ev.cebraE[4]	-0};
+			// double cebra_E_ADCShift[5] = {	1.15672328675213*ev.cebraE[0]	-16.6919499054403,
+			// 								1.3021940822188	*ev.cebraE[1]	-17.935158566721,
+			// 								1.14400591545883*ev.cebraE[2]	-2.44528388259982,
+			// 								1.13872748785169*ev.cebraE[3]	-5.59919193459234,
+			// 								1.0				*ev.cebraE[4]	-0};
+
+			//run 162-183
+				double cebra_E_ADCShift[5] = {1.14759314191149	*ev.cebraE[0]-33.6481331086578,
+											1.13138046963966	*ev.cebraE[1]-38.3795474557953,
+											1.10901267613132	*ev.cebraE[2]-4.52471201077913,
+											1.10283776422464	*ev.cebraE[3]-14.7328089971076,
+											1	*ev.cebraE[4]+0};
 
 			
 			for(int i=0; i<5; i++) {
@@ -271,11 +284,21 @@ namespace EventBuilder {
 
 					//RelTime to Left Scint Shifts (shifts peak to 0 for each detector)
 					//adjust accordingly using the "cebra_RelTime_toScint_I" plots
-					double cebra_RelTime_toScint_Shift[5] = {	687.0,  
-																685.0,
-																685.0,
-																685.0,
-																655.0};
+					//run 82-123
+					// double cebra_RelTime_toScint_Shift[5] = {	687.0,  
+					// 											685.0,
+					// 											685.0,
+					// 											685.0,
+					// 											655.0};
+
+					//run 162-183
+					double cebra_RelTime_toScint_Shift[5] = {	689.0,  
+																687.0,
+																687.0,
+																686.0,
+																656.0};
+
+
 
 					double cebra_RelTime_Width = 5.0;
 					double cebraRelT_toScint_Shifted = cebraRelT_toScint + cebra_RelTime_toScint_Shift[i];
