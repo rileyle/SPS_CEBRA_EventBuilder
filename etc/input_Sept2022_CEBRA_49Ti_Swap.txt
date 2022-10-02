@@ -22,6 +22,6 @@ FastCoincidenceWindow_IonCh(ps): 250000
 FastCoincidenceWindow_CEBRA(ps): 150000
 -------------------------------
 --------Run Information--------
-MinRun: 126
-MaxRun: 126
+MinRun: 184
+MaxRun: 184
 -------------------------------
