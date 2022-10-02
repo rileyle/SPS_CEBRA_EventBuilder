@@ -1,0 +1,2 @@
+Name File VarX VarY
+edeProtons /home/spieker-group/Experiments/SPS_CEBRA_Sept_2022/WorkingDir/cuts/49Ti_8.6kG_protons.root scintLeft anodeBack
