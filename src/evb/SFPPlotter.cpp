@@ -55,10 +55,45 @@ namespace EventBuilder {
 	/*Makes histograms where only rejection is unset data*/
 	void SFPPlotter::MakeUncutHistograms(const ProcessedEvent& ev, THashTable* table)
 	{
+
+
+
+		if(ev.x1 != -1e6 && ev.x2 == -1e6){
+
+		MyFill(table,"RelDelayFrontLeftTime_nox2_rel_to_frontanode_NoCut",8000,-4000,4000,ev.delayFrontLeftTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayFrontRightTime_nox2_rel_to_frontanode_NoCut",8000,-4000,4000,ev.delayFrontRightTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayBackLeftTime_nox2_rel_to_frontanode_NoCut",8000,-4000,4000,ev.delayBackLeftTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayBackRightTime_nox2_rel_to_frontanode_NoCut",8000,-4000,4000,ev.delayBackRightTime-ev.anodeFrontTime);
+
+		MyFill(table,"RelDelayFrontLeftTime_nox2_rel_to_backanode_NoCut",8000,-4000,4000,ev.delayFrontLeftTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayFrontRightTime_nox2_rel_to_backanode_NoCut",8000,-4000,4000,ev.delayFrontRightTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayBackLeftTime_nox2_rel_to_backanode_NoCut",8000,-4000,4000,ev.delayBackLeftTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayBackRightTime_nox2_rel_to_backanode_NoCut",8000,-4000,4000,ev.delayBackRightTime-ev.anodeBackTime);
+
+		}
+
+		if(ev.x2 != -1e6 && ev.x1 == -1e6){
+
+		MyFill(table,"RelDelayFrontLeftTime_nox1_rel_to_frontanode_NoCut",8000,-4000,4000,ev.delayFrontLeftTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayFrontRightTime_nox1_rel_to_frontanode_NoCut",8000,-4000,4000,ev.delayFrontRightTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayBackLeftTime_nox1_rel_to_frontanode_NoCut",8000,-4000,4000,ev.delayBackLeftTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayBackRightTime_nox1_rel_to_frontanode_NoCut",8000,-4000,4000,ev.delayBackRightTime-ev.anodeFrontTime);
+
+		MyFill(table,"RelDelayFrontLeftTime_nox1_rel_to_backanode_NoCut",8000,-4000,4000,ev.delayFrontLeftTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayFrontRightTime_nox1_rel_to_backanode_NoCut",8000,-4000,4000,ev.delayFrontRightTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayBackLeftTime_nox1_rel_to_backanode_NoCut",8000,-4000,4000,ev.delayBackLeftTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayBackRightTime_nox1_rel_to_backanode_NoCut",8000,-4000,4000,ev.delayBackRightTime-ev.anodeBackTime);
+
+
+		}
+
+
+		if(ev.x1 != -1e6 && ev.x2 != -1e6){
 		MyFill(table,"x1NoCuts_bothplanes",600,-300,300,ev.x2);
 		MyFill(table,"x2NoCuts_bothplanes",600,-300,300,ev.x2);
 		MyFill(table,"xavgNoCuts_bothplanes",600,-300,300,ev.xavg);
 		MyFill(table,"xavgNoCuts_theta_bothplanes",600,-300,300,ev.xavg,100,0,TMath::Pi()/2.,ev.theta);
+		}
 		
 		MyFill(table,"x1_delayBackRightE_NoCuts",600,-300,300,ev.x1,512,0,4096,ev.delayBackRightE);
 		MyFill(table,"x2_delayBackRightE_NoCuts",600,-300,300,ev.x2,512,0,4096,ev.delayBackRightE);
@@ -105,9 +140,19 @@ namespace EventBuilder {
 			Double_t anodeRelBT = ev.anodeBackTime - ev.scintLeftTime;
 			Double_t delayRelFT_toScint = ev.delayFrontMaxTime - ev.scintLeftTime;
 			Double_t delayRelBT_toScint = ev.delayBackMaxTime - ev.scintLeftTime;
+			Double_t delayFL_toScint = ev.delayFrontLeftTime - ev.scintLeftTime;
+			Double_t delayFR_toScint = ev.delayFrontRightTime - ev.scintLeftTime;
+			Double_t delayBL_toScint = ev.delayBackLeftTime - ev.scintLeftTime;
+			Double_t delayBR_toScint = ev.delayBackRightTime - ev.scintLeftTime;
 			MyFill(table,"anodeRelFrontTime_NoCuts",1000,-3000,3500, anodeRelFT);
 			MyFill(table,"delayRelFrontTime_NoCuts",1000,-3000,-3500,delayRelFT);
 			MyFill(table,"delayRelBackTime_NoCuts",1000,-3000,-3500,delayRelBT);
+			MyFill(table,"delayFL_RelScint_NoCuts",3000,-3000,3000,delayFL_toScint);
+			MyFill(table,"delayFR_RelScint_NoCuts",3000,-3000,3000,delayFR_toScint);
+			MyFill(table,"delayBL_RelScint_NoCuts",3000,-3000,3000,delayBL_toScint);
+			MyFill(table,"delayBR_RelScint_NoCuts",3000,-3000,3000,delayBR_toScint);
+
+			
 			
 			for(int i=0; i<5; i++) {
 
@@ -180,11 +225,60 @@ namespace EventBuilder {
 		if(!cutter.IsInside(&ev)) 
 			return;
 	
+
+		if(ev.x1 != -1e6 && ev.x2 != -1e6){
 		MyFill(table,"x1_bothplanes_Cut",600,-300,300,ev.x1);
 		MyFill(table,"x2_bothplanes_Cut",600,-300,300,ev.x2);
+
+
+		MyFill(table,"RelDelayFrontLeftTime_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayFrontLeftTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayFrontRightTime_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayFrontRightTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayBackLeftTime_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayBackLeftTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayBackRightTime_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayBackRightTime-ev.anodeFrontTime);
+
+		MyFill(table,"RelDelayFrontLeftTime_rel_to_backanode_Cut",8000,-4000,4000,ev.delayFrontLeftTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayFrontRightTime_rel_to_backanode_Cut",8000,-4000,4000,ev.delayFrontRightTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayBackLeftTime_rel_to_backanode_Cut",8000,-4000,4000,ev.delayBackLeftTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayBackRightTime_rel_to_backanode_Cut",8000,-4000,4000,ev.delayBackRightTime-ev.anodeBackTime);
+
+
+
+		}
+
 		MyFill(table,"xavg_bothplanes_Cut",600,-300,300,ev.xavg);
 		MyFill(table,"x1_x2_Cut",600,-300,300,ev.x1, 600,-300,300,ev.x2);
 		MyFill(table,"xavg_theta_Cut_bothplanes",600,-300,300,ev.xavg,100,0,TMath::Pi()/2.,ev.theta);
+
+		if(ev.x1 != -1e6 && ev.x2 == -1e6){
+		MyFill(table, "x1_only1plane_Cut", 600, -300, 300, ev.x1);
+
+		MyFill(table,"RelDelayFrontLeftTime_nox2_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayFrontLeftTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayFrontRightTime_nox2_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayFrontRightTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayBackLeftTime_nox2_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayBackLeftTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayBackRightTime_nox2_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayBackRightTime-ev.anodeFrontTime);
+
+		MyFill(table,"RelDelayFrontLeftTime_nox2_rel_to_backanode_Cut",8000,-4000,4000,ev.delayFrontLeftTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayFrontRightTime_nox2_rel_to_backanode_Cut",8000,-4000,4000,ev.delayFrontRightTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayBackLeftTime_nox2_rel_to_backanode_Cut",8000,-4000,4000,ev.delayBackLeftTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayBackRightTime_nox2_rel_to_backanode_Cut",8000,-4000,4000,ev.delayBackRightTime-ev.anodeBackTime);
+
+		}
+
+		if(ev.x2 != -1e6 && ev.x1 == -1e6){
+		MyFill(table, "x2_only1plane_Cut", 600, -300, 300, ev.x2);
+
+		MyFill(table,"RelDelayFrontLeftTime_nox1_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayFrontLeftTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayFrontRightTime_nox1_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayFrontRightTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayBackLeftTime_nox1_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayBackLeftTime-ev.anodeFrontTime);
+		MyFill(table,"RelDelayBackRightTime_nox1_rel_to_frontanode_Cut",8000,-4000,4000,ev.delayBackRightTime-ev.anodeFrontTime);
+
+		MyFill(table,"RelDelayFrontLeftTime_nox1_rel_to_backanode_Cut",8000,-4000,4000,ev.delayFrontLeftTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayFrontRightTime_nox1_rel_to_backanode_Cut",8000,-4000,4000,ev.delayFrontRightTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayBackLeftTime_nox1_rel_to_backanode_Cut",8000,-4000,4000,ev.delayBackLeftTime-ev.anodeBackTime);
+		MyFill(table,"RelDelayBackRightTime_nox1_rel_to_backanode_Cut",8000,-4000,4000,ev.delayBackRightTime-ev.anodeBackTime);
+
+
+		}
 		
 		MyFill(table,"x1_delayBackRightE_Cut",600,-300,300,ev.x1,512,0,4096,ev.delayBackRightE);
 		MyFill(table,"x2_delayBackRightE_Cut",600,-300,300,ev.x2,512,0,4096,ev.delayBackRightE);
@@ -235,12 +329,20 @@ namespace EventBuilder {
 		// 								1					*ev.cebraE[4]+0};
 
 
-		//run 184 -    (49Ti)
+		//run 184 - 232   (49Ti) @ 8.8kG
 		double cebra_E_ADCShift[5] = {	1.13839222519026	*ev.cebraE[0]-19.0471201323429,
 										1.12273313860131	*ev.cebraE[1]-25.5137729880996,
 										1.08900756001104	*ev.cebraE[2]+3.6871117152541,
 										1.08140038495971	*ev.cebraE[3]-0.744386649146463,
 										1					*ev.cebraE[4]+0};
+
+
+		//run 245 -    (49Ti) @ 7.9kG
+		// double cebra_E_ADCShift[5] = {	1.0			*ev.cebraE[0]+ 0.0,
+		// 								1.05877029	*ev.cebraE[1]+1.33404807,
+		// 								0.95309603	*ev.cebraE[2]+6.44321052,
+		// 								0.94369412	*ev.cebraE[3]+5.07983974,
+		// 								0.88937385	*ev.cebraE[4]+4.28181973};
 
 
 
@@ -251,9 +353,18 @@ namespace EventBuilder {
 			Double_t anodeRelFT = ev.anodeFrontTime - ev.anodeBackTime;
 			Double_t anodeRelBT = ev.anodeBackTime - ev.anodeBackTime;
 			Double_t anodeRelFT_toScint = ev.anodeFrontTime-ev.scintLeftTime;
+			Double_t delayFR_toScint = ev.delayFrontRightTime - ev.scintLeftTime;
+			Double_t delayFL_toScint = ev.delayFrontLeftTime - ev.scintLeftTime;
+			Double_t delayBL_toScint = ev.delayBackLeftTime - ev.scintLeftTime;
+			Double_t delayBR_toScint = ev.delayBackRightTime - ev.scintLeftTime;
 			MyFill(table,"anodeRelBackTime_Cut",1000,-3000,3500, anodeRelBT);
 			MyFill(table,"anodeRelFrontTime_Cut",1000,-3000,3500, anodeRelFT);
 			MyFill(table,"anodeRelTime_toScint_Cut",1000,-3000,3500,anodeRelFT_toScint);
+			MyFill(table,"delayFL_RelScint_Cuts",3000,-3000,3000,delayFL_toScint);
+			MyFill(table,"delayFR_RelScint_Cuts",3000,-3000,3000,delayFR_toScint);
+			MyFill(table,"delayBL_RelScint_Cuts",3000,-3000,3000,delayBL_toScint);
+			MyFill(table,"delayBR_RelScint_Cuts",3000,-3000,3000,delayBR_toScint);
+
 
 			for(int i=0; i<5; i++) {
 
@@ -280,12 +391,19 @@ namespace EventBuilder {
 				// 											656.0};
 
 
-				//run 184-    49Ti
+				//run 184-232    49Ti @8.8kG
 				double cebra_RelTime_toScint_Shift[5] = {	674.0,  
 															672.0,
 															672.0,
 															672.0,
 															641.0};
+
+				//run 235-285        49Ti@7.9kG
+				// double cebra_RelTime_toScint_Shift[5] = {	680.0,  
+				// 											678.0,
+				// 											678.0,
+				// 											677.0,
+				// 											647.0};
 
 
 				//CeBrA time cut ... make sure the shifts are good
@@ -301,12 +419,14 @@ namespace EventBuilder {
 					MyFill(table,fmt::format("cebra_RelTime_toScint_{}_TimeCutShift_Cut",i),400,-100,100,cebraRelT_toScint_Shifted);
 
 					//All the detectors summed using the ADC Shift values
-					MyFill(table,"AA_xavg_cebraE_Sum_TimeCutShift_Cut",600,-300,300,ev.xavg,512,0,4096,cebra_E_ADCShift[i]);
-					MyFill(table,"AA_x1_cebraE_Sum_TimeCutShift_Cut",600,-300,300,ev.x1,512,0,4096,cebra_E_ADCShift[i]);
+					MyFill(table,"AA_xavg_cebraE_Sum_TimeCutShift_Cut",600,-300,300,ev.xavg,1024,0,4096,cebra_E_ADCShift[i]);
+					MyFill(table,"AA_x1_cebraE_Sum_TimeCutShift_Cut",600,-300,300,ev.x1,1024,0,4096,cebra_E_ADCShift[i]);
 
 					//Energy Calibrated to the GS band 
 					// double cebra_E_EnergyCalibrated = 2.230153412*cebra_E_ADCShift[i]+25.09473527; //run 82 - 123
 					double cebra_E_EnergyCalibrated = 1.70660913540361*cebra_E_ADCShift[i]-242.0746562; //run 162 - 183
+
+					// double cebra_E_EnergyCalibrated = 7.07948027*cebra_E_ADCShift[i]+9.19494175; // run 235-  49Ti @ 7.9kG 
 
 					//Shifting x1 so run_82_123 x1_bothplanes_cut lines up with run_162_183
 					// double x1_shifted = 1.00248436*ev.x1 + 2.46724718; 
@@ -314,13 +434,18 @@ namespace EventBuilder {
 					MyFill(table,"AA_xavg_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2000,0,10000,cebra_E_EnergyCalibrated);
 					MyFill(table,"AA_x1_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2000,0,10000,cebra_E_EnergyCalibrated);
 
+					MyFill(table, "AA_cebraE_Sum_ADCShift_TimeCutShift_Cut", 1024, 0, 4096, cebra_E_ADCShift[i]);
+					MyFill(table, "AA_cebraE_Sum_EnergyCal_TimeCutShift_Cut", 1024, 0, 4096, cebra_E_EnergyCalibrated);
+
 					//Zony plots (small CeBr3 detectors, small zebras, like a small horses or a pony)
 					if(i != 4){
 							MyFill(table,"cebraE_zony_cebraE4_TimeCut_Cut",512,0,4096,cebra_E_ADCShift[i],512,0,4096,cebra_E_ADCShift[4]);
 							MyFill(table,"AA_xavg_cebraE_zony_TimeCutShift_Cut",600,-300,300,ev.xavg,512,0,4096,cebra_E_ADCShift[i]);
 							MyFill(table,"AA_x1_cebraE_zony_TimeCutShift_Cut",600,-300,300,ev.x1,512,0,4096,cebra_E_ADCShift[i]);
 							MyFill(table,"AA_xavg_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2000,0,10000,cebra_E_EnergyCalibrated);
-							MyFill(table,"AA_x1_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2000,0,10000,cebra_E_EnergyCalibrated);
+							MyFill(table,"AA_x1_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2000,0,10000,cebra_E_EnergyCalibrated);
+
+							MyFill(table, "AA_zony_Sum_EnergyCal_TimeCutShift_Cut", 1024, 0, 4096, cebra_E_EnergyCalibrated);
 					}	
 
 				}
