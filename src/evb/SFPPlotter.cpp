@@ -193,14 +193,14 @@ namespace EventBuilder {
 
 
 				//run 184 -    (49Ti)
-				double cebra_E_ADCShift[5] = {1.13839222519026	*ev.cebraE[0]-19.0471201323429,
-											1.12273313860131	*ev.cebraE[1]-25.5137729880996,
-											1.08900756001104	*ev.cebraE[2]+3.6871117152541,
-											1.08140038495971	*ev.cebraE[3]-0.744386649146463,
-											1					*ev.cebraE[4]+0};
+				// double cebra_E_ADCShift[5] = {1.13839222519026	*ev.cebraE[0]-19.0471201323429,
+				// 							1.12273313860131	*ev.cebraE[1]-25.5137729880996,
+				// 							1.08900756001104	*ev.cebraE[2]+3.6871117152541,
+				// 							1.08140038495971	*ev.cebraE[3]-0.744386649146463,
+				// 							1					*ev.cebraE[4]+0};
 
 				// MyFill(table,fmt::format("cebra_E_{}_ADCShift_noCuts",i),1024,0,4096,cebra_E_ADCShift[i]);
-				MyFill(table,"cebra_E_ADCShift_noCuts",1024,0,4096,cebra_E_ADCShift[i]);
+				//MyFill(table,"cebra_E_ADCShift_noCuts",1024,0,4096,cebra_E_ADCShift[i]);
 
 				
 				// if(ev.x1 != -1e6 && ev.x2 != -1e6){
@@ -330,20 +330,27 @@ namespace EventBuilder {
 
 
 		//run 184 - 232   (49Ti) @ 8.8kG
-		double cebra_E_ADCShift[5] = {	1.13839222519026	*ev.cebraE[0]-19.0471201323429,
-										1.12273313860131	*ev.cebraE[1]-25.5137729880996,
-										1.08900756001104	*ev.cebraE[2]+3.6871117152541,
-										1.08140038495971	*ev.cebraE[3]-0.744386649146463,
-										1					*ev.cebraE[4]+0};
+		// double cebra_E_ADCShift[5] = {	1.13839222519026	*ev.cebraE[0]-19.0471201323429,
+		// 								1.12273313860131	*ev.cebraE[1]-25.5137729880996,
+		// 								1.08900756001104	*ev.cebraE[2]+3.6871117152541,
+		// 								1.08140038495971	*ev.cebraE[3]-0.744386649146463,
+		// 								1					*ev.cebraE[4]+0};
 
 
-		//run 245 -    (49Ti) @ 7.9kG
+		//run 245 - 285   (49Ti) @ 7.9kG
 		// double cebra_E_ADCShift[5] = {	1.0			*ev.cebraE[0]+ 0.0,
 		// 								1.05877029	*ev.cebraE[1]+1.33404807,
 		// 								0.95309603	*ev.cebraE[2]+6.44321052,
 		// 								0.94369412	*ev.cebraE[3]+5.07983974,
 		// 								0.88937385	*ev.cebraE[4]+4.28181973};
 
+
+		//run 286 -  (61Ni) @ 8.7kG
+		double cebra_E_ADCShift[5] = {	1.0			*ev.cebraE[0]+ 0.0,
+										1.10509846	*ev.cebraE[1]+0.8243967,
+										0.96429267	*ev.cebraE[2]+5.64367899,
+										0.94357855	*ev.cebraE[3]+5.50312019,
+										0.88804469	*ev.cebraE[4]+6.51811634};
 
 
 	
@@ -392,11 +399,11 @@ namespace EventBuilder {
 
 
 				//run 184-232    49Ti @8.8kG
-				double cebra_RelTime_toScint_Shift[5] = {	674.0,  
-															672.0,
-															672.0,
-															672.0,
-															641.0};
+				// double cebra_RelTime_toScint_Shift[5] = {	674.0,  
+				// 											672.0,
+				// 											672.0,
+				// 											672.0,
+				// 											641.0};
 
 				//run 235-285        49Ti@7.9kG
 				// double cebra_RelTime_toScint_Shift[5] = {	680.0,  
@@ -405,10 +412,18 @@ namespace EventBuilder {
 				// 											677.0,
 				// 											647.0};
 
+//				run 286 -        61Ni@8.7kG
+				double cebra_RelTime_toScint_Shift[5] = {	678.0,  
+															677.0,
+															677.0,
+															676.0,
+															646.0};
+
 
 				//CeBrA time cut ... make sure the shifts are good
 				double cebra_RelTime_Width = 6.0;
 				double cebraRelT_toScint_Shifted = cebraRelT_toScint + cebra_RelTime_toScint_Shift[i];
+
 
 				if(cebraRelT_toScint_Shifted > -cebra_RelTime_Width && cebraRelT_toScint_Shifted < cebra_RelTime_Width){
 					
@@ -424,33 +439,80 @@ namespace EventBuilder {
 
 					//Energy Calibrated to the GS band 
 					// double cebra_E_EnergyCalibrated = 2.230153412*cebra_E_ADCShift[i]+25.09473527; //run 82 - 123
-					double cebra_E_EnergyCalibrated = 1.70660913540361*cebra_E_ADCShift[i]-242.0746562; //run 162 - 183
+					//double cebra_E_EnergyCalibrated = 1.70660913540361*cebra_E_ADCShift[i]-242.0746562; //run 162 - 183
+					//double cebra_E_EnergyCalibrated = 7.07948027*cebra_E_ADCShift[i]+9.19494175; // run 235- 285  49Ti @ 7.9kG 
+					double cebra_E_EnergyCalibrated = 1.77817107*cebra_E_ADCShift[i]+4.74455886;   // run 286 -   61Ni @8.7kG
 
-					// double cebra_E_EnergyCalibrated = 7.07948027*cebra_E_ADCShift[i]+9.19494175; // run 235-  49Ti @ 7.9kG 
 
 					//Shifting x1 so run_82_123 x1_bothplanes_cut lines up with run_162_183
 					// double x1_shifted = 1.00248436*ev.x1 + 2.46724718; 
 
-					MyFill(table,"AA_xavg_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2000,0,10000,cebra_E_EnergyCalibrated);
-					MyFill(table,"AA_x1_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2000,0,10000,cebra_E_EnergyCalibrated);
+					//run 184-232 energy calibrated
+					//double x1_shifted = -21.1595478758973*ev.x1+	2112.63002693692;
+
+					//run 245-283 energy calibrated
+					//double xavg_shifted = -17.1003806*ev.xavg +		6700.1328827;
+
+					//run 291-351 energy calibrated
+					double x1_shifted = -20.6867155520197*ev.x1+	2377.1950716545;
+
+
+					MyFill(table,"AA_xavg_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2048, 0, 8192,cebra_E_EnergyCalibrated);
+					MyFill(table,"AA_x1_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2048, 0, 8192,cebra_E_EnergyCalibrated);
+
+					//Use x1 calibration for 49Ti @ 8.8kG setting, x1 was better here, xavg is better for 49Ti @7.9kG and the 61Ni stuff
+					MyFill(table,"AA_ENERGYCAL_x1_cebraE_TimeCutShift_Cut",2048,0,8192,x1_shifted,2048, 0, 8192,cebra_E_EnergyCalibrated);
+					MyFill(table,"x1_ENERGYCAL_TimeCutShift_Cut",2048,0,8192,x1_shifted);
+
+					//MyFill(table,"AA_ENERGYCAL_xavg_cebraE_TimeCutShift_Cut",4096, 0, 16384,xavg_shifted,2048,0,8192,cebra_E_EnergyCalibrated);
+					//MyFill(table, "xavg_ENERGYCAL_TimeCutShift_Cut", 4096, 0, 16384,xavg_shifted);
+
+
+					// Conditional statement that plots certain decay bands of interest
+					
+					// if ( (cebra_E_EnergyCalibrated <= (xavg_shifted-2675) + 40)  && (cebra_E_EnergyCalibrated >= (xavg_shifted-2675) - 40) ){
+					// 	MyFill(table, "AA_testbandplot", 4096, 0, 16384, xavg_shifted, 2048, 0, 8192,cebra_E_EnergyCalibrated );
+					// 	MyFill(table, "AA_xavg_with_gamma_condition", 4096, 0, 16384, xavg_shifted);
+					// }
+
+					if ( (cebra_E_EnergyCalibrated <= (x1_shifted) + 60)  && (cebra_E_EnergyCalibrated >= (x1_shifted) - 60) ){
+						MyFill(table, "AA_testbandplot", 4096, 0, 16384, x1_shifted, 2048, 0, 8192,cebra_E_EnergyCalibrated );
+						MyFill(table, "AA_xavg_with_gamma_condition", 4096, 0, 16384, x1_shifted);
+					}
+				
+
 
 					MyFill(table, "AA_cebraE_Sum_ADCShift_TimeCutShift_Cut", 1024, 0, 4096, cebra_E_ADCShift[i]);
-					MyFill(table, "AA_cebraE_Sum_EnergyCal_TimeCutShift_Cut", 1024, 0, 4096, cebra_E_EnergyCalibrated);
+					MyFill(table, "AA_cebraE_Sum_EnergyCal_TimeCutShift_Cut", 2048, 0, 8192, cebra_E_EnergyCalibrated);
+
+
 
 					//Zony plots (small CeBr3 detectors, small zebras, like a small horses or a pony)
 					if(i != 4){
 							MyFill(table,"cebraE_zony_cebraE4_TimeCut_Cut",512,0,4096,cebra_E_ADCShift[i],512,0,4096,cebra_E_ADCShift[4]);
 							MyFill(table,"AA_xavg_cebraE_zony_TimeCutShift_Cut",600,-300,300,ev.xavg,512,0,4096,cebra_E_ADCShift[i]);
 							MyFill(table,"AA_x1_cebraE_zony_TimeCutShift_Cut",600,-300,300,ev.x1,512,0,4096,cebra_E_ADCShift[i]);
-							MyFill(table,"AA_xavg_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2000,0,10000,cebra_E_EnergyCalibrated);
-							MyFill(table,"AA_x1_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2000,0,10000,cebra_E_EnergyCalibrated);
+							MyFill(table,"AA_xavg_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2048, 0, 8192,cebra_E_EnergyCalibrated);
+							MyFill(table,"AA_x1_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2048, 0, 8192,cebra_E_EnergyCalibrated);
+							
+							MyFill(table, "AA_zony_Sum_EnergyCal_TimeCutShift_Cut", 2048, 0, 8192, cebra_E_EnergyCalibrated);
 
-							MyFill(table, "AA_zony_Sum_EnergyCal_TimeCutShift_Cut", 1024, 0, 4096, cebra_E_EnergyCalibrated);
+							//MyFill(table,"AA_ENERGYCAL_ZONY_x1_cebraE_TimeCutShift_Cut",2048,0,8192,x1_shifted,2048, 0, 8192,cebra_E_EnergyCalibrated);
+							//MyFill(table,"AA_ENERGYCAL_ZONY_xavg_cebraE_TimeCutShift_Cut",2048,0,8192,xavg_shifted,2048, 0, 8192,cebra_E_EnergyCalibrated);
+
 					}	
 
 				}
 			}
 		}
+			//run 184-232 energy calibrated
+			// double x1_shifted = -21.1595478758973*ev.x1+	2112.63002693692;
+			// MyFill(table,"x1_ENERGYCAL_Cut",2048,0,8192,x1_shifted);
+
+			//run 245-285 energy calibrated
+			//double xavg_shifted = -17.1003806*ev.xavg +		6700.1328827;
+			//MyFill(table,"xavg_ENERGYCAL_Cut",2048,0,8192,xavg_shifted);
+
 
 
 
