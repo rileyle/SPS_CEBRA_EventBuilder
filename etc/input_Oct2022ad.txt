@@ -1,0 +1,27 @@
+-------Data Location----------
+WorkspaceDirectory: /home/spieker-group/Experiments/SPS_CEBRA_Oct2022ad/WorkingDir
+-------------------------------
+------Experimental Inputs------
+ChannelMapFile: /home/spieker-group/Programs/SPS_CEBRA_EventBuilder/etc/ChannelMap_Oct2022ad.txt
+ScalerFile: /home/spieker-group/Programs/SPS_CEBRA_EventBuilder/etc/ScalerFile_Oct2022ad.txt
+CutListFile: /home/spieker-group/Programs/SPS_CEBRA_EventBuilder/etc/CutList_Oct2022ad.txt
+ZT: 28
+AT: 61
+ZP: 1
+AP: 2
+ZE: 1
+AE: 1
+BField(G): 8200
+BeamKE(MeV): 16
+Theta(deg): 35
+-------------------------------
+-------Timing Information------
+BoardOffsetFile: /home/spieker-group/Programs/SPS_CEBRA_EventBuilder/etc/ShiftMap_Oct2022ad.txt
+SlowCoincidenceWindow(ps): 3e+06
+FastCoincidenceWindow_IonCh(ps): 250000
+FastCoincidenceWindow_CEBRA(ps): 150000
+-------------------------------
+--------Run Information--------
+MinRun: 1
+MaxRun: 1
+-------------------------------

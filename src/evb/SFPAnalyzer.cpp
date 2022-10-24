@@ -186,21 +186,53 @@ namespace EventBuilder {
             {
                 // for(unsigned int l=0; l<=event.cebraArray[j].cebr.size(); l++){
                 //    if(j==0){
-                //         MyFill("CeBrA.E.0_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+                //         MyFill("CebraE0",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
                 //     else if(j==1){
-                //         MyFill("CeBrA.E.1_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}    
+                //         MyFill("CebraE1",4096,0,4096,event.cebraArray[j].cebr[l].Long);}    
                 //     else if(j==2){
-                //         MyFill("CeBrA.E.2_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+                //         MyFill("CebraE2",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
                 //     else if(j==3){
-                //         MyFill("CeBrA.E.3_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+                //         MyFill("CebraE3",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
                 //     else if(j==4){
-                //         MyFill("CeBrA.E.4_arrayLong",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
+                //         MyFill("CebraE4",4096,0,4096,event.cebraArray[j].cebr[l].Long);}
                    
                 //    }
+
+                if(j==0){
+                    pevent.cebraE0 = pevent.cebraE[j] = event.cebraArray[j].cebr[0].Long;
+                    pevent.cebraChannel0 = event.cebraArray[j].cebr[0].Ch;
+                    pevent.cebraTime0 = event.cebraArray[j].cebr[0].Time;
+                }
+
+                else if(j==1){
+                    pevent.cebraE1 = pevent.cebraE[j] = event.cebraArray[j].cebr[0].Long;
+                    pevent.cebraChannel1 = event.cebraArray[j].cebr[0].Ch;
+                    pevent.cebraTime1 = event.cebraArray[j].cebr[0].Time;
+                }
+
+                else if(j==2){
+                    pevent.cebraE2 = pevent.cebraE[j] = event.cebraArray[j].cebr[0].Long;
+                    pevent.cebraChannel2 = event.cebraArray[j].cebr[0].Ch;
+                    pevent.cebraTime2 = event.cebraArray[j].cebr[0].Time;
+                }
+
+                else if(j==3){
+                    pevent.cebraE3 = pevent.cebraE[j] = event.cebraArray[j].cebr[0].Long;
+                    pevent.cebraChannel3 = event.cebraArray[j].cebr[0].Ch;
+                    pevent.cebraTime3 = event.cebraArray[j].cebr[0].Time;
+                }
+
+                else if(j==4){
+                    pevent.cebraE4 = pevent.cebraE[j] = event.cebraArray[j].cebr[0].Long;
+                    pevent.cebraChannel4 = event.cebraArray[j].cebr[0].Ch;
+                    pevent.cebraTime4 = event.cebraArray[j].cebr[0].Time;
+                }
      
             pevent.cebraE[j] = event.cebraArray[j].cebr[0].Long;
             pevent.cebraChannel[j] = event.cebraArray[j].cebr[0].Ch;
             pevent.cebraTime[j] = event.cebraArray[j].cebr[0].Time;
+
+            j=j++;
      
     //   MyFill("CeBrAE vs CeBrA_channel",4096,0,4096,pevent.cebraE[j],200,0,200,pevent.cebraChannel[j]);
     //   if(j==0){
@@ -235,10 +267,22 @@ namespace EventBuilder {
     pevent.cebraArray[j] = event.cebraArray[j];
   }
 
-  /*
-  if(pevent.cebraE[0]!=-1 && pevent.cebraE[1]!=-1){
-    MyFill("CeBrA.E.1 vs CeBrA.E.2",4096,0,4096,pevent.cebraE[0],200,0,200,pevent.cebraE[1]);}
-  */
+  
+        if(pevent.cebraE[0]!=-1){ 
+            MyFill("CebraE0",4096,0,4096,pevent.cebraE[0]);}
+        if(pevent.cebraE[1]!=-1){ 
+            MyFill("CebraE1",4096,0,4096,pevent.cebraE[1]);}
+        if(pevent.cebraE[2]!=-1){ 
+            MyFill("CebraE2",4096,0,4096,pevent.cebraE[2]);}
+        if(pevent.cebraE[3]!=-1){ 
+            MyFill("CebraE3",4096,0,4096,pevent.cebraE[3]);}
+        if(pevent.cebraE[4]!=-1){ 
+            MyFill("CebraE4",4096,0,4096,pevent.cebraE[4]);}
+
+
+         
+
+  
 
         /*Make some histograms and xavg*/
         MyFill("anodeBack vs scintLeft",512,0,4096,pevent.scintLeft,512,0,4096,pevent.anodeBack);
@@ -255,29 +299,6 @@ namespace EventBuilder {
 			MyFill("xavg vs theta",600,-300,300,pevent.xavg,314,0,3.14,pevent.theta);
 			MyFill("x1 vs x2",600,-300,300,pevent.x1,600,-300,300,pevent.x2);
 
-			for(int k=0; k<5; k++) {
-                // if(!event.cebraArray[k].cebr.empty()) {
-                for(unsigned int l=0; l<=event.cebraArray[k].cebr.size(); l++){
-            if(!event.cebraArray[k].cebr.empty() && pevent.x1 != -1e6 && pevent.x2 != -1e6) {
-                MyFill("xavg vs CeBrA.E",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
-                if(k==0){
-                    MyFill("xavg vs CeBrA.E.0_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
-                    MyFill("xavg vs CeBrA.E.0_array0",600,-300,300,pevent.xavg,4096,0,4096,pevent.cebraE[k]);}
-                else if(k==1){
-                    MyFill("xavg vs CeBrA.E.1_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
-                    MyFill("xavg vs CeBrA.E.1_array0",600,-300,300,pevent.xavg,4096,0,4096,pevent.cebraE[k]);}
-                else if(k==2){
-                    MyFill("xavg vs CeBrA.E.2_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
-                    MyFill("xavg vs CeBrA.E.2_array0",600,-300,300,pevent.xavg,4096,0,4096,pevent.cebraE[k]);}
-                else if(k==3){
-                    MyFill("xavg vs CeBrA.E.3_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
-                    MyFill("xavg vs CeBrA.E.3_array0",600,-300,300,pevent.xavg,4096,0,4096,pevent.cebraE[k]);}
-                else if(k==4){
-                    MyFill("xavg vs CeBrA.E.4_arrayLong",600,-300,300,pevent.xavg,4096,0,4096,event.cebraArray[k].cebr[l].Long);
-                    MyFill("xavg vs CeBrA.E.4_array0",600,-300,300,pevent.xavg,4096,0,4096,pevent.cebraE[k]);}
-                }
-                }
-            }
         }
         if(pevent.anodeFrontTime != -1 && pevent.scintRightTime != -1)
             pevent.fp1_y = pevent.anodeFrontTime-pevent.scintRightTime;

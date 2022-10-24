@@ -461,8 +461,8 @@ namespace EventBuilder {
 					MyFill(table,"AA_x1_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2048, 0, 8192,cebra_E_EnergyCalibrated);
 
 					//Use x1 calibration for 49Ti @ 8.8kG setting, x1 was better here, xavg is better for 49Ti @7.9kG and the 61Ni stuff
-					MyFill(table,"AA_ENERGYCAL_x1_cebraE_TimeCutShift_Cut",2048,0,8192,x1_shifted,2048, 0, 8192,cebra_E_EnergyCalibrated);
-					MyFill(table,"x1_ENERGYCAL_TimeCutShift_Cut",2048,0,8192,x1_shifted);
+					MyFill(table,"AA_ENERGYCAL_x1_cebraE_TimeCutShift_Cut",512,0,8192,x1_shifted,2048, 0, 8192,cebra_E_EnergyCalibrated);
+					MyFill(table,"x1_ENERGYCAL_TimeCutShift_Cut",512,0,8192,x1_shifted);
 
 					//MyFill(table,"AA_ENERGYCAL_xavg_cebraE_TimeCutShift_Cut",4096, 0, 16384,xavg_shifted,2048,0,8192,cebra_E_EnergyCalibrated);
 					//MyFill(table, "xavg_ENERGYCAL_TimeCutShift_Cut", 4096, 0, 16384,xavg_shifted);
@@ -476,8 +476,18 @@ namespace EventBuilder {
 					// }
 
 					if ( (cebra_E_EnergyCalibrated <= (x1_shifted) + 60)  && (cebra_E_EnergyCalibrated >= (x1_shifted) - 60) ){
-						MyFill(table, "AA_testbandplot", 4096, 0, 16384, x1_shifted, 2048, 0, 8192,cebra_E_EnergyCalibrated );
-						MyFill(table, "AA_xavg_with_gamma_condition", 4096, 0, 16384, x1_shifted);
+						MyFill(table, "AA_GS_band", 4096, 0, 16384, x1_shifted, 2048, 0, 8192,cebra_E_EnergyCalibrated );
+						MyFill(table, "AA_x1_with_gamma_condition_GS", 256, 0, 8192, x1_shifted);
+					}
+
+					if ( (cebra_E_EnergyCalibrated <= (x1_shifted - 1172) + 60)  && (cebra_E_EnergyCalibrated >= (x1_shifted - 1172) - 60) ){
+						MyFill(table, "AA_first_band", 4096, 0, 16384, x1_shifted, 2048, 0, 8192,cebra_E_EnergyCalibrated );
+						MyFill(table, "AA_x1_with_gamma_condition_first", 256, 0, 8192, x1_shifted);
+					}
+
+					if ( (cebra_E_EnergyCalibrated <= (x1_shifted - 2336) + 60)  && (cebra_E_EnergyCalibrated >= (x1_shifted - 2336) - 60) ){
+						MyFill(table, "AA_second_band", 4096, 0, 16384, x1_shifted, 2048, 0, 8192,cebra_E_EnergyCalibrated );
+						MyFill(table, "AA_x1_with_gamma_condition_second", 256, 0, 8192, x1_shifted);
 					}
 				
 

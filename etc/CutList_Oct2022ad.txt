@@ -1,0 +1,2 @@
+Name File VarX VarY
+edeProtons /home/spieker-group/Experiments/SPS_CEBRA_Oct2022ad/WorkingDir/cuts/EdE_alphas.root scintLeft anodeBack

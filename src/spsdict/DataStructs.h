@@ -79,6 +79,28 @@ struct ProcessedEvent
   double cebraChannel[5] = {-1,-1,-1,-1,-1};
   double cebraTime[5] = {-1,-1,-1,-1,-1};
 
+  double cebraE0 = -1;
+  double cebraE1 = -1;
+  double cebraE2 = -1;
+  double cebraE3 = -1;
+  double cebraE4 = -1;
+
+  double cebraChannel0 = -1;
+  double cebraChannel1 = -1;
+  double cebraChannel2 = -1;
+  double cebraChannel3 = -1;
+  double cebraChannel4 = -1;
+
+
+  double cebraTime0 = -1;
+  double cebraTime1 = -1;
+  double cebraTime2 = -1;
+  double cebraTime3 = -1;
+  double cebraTime4 = -1;
+
+
+
+
 
  // SabreDetector sabreArray[5]; //index = ChannelMap Id# -1
   CeBrADetector cebraArray[5];
