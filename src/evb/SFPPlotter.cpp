@@ -385,11 +385,21 @@ namespace EventBuilder {
 
 				//adjust accordingly using the "cebra_RelTime_toScint_I" plots
 
+				double cebra_RelTime_toScint_Shift[5] = {	1162,  
+															1160,
+															1159,
+															1159,
+															1129};
+
+// time shifts for 8.3 kG setting 52Cr(d,pg)
+/*
 				double cebra_RelTime_toScint_Shift[5] = {	1155.542,  
 															1153.885,
 															1153.527,
 															1152.917,
 															1123.127};
+
+*/
 
 				//CeBrA time cut ... make sure the shifts are good
 				// double cebra_RelTime_Width = 6.0;
