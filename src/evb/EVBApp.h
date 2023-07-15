@@ -65,7 +65,7 @@ namespace EventBuilder {
 		inline std::string GetBoardShiftFile() const { return m_shiftfile; }
 		inline std::string GetCutList() const { return m_cutList; }
 		inline std::string GetScalerFile() const { return m_scalerfile; }
-
+		inline std::string GetCebraGainFile() const { return m_cebragainfile; }
 		void DefaultProgressCallback(long curVal, long totalVal);
 		inline void SetProgressCallbackFunc(const ProgressCallbackFunc& function) { m_progressCallback = function; }
 		inline void SetProgressFraction(double frac) { m_progressFraction = frac; }
@@ -92,6 +92,7 @@ namespace EventBuilder {
 		std::string m_mapfile, m_shiftfile;
 		std::string m_cutList;
 		std::string m_scalerfile;
+                std::string m_cebragainfile;
 	
 		double m_SlowWindow;
 		double m_FastWindowIonCh;

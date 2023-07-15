@@ -42,6 +42,8 @@ target_sources(EventBuilderCore PRIVATE
     MassLookup.cpp
     SFPAnalyzer.cpp
     SlowSort.h
+    CebraGainMap.cpp
+    CebraGainMap.h
 )
 
 target_link_libraries(EventBuilderCore PUBLIC

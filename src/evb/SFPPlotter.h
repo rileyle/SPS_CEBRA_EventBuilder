@@ -12,6 +12,7 @@
 #include "DataStructs.h"
 #include "ProgressCallback.h"
 #include "CutHandler.h"
+#include "CebraGainMap.h"
 
 namespace EventBuilder {
 
@@ -21,14 +22,15 @@ namespace EventBuilder {
 		SFPPlotter();
 		~SFPPlotter();
 		inline void ApplyCutlist(const std::string& listname) { cutter.SetCuts(listname); }
+	        inline void ReadCebraGains(const std::string& name) { gains.FillMap(name); }
 		void Run(const std::vector<std::string>& files, const std::string& output);
 		inline void SetProgressCallbackFunc(const ProgressCallbackFunc& function) { m_progressCallback = function; }
 		inline void SetProgressFraction(double frac) { m_progressFraction = frac; }
 	
 	private:
 		void Chain(const std::vector<std::string>& files); //Form TChain
-		void MakeUncutHistograms(const ProcessedEvent& ev, THashTable* table);
-		void MakeCutHistograms(const ProcessedEvent& ev, THashTable* table);
+		void MakeUncutHistograms(const ProcessedEvent& ev, THashTable* table, int runNum);
+                void MakeCutHistograms(const ProcessedEvent& ev, THashTable* table, int runNum);
 	
 		/*Histogram fill wrapper functions*/
 		void MyFill(THashTable* table, const std::string& name, int binsx, double minx, double maxx, double valuex,
@@ -39,7 +41,9 @@ namespace EventBuilder {
 	
 		/*Cuts*/
 		CutHandler cutter;
-		
+
+                CebraGainMap gains;
+	  
 		ProgressCallbackFunc m_progressCallback;
 		double m_progressFraction;
 	

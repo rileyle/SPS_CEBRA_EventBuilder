@@ -72,6 +72,11 @@ namespace EventBuilder {
 		input>>junk;
 		std::getline(input, junk);
 		std::getline(input, junk);
+		input>>junk;
+		input>>m_cebragainfile;
+		input>>junk;
+		std::getline(input, junk);
+		std::getline(input, junk);
 		input>>junk>>m_rmin;
 		input>>junk>>m_rmax;
 	
@@ -117,6 +122,9 @@ namespace EventBuilder {
 		output<<"FastCoincidenceWindow_CEBRA(ps): "<<m_FastWindowCEBRA<<std::endl;
 	//	output<<"FastCoincidenceWindow_SABRE(ps): "<<m_FastWindowSABRE<<std::endl;
 		output<<"-------------------------------"<<std::endl;
+		output<<"----Calibration Information----"<<std::endl;
+		output<<"CeBrAGainFile: "<<m_cebragainfile<<std::endl;
+		output<<"-------------------------------"<<std::endl;
 		output<<"--------Run Information--------"<<std::endl;
 		output<<"MinRun: "<<m_rmin<<std::endl;
 		output<<"MaxRun: "<<m_rmax<<std::endl;
@@ -137,6 +145,8 @@ namespace EventBuilder {
 		grammer.SetProgressFraction(m_progressFraction);
 		grammer.ApplyCutlist(m_cutList);
 		EVB_INFO("Generating histograms from analyzed runs [{0}, {1}] with Cut List {2}...", m_rmin, m_rmax, m_cutList);
+		grammer.ReadCebraGains(m_cebragainfile);
+		EVB_INFO("Using linear gain coefficients for CeBrA from file {}",m_cebragainfile);
 		EVB_INFO("Output file will be named {0}",plot_file);
 	
 		grabber.SetSearchParams(analyze_dir, "", ".root", m_rmin, m_rmax);

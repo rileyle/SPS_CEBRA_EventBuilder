@@ -1,0 +1,30 @@
+-------Data Location----------
+WorkspaceDirectory: /usr/local/nuc/fsudp/dp2023/WorkingDir
+-------------------------------
+------Experimental Inputs------
+ChannelMapFile: /usr/local/nuc/fsudp/dp2023/SPS_CEBRA_EventBuilder/etc/ChannelMap_July2023_REU.txt
+ScalerFile: /usr/local/nuc/fsudp/dp2023/SPS_CEBRA_EventBuilder/etc/ScalerFile_July2023_REU.txt
+CutListFile: /usr/local/nuc/fsudp/dp2023/SPS_CEBRA_EventBuilder/etc/runs_82_112_CutList.txt
+ZT: 24
+AT: 52
+ZP: 1
+AP: 2
+ZE: 1
+AE: 1
+BField(G): 8300
+BeamKE(MeV): 16
+Theta(deg): 37
+-------------------------------
+-------Timing Information------
+BoardOffsetFile: /usr/local/nuc/fsudp/dp2023/SPS_CEBRA_EventBuilder/etc/ShiftMap_July2023_REU.txt
+SlowCoincidenceWindow(ps): 3e6
+FastCoincidenceWindow_IonCh(ps): 250000
+FastCoincidenceWindow_CEBRA(ps): 150000
+-------------------------------
+----Calibration Information----
+CeBrAGainFile: /usr/local/nuc/fsudp/dp2023/SPS_CEBRA_EventBuilder/etc/gainTest.txt
+-------------------------------
+--------Run Information--------
+MinRun: 82
+MaxRun: 82
+-------------------------------

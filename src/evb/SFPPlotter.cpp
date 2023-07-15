@@ -53,7 +53,7 @@ namespace EventBuilder {
 	}
 	
 	/*Makes histograms where only rejection is unset data*/
-	void SFPPlotter::MakeUncutHistograms(const ProcessedEvent& ev, THashTable* table)
+        void SFPPlotter::MakeUncutHistograms(const ProcessedEvent& ev, THashTable* table, int runNum)
 	{
 
 
@@ -186,6 +186,7 @@ namespace EventBuilder {
 
 
 		//plots with no cuts and no scint stuff
+		double cebra_E_ADCShift[5];
 		for(int i=0; i<5; i++) {
 			if(ev.cebraE[i] != -1){
 
@@ -215,9 +216,24 @@ namespace EventBuilder {
 				// 							1.08140038495971	*ev.cebraE[3]-0.744386649146463,
 				// 							1					*ev.cebraE[4]+0};
 
-				// MyFill(table,fmt::format("cebra_E_{}_ADCShift_noCuts",i),1024,0,4096,cebra_E_ADCShift[i]);
-				//MyFill(table,"cebra_E_ADCShift_noCuts",1024,0,4096,cebra_E_ADCShift[i]);
-
+				// Gain match the CeBrA detectors.
+				//   Find the gain time window for the current time.
+				if(gains.IsValid()){
+				  int rangeNum = 0;
+				  while(ev.cebraTime[i] / 1e9 > gains.GetT2(runNum, rangeNum)){
+				    rangeNum++;
+				  }
+				  
+				  //   Apply the linear gain transformation.
+				  cebra_E_ADCShift[i] = gains.GetIntercept(runNum, rangeNum, i) + gains.GetSlope(runNum, rangeNum, i)*ev.cebraE[i];
+				} else {
+				  cebra_E_ADCShift[i] = ev.cebraE[i];
+				}
+				
+				MyFill(table,fmt::format("cebra_E_{}_ADCShift_noCuts",i),1024,0,4096,cebra_E_ADCShift[i]);
+				MyFill(table,"cebra_E_ADCShift_noCuts",1024,0,4096,cebra_E_ADCShift[i]);
+				MyFill(table,fmt::format("cebra_E_{}_ADCShift_cebraTime_noCuts",i),7200, 0, 7200, ev.cebraTime[i] / 1e9, 1024,0,4096,
+				       cebra_E_ADCShift[i]);
 				
 				// if(ev.x1 != -1e6 && ev.x2 != -1e6){
 				// MyFill(table,fmt::format("x1_cebraE_{}_noCuts",i),600,-300,300,ev.x1,1024,0,1024,ev.cebraE[i]);
@@ -236,7 +252,7 @@ namespace EventBuilder {
 	}
 	
 	/*Makes histograms with cuts & gates implemented*/
-	void SFPPlotter::MakeCutHistograms(const ProcessedEvent& ev, THashTable* table) 
+        void SFPPlotter::MakeCutHistograms(const ProcessedEvent& ev, THashTable* table, int runNum) 
 	{
 		if(!cutter.IsInside(&ev)) 
 			return;
@@ -342,16 +358,31 @@ namespace EventBuilder {
 		MyFill(table,"x2_cathode_Cut",600,-300,300,ev.x2,512,0,4096,ev.cathode);
 		MyFill(table,"xavg_cathode_Cut",600,-300,300,ev.xavg,512,0,4096,ev.cathode);
 
-		double cebra_E_ADCShift[5] = {	1.0			*ev.cebraE[0]+ 0.0,
-											1.10926476470248* ev.cebraE[1] +	1.08683520943367,
-											1.10769015886069* ev.cebraE[2] +	7.96018591651148,
-											0.976988483900976*ev.cebraE[3] +	6.09760569824573,
-											0.947475209624302*ev.cebraE[4] +	8.03998545288471
-											};
-
-											
+		// double cebra_E_ADCShift[5] = {	1.0			*ev.cebraE[0]+ 0.0,
+		// 									1.10926476470248* ev.cebraE[1] +	1.08683520943367,
+		// 									1.10769015886069* ev.cebraE[2] +	7.96018591651148,
+		// 									0.976988483900976*ev.cebraE[3] +	6.09760569824573,
+		// 									0.947475209624302*ev.cebraE[4] +	8.03998545288471
+		// 									};
 
 
+		// Gain match the CeBrA detectors.
+		double cebra_E_ADCShift[5];
+		for(int i=0; i<5; i++){
+		  if(gains.IsValid()){
+
+		    //   Find the gain time window for the current time.
+		    int rangeNum = 0;
+		    while(ev.cebraTime[i] / 1e9 > gains.GetT2(runNum, rangeNum))
+		      rangeNum++;
+		
+		    //   Apply the linear gain transformations.
+		    cebra_E_ADCShift[i] = gains.GetIntercept(runNum, rangeNum, i) + gains.GetSlope(runNum, rangeNum, i)*ev.cebraE[i];
+		  } else {
+		    cebra_E_ADCShift[i] = ev.cebraE[i];
+		  }
+		}
+		
 	
 		/****Timing relative to back anode****/
 		if(ev.anodeBackTime != -1 && ev.scintLeftTime != -1) 
@@ -372,9 +403,9 @@ namespace EventBuilder {
 			MyFill(table,"delayBR_RelScint_Cuts",3000,-3000,3000,delayBR_toScint);
 			MyFill(table, "xavg_timeDifferenceScints", 600, -300, 300, ev.xavg, 12800, -3200,3200, ev.scintRightTime - ev.scintLeftTime);
 
-	
-			for(int i=0; i<5; i++) {
 
+			for(int i=0; i<5; i++) {
+			  
 				//CeBrA Relative Time to Left Scint Cut Plots
 				Double_t cebraRelT_toScint = ev.cebraTime[i] - ev.scintLeftTime;
 				//CeBrA relative time to right Scint
@@ -385,25 +416,19 @@ namespace EventBuilder {
 
 				//adjust accordingly using the "cebra_RelTime_toScint_I" plots
 
-				double cebra_RelTime_toScint_Shift[5] = {	1162,  
-															1160,
-															1159,
-															1159,
-															1129};
-
 // time shifts for 8.3 kG setting 52Cr(d,pg)
-/*
+
 				double cebra_RelTime_toScint_Shift[5] = {	1155.542,  
 															1153.885,
 															1153.527,
 															1152.917,
-															1123.127};
+															1122.9};
 
-*/
+
 
 				//CeBrA time cut ... make sure the shifts are good
 				// double cebra_RelTime_Width = 6.0;
-				double cebra_RelTime_Width = 2.4;
+				double cebra_RelTime_Width = 2.9; // LR: Consider using ranges. Detector 4 has a broader peak.
 
 				double cebraRelT_toScint_Shifted = cebraRelT_toScint + cebra_RelTime_toScint_Shift[i];
 				MyFill(table, fmt::format("xavg_vs_timeDiff_cebra{}_scintRight", i), 600, -300, 300, ev.xavg, 6400, -3200, 3200, cebraRelT_toRightScint);
@@ -563,8 +588,16 @@ namespace EventBuilder {
 				m_progressCallback(flush_count*flush_val, blentries);
 			}
 			chain->GetEntry(i);
-			MakeUncutHistograms(*event_address, table);
-			if(cutter.IsValid()) MakeCutHistograms(*event_address, table);
+
+			//LR Get the run number out of the filename of the current file in the TChain.
+			TString name = chain->GetFile()->GetName();
+			Int_t istart = name.First('_')+1;
+			Int_t istop = name.First('.');
+			TString runNumber = name(istart, istop-istart);
+			int runNum = runNumber.Atoi();
+			
+			MakeUncutHistograms(*event_address, table, runNum);
+			if(cutter.IsValid()) MakeCutHistograms(*event_address, table, runNum);
 		}
 		outfile->cd();
 		table->Write();
