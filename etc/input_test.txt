@@ -25,6 +25,6 @@ FastCoincidenceWindow_CEBRA(ps): 150000
 CeBrAGainFile: /usr/local/nuc/fsudp/dp2023/SPS_CEBRA_EventBuilder/etc/gainTest.txt
 -------------------------------
 --------Run Information--------
-MinRun: 82
-MaxRun: 82
+MinRun: 83
+MaxRun: 83
 -------------------------------

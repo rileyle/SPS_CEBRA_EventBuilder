@@ -9,6 +9,7 @@
 #include "EventBuilder.h"
 #include "SFPPlotter.h"
 #include <TSystem.h>
+#include <TRandom.h>
 
 namespace EventBuilder {
 
@@ -223,9 +224,15 @@ namespace EventBuilder {
 				  while(ev.cebraTime[i] / 1e9 > gains.GetT2(runNum, rangeNum)){
 				    rangeNum++;
 				  }
-				  
 				  //   Apply the linear gain transformation.
 				  cebra_E_ADCShift[i] = gains.GetIntercept(runNum, rangeNum, i) + gains.GetSlope(runNum, rangeNum, i)*ev.cebraE[i];
+				  cebra_E_ADCShift[i] += gRandom->Rndm()-0.5; // To remove aliasing, assuming 12 bit ADC voltage resolution
+				  // std::cout << "det " << i 
+				  // 	    << ", b = " <<  gains.GetIntercept(runNum, rangeNum, i) 
+				  // 	    << ", m = " << gains.GetSlope(runNum, rangeNum, i)
+				  // 	    << ", ev.cebraE = " << ev.cebraE[i]
+				  // 	    << ", cebra_E_ADCShift = " << cebra_E_ADCShift[i]
+				  // 	    << std::endl;
 				} else {
 				  cebra_E_ADCShift[i] = ev.cebraE[i];
 				}
@@ -375,9 +382,9 @@ namespace EventBuilder {
 		    int rangeNum = 0;
 		    while(ev.cebraTime[i] / 1e9 > gains.GetT2(runNum, rangeNum))
 		      rangeNum++;
-		
 		    //   Apply the linear gain transformations.
 		    cebra_E_ADCShift[i] = gains.GetIntercept(runNum, rangeNum, i) + gains.GetSlope(runNum, rangeNum, i)*ev.cebraE[i];
+		    cebra_E_ADCShift[i] += gRandom->Rndm()-0.5; // To remove aliasing, assuming 12 bit ADC voltage resolution
 		  } else {
 		    cebra_E_ADCShift[i] = ev.cebraE[i];
 		  }
