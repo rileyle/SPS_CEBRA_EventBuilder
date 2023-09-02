@@ -453,33 +453,17 @@ namespace EventBuilder {
 					MyFill(table,"AA_xavg_cebraE_Sum_TimeCutShift_Cut",600,-300,300,ev.xavg,512,0,4096,cebra_E_ADCShift[i]);
 					MyFill(table,"AA_x1_cebraE_Sum_TimeCutShift_Cut",600,-300,300,ev.x1,512,0,4096,cebra_E_ADCShift[i]);
 
-					//Energy Calibrated to the GS band 
-					// double cebra_E_EnergyCalibrated = 1.77817107*cebra_E_ADCShift[i]+4.74455886;   // run 286 -   61Ni @8.7kG
+					double cebra_E_EnergyCalibrated = -3.1747e-06*cebra_E_ADCShift[i]*cebra_E_ADCShift[i]
+					  + 1.7366*cebra_E_ADCShift[i] + 3.0;
+					
+					double xavg_calibrated = -2.2631e-03*ev.xavg - 18.516*ev.xavg + 1353.3;
 
+					MyFill(table,"AA_xavg_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2048, 0, 8192,cebra_E_EnergyCalibrated);
+					MyFill(table,"AA_x1_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2048, 0, 8192,cebra_E_EnergyCalibrated);
 
-					//Shifting x1 so run_82_123 x1_bothplanes_cut lines up with run_162_183
-					// double x1_shifted = 1.00248436*ev.x1 + 2.46724718; 
-
-					//run 184-232 energy calibrated
-					//double x1_shifted = -21.1595478758973*ev.x1+	2112.63002693692;
-
-					//run 245-283 energy calibrated
-					//double xavg_shifted = -17.1003806*ev.xavg +		6700.1328827;
-
-					//run 291-351 energy calibrated
-					double x1_shifted = -20.6867155520197*ev.x1+	2377.1950716545;
-
-
-					// MyFill(table,"AA_xavg_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2048, 0, 8192,cebra_E_EnergyCalibrated);
-					// MyFill(table,"AA_x1_cebraE_Sum_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2048, 0, 8192,cebra_E_EnergyCalibrated);
-
-					// //Use x1 calibration for 49Ti @ 8.8kG setting, x1 was better here, xavg is better for 49Ti @7.9kG and the 61Ni stuff
-					// MyFill(table,"AA_ENERGYCAL_x1_cebraE_TimeCutShift_Cut",512,0,8192,x1_shifted,2048, 0, 8192,cebra_E_EnergyCalibrated);
-					// MyFill(table,"x1_ENERGYCAL_TimeCutShift_Cut",512,0,8192,x1_shifted);
-
-					//MyFill(table,"AA_ENERGYCAL_xavg_cebraE_TimeCutShift_Cut",4096, 0, 16384,xavg_shifted,2048,0,8192,cebra_E_EnergyCalibrated);
-					//MyFill(table, "xavg_ENERGYCAL_TimeCutShift_Cut", 4096, 0, 16384,xavg_shifted);
-
+					MyFill(table,"AA_ENERGYCAL_xavg_cebraE_TimeCutShift_Cut", 1024, 0, 8192, xavg_calibrated,
+					                                                          2048, 0, 8192, cebra_E_EnergyCalibrated);
+					MyFill(table, "AA_ENERGYCAL_xavg_TimeCutShift_Cut", 2048, 0, 8192, xavg_calibrated);
 
 					// Conditional statement that plots certain decay bands of interest
 					
@@ -506,7 +490,7 @@ namespace EventBuilder {
 
 
 					MyFill(table, "AA_cebraE_Sum_ADCShift_TimeCutShift_Cut", 1024, 0, 4096, cebra_E_ADCShift[i]);
-					// MyFill(table, "AA_cebraE_Sum_EnergyCal_TimeCutShift_Cut", 2048, 0, 8192, cebra_E_EnergyCalibrated);
+					MyFill(table, "AA_cebraE_Sum_EnergyCal_TimeCutShift_Cut", 2048, 0, 8192, cebra_E_EnergyCalibrated);
 
 
 
@@ -515,8 +499,8 @@ namespace EventBuilder {
 							// MyFill(table,"cebraE_zony_cebraE4_TimeCut_Cut",512,0,4096,cebra_E_ADCShift[i],512,0,4096,cebra_E_ADCShift[4]);
 							MyFill(table,"xavg_cebraE_zony_TimeCutShift_Cut",600,-300,300,ev.xavg,512,0,4096,cebra_E_ADCShift[i]);
 							MyFill(table,"x1_cebraE_zony_TimeCutShift_Cut",600,-300,300,ev.x1,512,0,4096,cebra_E_ADCShift[i]);
-							// MyFill(table,"AA_xavg_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2048, 0, 8192,cebra_E_EnergyCalibrated);
-							// MyFill(table,"AA_x1_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2048, 0, 8192,cebra_E_EnergyCalibrated);
+							//MyFill(table,"AA_xavg_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.xavg,2048, 0, 8192,cebra_E_EnergyCalibrated);
+							//MyFill(table,"AA_x1_cebraE_zony_EnergyCalibrated_TimeCutShift_Cut",600,-300,300,ev.x1,2048, 0, 8192,cebra_E_EnergyCalibrated);
 							
 							// MyFill(table, "AA_zony_Sum_EnergyCal_TimeCutShift_Cut", 2048, 0, 8192, cebra_E_EnergyCalibrated);
 

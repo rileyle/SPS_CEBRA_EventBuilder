@@ -145,8 +145,10 @@ namespace EventBuilder {
 		grammer.SetProgressFraction(m_progressFraction);
 		grammer.ApplyCutlist(m_cutList);
 		EVB_INFO("Generating histograms from analyzed runs [{0}, {1}] with Cut List {2}...", m_rmin, m_rmax, m_cutList);
-		grammer.ReadCebraGains(m_cebragainfile);
-		EVB_INFO("Using linear gain coefficients for CeBrA from file {}",m_cebragainfile);
+		if(m_cebragainfile!="None"){
+		  grammer.ReadCebraGains(m_cebragainfile);
+		  EVB_INFO("Using linear gain coefficients for CeBrA from file {}",m_cebragainfile);
+		}
 		EVB_INFO("Output file will be named {0}",plot_file);
 	
 		grabber.SetSearchParams(analyze_dir, "", ".root", m_rmin, m_rmax);
